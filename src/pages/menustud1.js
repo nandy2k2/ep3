@@ -108,6 +108,49 @@ export function mainListItems({ open }) {
        <Accordion>
         <AccordionSummary aria-controls="panel3-content" id="panel3-header">
           <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>NEP Subject Selection</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/studentSubjectds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Subject selection" />}
+</ListItem>
+
+          </AccordionDetails>
+          </Accordion>
+
+
+       <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Student data</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/student/profile">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="My data" />}
+</ListItem>
+
+
+<ListItem button component={RouterLink} to="/studentprofiledsoct18">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="My data edit" />}
+</ListItem>
+
+          </AccordionDetails>
+          </Accordion>
+
+       <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
           {open && <Typography sx={{fontSize: 14}}>Fees Ledger</Typography>}
         </AccordionSummary>
         <AccordionDetails>

@@ -891,6 +891,52 @@ import Addrubric1bulk from './pages/Addrubric1bulk';
 
 import Addrubric1bulkedit from './pages/Addrubric1bulkedit';
 
+import Dashmattstud from './pages/Dashmattstud';
+
+
+// User Management - Admin
+import UserManagement from "./pages/UserManagement";
+import CreateUser from "./pages/CreateUser";
+import EditUserds from "./pages/EditUserds";
+import BulkUploadUsers from "./pages/BulkUploadUsers";
+
+// User Management - Student
+import StudentProfileds1 from "./pages/StudentProfileds1";
+
+import Dashmchatentry from "./pages/Dashmchatentry";
+
+import SubjectGroupds from './pages/SubjectGroupds';
+import StudentSubjectds from './pages/StudentSubjectds';
+import SubjectApprovalds from './pages/SubjectApprovalds';
+
+import SubjectLimitConfig from './pages/SubjectLimitConfig';
+import SubjectReportds from './pages/SubjectReportds';
+
+import Seatallocator from './pages/Seatallocator';
+import Seatallocator1 from './pages/Seatallocator1';
+import Seatallocatorm1 from './pages/Seatallocatorm1';
+
+import Seatallocatorm2 from './pages/Seatallocatorm2';
+import Seatallocatorm3 from './pages/Seatallocatorm3';
+import Seatallocatorm4 from './pages/Seatallocatorm4';
+import Seatallocatorm5 from './pages/Seatallocatorm5';
+
+import Seatallocatormds4 from './pages/Seatallocatormds4';
+
+
+// User Management - Admin
+import UserManagementdsoct18 from "./pages/UserManagementdsoct18";
+import CreateUserdsoct18 from "./pages/CreateUserdsoct18";
+import EditUserdsoct18 from "./pages/EditUserdsoct18";
+import BulkUploadUsersdsoct18 from "./pages/BulkUploadUsersdsoct18";
+
+// User Management - Student
+import StudentProfiledsoct18 from "./pages/StudentProfiledsoct18";
+
+import ProfileEditConfigds from "./pages/ProfileEditConfigds";
+import ProfileEditLogsds from "./pages/ProfileEditLogsds";
+import DataQualityReportds from "./pages/DataQualityReportds";
+
 
 
 
@@ -951,6 +997,45 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+         <Route path="/usermanagementdsoct18" element={<UserManagementdsoct18 />} />
+        <Route path="/createuserdsoct18" element={<CreateUserdsoct18 />} />
+        <Route path="/edituserdsoct18/:id" element={<EditUserdsoct18 />} />
+        <Route path="/bulkuploadusersdsoct18" element={<BulkUploadUsersdsoct18 />} />
+        <Route path="/studentprofiledsoct18" element={<StudentProfiledsoct18 />} />
+        <Route path="/profileeditconfigds" element={<ProfileEditConfigds />} />
+        <Route path="/profileeditlogsds" element={<ProfileEditLogsds />} />
+        <Route path="/dataqualityreportds" element={<DataQualityReportds />} />
+
+        <Route path="/seatallocatormds4" element={<Seatallocatormds4 />} />
+
+        <Route path="/seatallocator" element={<Seatallocator />} />
+        <Route path="/seatallocator1" element={<Seatallocator1 />} />
+        <Route path="/seatallocatorm1" element={<Seatallocatorm1 />} />
+        <Route path="/seatallocatorm2" element={<Seatallocatorm2 />} />
+        <Route path="/seatallocatorm3" element={<Seatallocatorm3 />} />
+        <Route path="/seatallocatorm4" element={<Seatallocatorm4 />} />
+        <Route path="/seatallocatorm5" element={<Seatallocatorm5 />} />
+
+        {/* Faculty Routes */}
+        
+        <Route path="/subjectlimitconfig" element={<SubjectLimitConfig />} />
+        <Route path="/subjectgroupds" element={<SubjectGroupds />} />
+        <Route path='/subjectApprovalds' element={<SubjectApprovalds />} />
+        <Route path="/subjectreportds" element={<SubjectReportds />} />
+        
+        {/* Student Route */}
+        <Route path='/studentSubjectds' element={<StudentSubjectds />} />
+
+        <Route path="/dashmchatentry" element={<Dashmchatentry />} />
+
+        <Route path="/admin/users" element={<UserManagement />} />
+        <Route path="/admin/create-user" element={<CreateUser />} />
+        <Route path="/admin/edit-user/:id" element={<EditUserds />} />
+        <Route path="/admin/bulk-upload-users" element={<BulkUploadUsers />} />
+         <Route path="/student/profile" element={<StudentProfileds1 />} />
+
+        <Route path="/dashmattstud" element={<Dashmattstud />} />
 
         <Route path="/addrubric1bulkedit" element={<Addrubric1bulkedit />} />
         <Route path="/addrubric1bulk" element={<Addrubric1bulk />} />
