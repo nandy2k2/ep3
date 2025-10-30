@@ -148,6 +148,41 @@ export function mainListItems({ open }) {
           </AccordionDetails>
           </Accordion>
 
+           <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Hostel</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/dashboardhostelpagestud">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Hostel dashboard" />}
+</ListItem>
+
+        </AccordionDetails>
+        </Accordion>
+
+          <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Scholarship</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+            <ListItem button component={RouterLink} to="/ApplyScholarshipDS">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Apply for scholarship" />}
+</ListItem>
+
+
+        </AccordionDetails>
+        </Accordion>
+
        <Accordion>
         <AccordionSummary aria-controls="panel3-content" id="panel3-header">
           <BusinessIcon sx={{ marginRight: 1 }} />

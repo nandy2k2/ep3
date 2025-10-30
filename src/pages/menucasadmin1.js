@@ -268,6 +268,23 @@ export function mainListItems({ open }) {
         
                 </AccordionDetails>
                 </Accordion>
+
+                 <Accordion>
+        <AccordionSummary aria-controls="panel2-content" id="panel2-header">
+          <SettingsIcon sx={{ marginRight: 1 }} />
+          {open && <Typography>Digital Evaluation</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+            <ListItem button component={RouterLink} to="/dashmstudalloc1admin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Student list" />}
+</ListItem>
+
+        </AccordionDetails>
+      </Accordion>
     
     <Accordion>
         <AccordionSummary aria-controls="panel2-content" id="panel2-header">

@@ -89,6 +89,7 @@ const username=email;
         global1.token = response.data.token;
         global1.department = response.data.department;
         global1.programcode = response.data.programcode;
+        global1.category = response.data.category;
         // //global1.programid = response.data[0].programid;
         // //global1.batch = response.data[0].batch;
         global1.regno = response.data.regno;

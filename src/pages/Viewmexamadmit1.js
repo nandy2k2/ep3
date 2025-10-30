@@ -14,6 +14,8 @@ import dayjs from 'dayjs';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
 
+import { useNavigate } from 'react-router-dom';
+
 import pdfToText from 'react-pdftotext';
 
 import Backdrop from '@mui/material/Backdrop';
@@ -29,6 +31,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 function ViewPage() {
+  const navigate = useNavigate();
     const [rows, setRows] = useState([]);
     const [results, setResults] = useState([]);
     const [second, setSecond] = useState([]);
@@ -490,6 +493,31 @@ return '';
     //   setRows(response.data.data.classes);
     };
 
+    const digitalall = async () => {
+
+        //alert(year + ' ' + exam + ' ' + program + ' ' + semester);
+        
+        if(!year || !exam || !program || !semester) {
+            alert('Please select year, program, examcode and semester');
+            return;
+
+        }
+     global1.program=program;
+     global1.semester=semester;
+     global1.year=year;
+     global1.examode=exam;
+
+     navigate('/allocatefaculties');
+
+     
+
+      // window.open('/digitalevaluationmstudalloc1','_blank');
+
+
+     
+    //   setRows(response.data.data.classes);
+    };
+
     const approveadmitall1 = async () => {
 
         const studreg=regref.current.value;
@@ -918,6 +946,13 @@ level:level,
              style={{ padding: '5px 10px', fontSize: '12px', height: '30px', width: '120px', marginLeft: 6 }}
            >
              Approve student
+           </Button>
+            <Button onClick={digitalall}
+             variant="contained"
+             color="secondary"
+             style={{ padding: '5px 10px', fontSize: '12px', height: '30px', width: '160px', marginLeft: 6 }}
+           >
+             Digital evaluation
            </Button>
          </Box>
 

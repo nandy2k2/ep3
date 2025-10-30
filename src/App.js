@@ -938,22 +938,106 @@ import ProfileEditLogsds from "./pages/ProfileEditLogsds";
 import DataQualityReportds from "./pages/DataQualityReportds";
 
 
+import Vendormanagementds from "./pages/Vendormanagementds";
+import Productmanagementds from "./pages/Productmanagementds";
+import Vendorproductmanagementds from "./pages/Vendorproductmanagementds";
+import Productrequestds from "./pages/Productrequestds";
+import Productrequestadminds from "./pages/Productrequestadminds";
+import Purchasemanagementds from "./pages/Purchasemanagementds";
+import Paymentmanagementds from "./pages/Paymentmanagementds";
 
 
+import TransactionrefdsPage from "./pages/TransactionrefdsPage";
+import JournalsByGroupdsPage from "./pages/JournalsByGroupdsPage";
+
+import Purchasedsearchds from "./pages/Purchasedsearchds";
 
 
+import CreateScholarshipDS from './pages/CreateScholarshipDS';
+import ApplyScholarshipDS from './pages/ApplyScholarshipDS';
+import ScholarshipAdminDS from './pages/ScholarshipAdminDS';
+
+import Dashmstudalloc1 from './pages/Dashmstudalloc1';
+import Dashmstudalloc1admin from './pages/Dashmstudalloc1admin';
 
 
+import Allocatefaculties from './pages/Allocatefaculties';
 
+import Viewmmcevents from './pages/Viewmmcevents';
 
+import ParentDetailsPage from './pages/ParentDetailsPage';
+import GatewayPassApprovalPage from './pages/GatewayPassApprovalPage';
+import StudentGatewayPassPage from './pages/StudentGatewayPassPage';
+import StudentGatewayStatusPage from './pages/StudentGatewayStatusPage';
+import ParentApprovalPage from './pages/ParentApprovalPage';
+import BuildingStaffConfigPage from './pages/BuildingStaffConfigPage';
+import MessPollsPage from './pages/MessPollsPage';
+import StudentMealVotePage from './pages/StudentMealVotePage';
+import MessApplicationPage from './pages/MessApplicationPage';
+import StudentMessApplicationPage from './pages/StudentMessApplicationPage';
 
+import DashboardPageHostel from './pages/DashboardPageHostel';
+import Dashboardhostelpagestud from './pages/Dashboardhostelpagestud';
 
+import DashmPatient from './pages/DashmPatient';
+import DashmPatientadmin from './pages/DashmPatientadmin';
+import Dashmicu from './pages/Dashmicu';
+import Dashmicuadmin from './pages/Dashmicuadmin';
+import Dashmmicu from './pages/Dashmmicu';
+import Dashmmicuadmin from './pages/Dashmmicuadmin';
+import Dashmnicu from './pages/Dashmnicu';
+import Dashmnicuadmin from './pages/Dashmnicuadmin';
+import Dashmhdu from './pages/Dashmhdu';
+import Dashmhduadmin from './pages/Dashmhduadmin';
+import Dashmward from './pages/Dashmward';
+import Dashmwardadmin from './pages/Dashmwardadmin';
+import Dashmemergency from './pages/Dashmemergency';
+import Dashmemergencyadmin from './pages/Dashmemergencyadmin';
+import Dashmnemergency from './pages/Dashmnemergency';
+import Dashmnemergencyadmin from './pages/Dashmnemergencyadmin';
+import Dashmpadmission from './pages/Dashmpadmission';
+import Dashmpadmissionadmin from './pages/Dashmpadmissionadmin';
+import Dashmicubed from './pages/Dashmicubed';
+import Dashmicubedadmin from './pages/Dashmicubedadmin';
+import Dashmmicubed from './pages/Dashmmicubed';
+import Dashmmicubedadmin from './pages/Dashmmicubedadmin';
+import Dashmnicubed from './pages/Dashmnicubed';
+import Dashmnicubedadmin from './pages/Dashmnicubedadmin';
+import Dashmhdubed from './pages/Dashmhdubed';
+import Dashmhdubedadmin from './pages/Dashmhdubedadmin';
+import Dashmwardbed from './pages/Dashmwardbed';
+import Dashmwardbedadmin from './pages/Dashmwardbedadmin';
+import Dashmerbed from './pages/Dashmerbed';
+import Dashmerbedadmin from './pages/Dashmerbedadmin';
+import Dashmnerbed from './pages/Dashmnerbed';
+import Dashmnerbedadmin from './pages/Dashmnerbedadmin';
+import Dashmpadmhistory from './pages/Dashmpadmhistory';
+import Dashmpadmhistoryadmin from './pages/Dashmpadmhistoryadmin';
+import Dashmpbilling from './pages/Dashmpbilling';
+import Dashmpbillingadmin from './pages/Dashmpbillingadmin';
 
+import Dashmpillness from './pages/Dashmpillness';
+import Dashmpillnessadmin from './pages/Dashmpillnessadmin';
+import Dashmpsurgery from './pages/Dashmpsurgery';
+import Dashmpsurgeryadmin from './pages/Dashmpsurgeryadmin';
+import Dashmpfamily from './pages/Dashmpfamily';
+import Dashmpfamilyadmin from './pages/Dashmpfamilyadmin';
+import Dashmpallergies from './pages/Dashmpallergies';
+import Dashmpallergiesadmin from './pages/Dashmpallergiesadmin';
 
+import Dashmpconsent from './pages/Dashmpconsent';
+import Dashmpconsentadmin from './pages/Dashmpconsentadmin';
+import Dashmptreatment from './pages/Dashmptreatment';
+import Dashmptreatmentadmin from './pages/Dashmptreatmentadmin';
+import Dashmplab from './pages/Dashmplab';
+import Dashmplabadmin from './pages/Dashmplabadmin';
+import Dashmpimaging from './pages/Dashmpimaging';
+import Dashmpimagingadmin from './pages/Dashmpimagingadmin';
+import Dashmpdischarge from './pages/Dashmpdischarge';
+import Dashmpdischargeadmin from './pages/Dashmpdischargeadmin';
 
-
-
-
+import Viewmmcevmed from './pages/Viewmmcevmed';
+import Viewmmcevmeddis from './pages/Viewmmcevmeddis';
 
 
 
@@ -997,6 +1081,112 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+<Route path="/viewmmcevmeddis" element={<Viewmmcevmeddis />} />
+<Route path="/viewmmcevmed" element={<Viewmmcevmed />} />
+
+        <Route path="/dashmpconsent" element={<Dashmpconsent />} />
+<Route path="/dashmpconsentadmin" element={<Dashmpconsentadmin />} />
+<Route path="/dashmptreatment" element={<Dashmptreatment />} />
+<Route path="/dashmptreatmentadmin" element={<Dashmptreatmentadmin />} />
+<Route path="/dashmplab" element={<Dashmplab />} />
+<Route path="/dashmplabadmin" element={<Dashmplabadmin />} />
+<Route path="/dashmpimaging" element={<Dashmpimaging />} />
+<Route path="/dashmpimagingadmin" element={<Dashmpimagingadmin />} />
+<Route path="/dashmpdischarge" element={<Dashmpdischarge />} />
+<Route path="/dashmpdischargeadmin" element={<Dashmpdischargeadmin />} />
+
+
+        <Route path="/dashmpillness" element={<Dashmpillness />} />
+<Route path="/dashmpillnessadmin" element={<Dashmpillnessadmin />} />
+<Route path="/dashmpsurgery" element={<Dashmpsurgery />} />
+<Route path="/dashmpsurgeryadmin" element={<Dashmpsurgeryadmin />} />
+<Route path="/dashmpfamily" element={<Dashmpfamily />} />
+<Route path="/dashmpfamilyadmin" element={<Dashmpfamilyadmin />} />
+<Route path="/dashmpallergies" element={<Dashmpallergies />} />
+<Route path="/dashmpallergiesadmin" element={<Dashmpallergiesadmin />} />
+
+
+        <Route path="/dashmPatient" element={<DashmPatient />} />
+<Route path="/dashmPatientadmin" element={<DashmPatientadmin />} />
+<Route path="/dashmicu" element={<Dashmicu />} />
+<Route path="/dashmicuadmin" element={<Dashmicuadmin />} />
+<Route path="/dashmmicu" element={<Dashmmicu />} />
+<Route path="/dashmmicuadmin" element={<Dashmmicuadmin />} />
+<Route path="/dashmnicu" element={<Dashmnicu />} />
+<Route path="/dashmnicuadmin" element={<Dashmnicuadmin />} />
+<Route path="/dashmhdu" element={<Dashmhdu />} />
+<Route path="/dashmhduadmin" element={<Dashmhduadmin />} />
+<Route path="/dashmward" element={<Dashmward />} />
+<Route path="/dashmwardadmin" element={<Dashmwardadmin />} />
+<Route path="/dashmemergency" element={<Dashmemergency />} />
+<Route path="/dashmemergencyadmin" element={<Dashmemergencyadmin />} />
+<Route path="/dashmnemergency" element={<Dashmnemergency />} />
+<Route path="/dashmnemergencyadmin" element={<Dashmnemergencyadmin />} />
+<Route path="/dashmpadmission" element={<Dashmpadmission />} />
+<Route path="/dashmpadmissionadmin" element={<Dashmpadmissionadmin />} />
+<Route path="/dashmicubed" element={<Dashmicubed />} />
+<Route path="/dashmicubedadmin" element={<Dashmicubedadmin />} />
+<Route path="/dashmmicubed" element={<Dashmmicubed />} />
+<Route path="/dashmmicubedadmin" element={<Dashmmicubedadmin />} />
+<Route path="/dashmnicubed" element={<Dashmnicubed />} />
+<Route path="/dashmnicubedadmin" element={<Dashmnicubedadmin />} />
+<Route path="/dashmhdubed" element={<Dashmhdubed />} />
+<Route path="/dashmhdubedadmin" element={<Dashmhdubedadmin />} />
+<Route path="/dashmwardbed" element={<Dashmwardbed />} />
+<Route path="/dashmwardbedadmin" element={<Dashmwardbedadmin />} />
+<Route path="/dashmerbed" element={<Dashmerbed />} />
+<Route path="/dashmerbedadmin" element={<Dashmerbedadmin />} />
+<Route path="/dashmnerbed" element={<Dashmnerbed />} />
+<Route path="/dashmnerbedadmin" element={<Dashmnerbedadmin />} />
+<Route path="/dashmpadmhistory" element={<Dashmpadmhistory />} />
+<Route path="/dashmpadmhistoryadmin" element={<Dashmpadmhistoryadmin />} />
+<Route path="/dashmpbilling" element={<Dashmpbilling />} />
+<Route path="/dashmpbillingadmin" element={<Dashmpbillingadmin />} />
+
+
+        <Route path='/dashboardpagehostel' element={<DashboardPageHostel />} />
+        <Route path='/dashboardhostelpagestud' element={<Dashboardhostelpagestud />} />
+
+         {/* Warden Routes - NEW */}
+                <Route path='/parent-details' element={<ParentDetailsPage />} />
+                <Route path='/gateway-pass-approval' element={<GatewayPassApprovalPage />} />
+                <Route path='/building-staff-config' element={<BuildingStaffConfigPage />} />
+                <Route path='/mess-polls' element={<MessPollsPage />} />
+                <Route path='/mess-applications' element={<MessApplicationPage />} />
+                
+                {/* Student Routes - NEW */}
+                <Route path='/student-gateway-pass' element={<StudentGatewayPassPage />} />
+                <Route path='/student-gateway-status' element={<StudentGatewayStatusPage />} />
+                <Route path='/student-meal-vote' element={<StudentMealVotePage />} />
+                <Route path='/student-mess-application' element={<StudentMessApplicationPage />} />
+                
+                {/* Parent Routes - NEW */}
+                <Route path='/parent-approval/:token' element={<ParentApprovalPage />} />
+
+        <Route path="/viewmmcevents" element={<Viewmmcevents />} />
+        <Route path="/allocatefaculties" element={<Allocatefaculties />} />
+
+        <Route path="/dashmstudalloc1" element={<Dashmstudalloc1 />} />
+        <Route path="/dashmstudalloc1admin" element={<Dashmstudalloc1admin />} />
+
+
+         <Route path='/CreateScholarshipDS' element={<CreateScholarshipDS />} />
+        <Route path='/ApplyScholarshipDS' element={<ApplyScholarshipDS />} />
+        <Route path='/ScholarshipAdminDS' element={<ScholarshipAdminDS />} />
+
+        <Route path="/purchasedsearchds" element={<Purchasedsearchds />} />
+
+        <Route path="/transactionrefds" element={<TransactionrefdsPage />} />
+        <Route path="/journalsbygroupds" element={<JournalsByGroupdsPage />} />
+
+         <Route path="/vendormanagementds" element={<Vendormanagementds />} />
+        <Route path="/productmanagementds" element={<Productmanagementds />} />
+        <Route path="/vendorproductmanagementds" element={<Vendorproductmanagementds />} />
+        <Route path="/productrequestds" element={<Productrequestds />} />
+        <Route path="/productrequestadminds" element={<Productrequestadminds />} />
+        <Route path="/purchasemanagementds" element={<Purchasemanagementds />} />
+        <Route path="/paymentmanagementds" element={<Paymentmanagementds />} />
 
          <Route path="/usermanagementdsoct18" element={<UserManagementdsoct18 />} />
         <Route path="/createuserdsoct18" element={<CreateUserdsoct18 />} />

@@ -209,6 +209,8 @@ const Mjournal2Page = () => {
 
       setError('');
       const processedEntries = processEntriesForSave(formData.entries);
+
+      const uniqueTransactionRef = `TRN-${Date.now()}-${Math.floor(Math.random()*1000)}`;
       
       const promises = processedEntries.map((entry, index) => {
         return ep1.post('/api/v2/dscreatemjournal2', {
@@ -220,7 +222,7 @@ const Mjournal2Page = () => {
           account: entry.account,
           acctype: entry.acctype,
           transaction: formData.transaction,
-          transactionref: `${formData.transaction}_${formData.year}_${Date.now()}`,
+          transactionref: uniqueTransactionRef,
           subledger: entry.subledger,
           cogs: entry.cogs || 'No',
           activitydate: formData.activitydate,
@@ -295,6 +297,7 @@ const Mjournal2Page = () => {
     { field: 'accgroup', headerName: 'Group', width: 120 },
     { field: 'account', headerName: 'Account', width: 150 },
     { field: 'transaction', headerName: 'Transaction', width: 120 },
+    { field: "transactionref", headerName: "Transaction Ref", width: 160 },
     { field: 'activitydate', headerName: 'Date', width: 100 },
     { field: 'amount', headerName: 'Amount', width: 90 },
     { field: 'debit', headerName: 'Debit', width: 90 },
