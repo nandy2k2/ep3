@@ -23,6 +23,7 @@ const coursecoderef=useRef();
 const linkref=useRef();
 const statusref=useRef();
 const yearref=useRef();
+const componentref=useRef();
 
 
     const colid=global1.colid;
@@ -105,6 +106,7 @@ const coursecode=coursecoderef.current.value;
 const link=linkref.current.value;
 const status=statusref.current.value;
 const year=yearref.current.value;
+const component=componentref.current.value;
 
 
 //alert(coursetitle + '-' + dateadded);
@@ -128,7 +130,7 @@ coursecode:coursecode,
 link:link,
 status:status,
 year:year,
-
+component: component,
 status1:'Submitted',
             comments:''
 
@@ -195,6 +197,10 @@ status1:'Submitted',
 
 <p>Answer link</p>
 <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={linkref} /><br /><br />
+
+<p>Component</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={componentref} /><br /><br />
+
 
 <InputLabel id="status">Status</InputLabel><Select labelId="status"
 id="status"

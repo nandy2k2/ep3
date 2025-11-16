@@ -144,7 +144,7 @@ const ApplicationReviewPage = () => {
         name: app.name,
         phone: app.phone,
         password: app.password,
-        role: "student",
+        role: "Student",
         regno,
         programcode: app.programOptingFor,
         admissionyear: filters.academicyear,
@@ -164,8 +164,8 @@ const ApplicationReviewPage = () => {
       if (!fee) throw new Error("No matching fee found. Apply fee filter first.");
 
       const ledgerPayload = {
-        name: fee.name,
-        user: userRes.data.data._id,
+        name: global1.name,
+        user: global1.user,
         feegroup: fee.feegroup,
         regno,
         student: app.name,
@@ -182,6 +182,8 @@ const ApplicationReviewPage = () => {
         colid: Number(global1.colid),
         classdate: new Date(),
         status: "unpaid",
+        programcode: app.programOptingFor,
+        admissionyear: new Date().getFullYear(),
       };
 
       await ep1.post("/api/v2/createledgerstud", ledgerPayload);

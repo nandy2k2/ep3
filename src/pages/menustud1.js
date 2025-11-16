@@ -332,6 +332,25 @@ export function mainListItems({ open }) {
           <Accordion>
         <AccordionSummary aria-controls="panel3-content" id="panel3-header">
           <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Reevaluation</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/reevaluationapplicationds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Apply" />}
+</ListItem>
+
+
+
+        </AccordionDetails>
+        </Accordion>
+
+          <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
           {open && <Typography sx={{fontSize: 14}}>Placement</Typography>}
         </AccordionSummary>
         <AccordionDetails>

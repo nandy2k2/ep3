@@ -99,7 +99,7 @@ return;
     };
 
 
-  const searchapi = async (rownumber,student,regno,examode,program,semester,course,coursecode,link,status,year,status1) => {
+  const searchapi = async (rownumber,student,regno,examode,program,semester,course,coursecode,link,status,year,component,status1) => {
        
 
 //     const coursetitle=coursetitleref.current.value;
@@ -146,6 +146,7 @@ coursecode:coursecode,
 link:link,
 status:status,
 year:year,
+component: component,
 status1:'Submitted',
             comments:''
 
@@ -211,9 +212,13 @@ if(!row[9]){
 f1=f1 + 'row ' + rownumber + '-' + 'Year' + ',';
 return;
 }
+if(!row[10]){
+f1=f1 + 'row ' + rownumber + '-' + 'Component' + ',';
+return;
+}
 
 
-            searchapi(rownumber,row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],status1);
+            searchapi(rownumber,row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],status1);
            
         });
 
@@ -249,7 +254,7 @@ const getfiledata=()=> {
 
 
       Please upload excel file with data in proper format with following columns in order.<br /><br />
-      student,regno,examode,program,semester,course,coursecode,link,status,year,status <br /><br />
+      student,regno,examode,program,semester,course,coursecode,link,status,year,component,status <br /><br />
                         Do not add any extra column or rows. Date must be in mm/dd/yyyy format. Value of status must always be Submitted.
             <br />
 

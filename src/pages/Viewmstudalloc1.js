@@ -178,8 +178,22 @@ return '';
 }
  },
 {
-field:'coursecode',
+field:'courseCode',
 headerName:'Coursecode',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+ {
+field:'component',
+headerName:'Type',
 type:'text',
 width:200,
 editable:true,
@@ -398,10 +412,11 @@ const examode=user.examode;
 const program=user.program;
 const semester=user.semester;
 const course=user.course;
-const coursecode=user.coursecode;
+const coursecode=user.courseCode;
 const link=user.link;
 const status=user.status;
 const year=user.year;
+const component=user.component;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
@@ -423,6 +438,7 @@ coursecode:coursecode,
 link:link,
 status:status,
 year:year,
+component:component,
 
             status1:'Submitted',
             comments:''

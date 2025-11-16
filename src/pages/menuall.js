@@ -422,8 +422,65 @@ export function menuitemsall() {
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Finalize (2)" />}
 </ListItem>
 
+<ListItem button component={RouterLink} to="/examstructurepageds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Exam configuration" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/marksentrypageds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Marks entry rubrics" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/tabulationregisterpageds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Tabulation register" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/bulktabulationregisterpageds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Tabulation register bulk" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/transcriptpageds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examination Student Transcript" />}
+</ListItem>
+
+
+
         </AccordionDetails>
       </Accordion>
+
+
+          <Accordion>
+        <AccordionSummary aria-controls="panel2-content" id="panel2-header">
+          <SettingsIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Question Bank</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/questionbanklistds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Question Bank" />}
+</ListItem>
+
+
+
+        </AccordionDetails>
+        </Accordion>
 
       <Accordion>
         <AccordionSummary aria-controls="panel2-content" id="panel2-header">
@@ -432,6 +489,36 @@ export function menuitemsall() {
         </AccordionSummary>
         <AccordionDetails>
 
+
+
+ <ListItem button component={RouterLink} to="/facultyregistrationform">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner registration" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/facultyregistrationmanagement">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner registration management" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/dashmexaminerallocate">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner allocate" />}
+</ListItem>
+
+ {/* <ListItem button component={RouterLink} to="/facultyregistrationform">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner registration" />}
+</ListItem> */}
+
            <ListItem button component={RouterLink} to="/dashmstudalloc1">
 <ListItemIcon>
 <PersonIcon />
@@ -439,10 +526,108 @@ export function menuitemsall() {
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Student list" />}
 </ListItem>
 
+  <ListItem button component={RouterLink} to="/dashmstudallocf">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner list" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/dashmstudalloc1exam">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner portal" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/dashboardsummary">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="At a glance" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/coursefacultyassigned">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Faculty assignment" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/facultycoursesummary">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Faculty course summary" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/facultyoverallsummary">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Faculty overall summary" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/coursecompletionstatus">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Course completion status" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/facultycoursestudentdetails">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Faculty course details" />}
+</ListItem>
+
 
 
         </AccordionDetails>
       </Accordion>
+
+      <Accordion>
+        <AccordionSummary aria-controls="panel2-content" id="panel2-header">
+          <SettingsIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Reevaluation</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/examinerconfigds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner config" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/examinerevaluationds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner evaluation" />}
+</ListItem>
+
+        </AccordionDetails>
+      </Accordion>
+
+       <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>CRM</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/Dashmcrmh1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="CRM Dashboard" />}
+</ListItem>
+
+        </AccordionDetails>
+        </Accordion>
+
 
        <Accordion>
         <AccordionSummary aria-controls="panel3-content" id="panel3-header">
@@ -475,6 +660,8 @@ export function menuitemsall() {
 
         </AccordionDetails>
         </Accordion>
+
+       
 
        <Accordion>
         <AccordionSummary aria-controls="panel3-content" id="panel3-header">
@@ -943,6 +1130,147 @@ export function menuitemsall() {
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Fees Datewise Total" />}
 </ListItem>
+
+
+ <ListItem button component={RouterLink} to="/studentledgerreportds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Studentwise Pending" />}
+</ListItem>
+
+
+ <ListItem button component={RouterLink} to="/collegerepledgerreportds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Programwise Pending" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/ledgerstudpageds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Installments" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/ledgerinstallmentpageds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Installments student ledger" />}
+</ListItem>
+
+
+
+        </AccordionDetails>
+        </Accordion>
+
+          <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Grievance management</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+            <ListItem button component={RouterLink} to="/managegrievancecategoriesds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Grievance Categories" />}
+</ListItem>
+
+  <ListItem button component={RouterLink} to="/managecategoryassigneeds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Assign Categories" />}
+</ListItem>
+
+   <ListItem button component={RouterLink} to="/admingrievancedashboardds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Grievance management" />}
+</ListItem>
+
+  <ListItem button component={RouterLink} to="/creategrievanceds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Create Grievance" />}
+</ListItem>
+
+  <ListItem button component={RouterLink} to="/assigneegrievancepageds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Grievance assignment" />}
+</ListItem>
+
+
+
+        </AccordionDetails>
+        </Accordion>
+
+          <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>IT Service Management</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/manageapikeyds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Gemini API Key" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/managegrievancecategoriesds1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Grievance Categories" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/managecategoryassigneeds1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Assign Categories" />}
+</ListItem>
+
+
+<ListItem button component={RouterLink} to="/admingrievancedashboardds1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Grievance Management" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/geminichatds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Chat to Solve" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/creategrievanceds1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Create ticket" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/assigneegrievancepageds1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Assign ticket" />}
+</ListItem>
+
+
 
 
 
@@ -1415,6 +1743,7 @@ export function menuitemsall() {
         </AccordionDetails>
         </Accordion>
 
+
          <Accordion>
               <AccordionSummary aria-controls="panel3-content" id="panel3-header">
                 <BusinessIcon sx={{ marginRight: 1 }} />
@@ -1490,6 +1819,7 @@ export function menuitemsall() {
               </AccordionDetails>
               </Accordion>
 
+
          <Accordion>
               <AccordionSummary aria-controls="panel3-content" id="panel3-header">
                 <BusinessIcon sx={{ marginRight: 1 }} />
@@ -1502,6 +1832,117 @@ export function menuitemsall() {
 <PersonIcon />
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Patient billing" />}
+</ListItem>
+
+
+              </AccordionDetails>
+              </Accordion>
+
+               <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Waste Management</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/dashmwbin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste bin" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwcolschedule1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Collection schedule" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwdisposal1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste disposal" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwspill1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste spill" />}
+</ListItem>
+
+
+           {/* <ListItem button component={RouterLink} to="/dashmwcollection">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste collection" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwcolschedule">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Collection schedule" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwdisposal">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste disposal" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmwspill">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Waste spill" />}
+</ListItem> */}
+
+
+        </AccordionDetails>
+        </Accordion>
+
+         <Accordion>
+              <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+                <BusinessIcon sx={{ marginRight: 1 }} />
+                {open && <Typography sx={{fontSize: 14}}>Patient Counseling</Typography>}
+              </AccordionSummary>
+              <AccordionDetails>
+
+                 <ListItem button component={RouterLink} to="/dashmpcounselnew">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="New Patient Counseling" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/dashmpcounselc">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Patient counselling" />}
+</ListItem>
+
+              </AccordionDetails>
+              </Accordion>
+
+               <Accordion>
+              <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+                <BusinessIcon sx={{ marginRight: 1 }} />
+                {open && <Typography sx={{fontSize: 14}}>Hospital food</Typography>}
+              </AccordionSummary>
+              <AccordionDetails>
+
+                 <ListItem button component={RouterLink} to="/dashmpmealplan">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Meal plan" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/dashmpfood">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Patient meal" />}
 </ListItem>
 
 

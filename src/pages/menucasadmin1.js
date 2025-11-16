@@ -209,6 +209,23 @@ export function mainListItems({ open }) {
         </AccordionDetails>
         </Accordion>
 
+        <Accordion>
+                <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+                  <BusinessIcon sx={{ marginRight: 1 }} />
+                  {open && <Typography sx={{fontSize: 14}}>CRM</Typography>}
+                </AccordionSummary>
+                <AccordionDetails>
+        
+                   <ListItem button component={RouterLink} to="/Dashmcrmh1admin">
+        <ListItemIcon>
+        <PersonIcon />
+        </ListItemIcon>
+        {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="CRM Dashboard" />}
+        </ListItem>
+        
+                </AccordionDetails>
+                </Accordion>
+
            <Accordion>
                 <AccordionSummary aria-controls="panel2-content" id="panel2-header">
                   <SettingsIcon sx={{ marginRight: 1 }} />

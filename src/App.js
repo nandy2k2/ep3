@@ -1040,6 +1040,105 @@ import Viewmmcevmed from './pages/Viewmmcevmed';
 import Viewmmcevmeddis from './pages/Viewmmcevmeddis';
 
 
+import Dashmwcollection from './pages/Dashmwcollection';
+import Dashmwcollectionadmin from './pages/Dashmwcollectionadmin';
+import Dashmwcolschedule from './pages/Dashmwcolschedule';
+import Dashmwcolscheduleadmin from './pages/Dashmwcolscheduleadmin';
+import Dashmwdisposal from './pages/Dashmwdisposal';
+import Dashmwdisposaladmin from './pages/Dashmwdisposaladmin';
+import Dashmwspill from './pages/Dashmwspill';
+import Dashmwspilladmin from './pages/Dashmwspilladmin';
+
+
+import Dashmwbin from './pages/Dashmwbin';
+import Dashmwbinadmin from './pages/Dashmwbinadmin';
+import Dashmwcolschedule1 from './pages/Dashmwcolschedule1';
+import Dashmwcolschedule1admin from './pages/Dashmwcolschedule1admin';
+import Dashmwdisposal1 from './pages/Dashmwdisposal1';
+import Dashmwdisposal1admin from './pages/Dashmwdisposal1admin';
+import Dashmwspill1 from './pages/Dashmwspill1';
+import Dashmwspill1admin from './pages/Dashmwspill1admin';
+
+
+import ExamMarksStructurePageds from "./pages/ExamMarksStructurePageds";
+import MarksEntryPageds from "./pages/MarksEntryPageds";
+import TabulationRegisterPage from "./pages/TabulationRegisterPage";
+
+import Dashmstudallocf from "./pages/Dashmstudallocf";
+
+import Dashmpcounselnew from './pages/Dashmpcounselnew';
+import Dashmpcounselnewadmin from './pages/Dashmpcounselnewadmin';
+import Dashmpcounselc from './pages/Dashmpcounselc';
+import Dashmpcounselcadmin from './pages/Dashmpcounselcadmin';
+import Dashmpmealplan from './pages/Dashmpmealplan';
+import Dashmpmealplanadmin from './pages/Dashmpmealplanadmin';
+import Dashmpfood from './pages/Dashmpfood';
+import Dashmpfoodadmin from './pages/Dashmpfoodadmin';
+
+
+import Dashmstudalloc1exam from './pages/Dashmstudalloc1exam';
+
+import BulkTabulationRegisterPage from "./pages/BulkTabulationRegisterPage";
+
+import CollegeStudentLedgerReportPageds from "./pages/CollegeStudentLedgerReportPageds";
+import StudentLedgerReportPageds from "./pages/StudentLedgerReportPageds";
+
+import LedgerStudPageds from "./pages/LedgerStudPage";
+
+import LedgerInstallmentPageds from "./pages/LedgerInstallmentPageds";
+
+import FacultyRegistrationFormPage from "./pages/FacultyRegistrationFormPage";
+
+import FacultyRegistrationManagementPage from "./pages/FacultyRegistrationManagementPage";
+import FacultyBankDetailsPage from "./pages/FacultyBankDetailsPage";
+
+
+import CreateGrievanceFormds from "./pages/CreateGrievanceFormds";
+import AdminGrievanceDashboardds from "./pages/AdminGrievanceDashboardds";
+import AssigneeGrievancePageds from "./pages/AssigneeGrievancePageds";
+import ManageGrievanceCategoriesds from "./pages/ManageGrievanceCategoriesds";
+
+
+import CreateGrievanceFormds1 from "./pages/CreateGrievanceFormds1";
+import AdminGrievanceDashboardds1 from "./pages/AdminGrievanceDashboardds1";
+import AssigneeGrievancePageds1 from "./pages/AssigneeGrievancePageds1";
+import ManageGrievanceCategoriesds1 from "./pages/ManageGrievanceCategoriesds1";
+import ManageApiKeyds from "./pages/ManageApiKeyds";
+import GeminiChatds from "./pages/GeminiChatds";
+
+import TranscriptPageds from "./pages/Transcriptpageds";
+
+import QuestionBankListds from "./pages/QuestionBankListds";
+import ManageSectionsds from "./pages/ManageSectionsds";
+import ManageQuestionsds from "./pages/ManageQuestionsds";
+import ViewEditLogsds from "./pages/ViewEditLogsds";
+import GeneratePDFds from "./pages/GeneratePDFds";
+
+import ManageCategoryAssigneeds1 from "./pages/ManageCategoryAssigneeds1";
+
+import ManageCategoryAssigneeds from "./pages/ManageCategoryAssigneeds";
+
+import DashboardSummaryReportds from "./pages/DashboardSummaryReportds";
+import CourseFacultyAssignedReportds from "./pages/CourseFacultyAssignedReportds";
+import FacultyCourseSummaryReportds from "./pages/FacultyCourseSummaryReportds";
+import FacultyOverallSummaryReportds from "./pages/FacultyOverallSummaryReportds";
+import CourseCompletionStatusReportds from "./pages/CourseCompletionStatusReportds";
+import FacultyCourseStudentDetailsReportds from "./pages/FacultyCourseStudentDetailsReportds";
+
+import Dashmcrmh1 from './pages/Dashmcrmh1';
+import Dashmcrmh1admin from './pages/Dashmcrmh1admin';
+
+import ReevaluationApplicationPageds from "./pages/ReevaluationApplicationPageds";
+import ExaminerConfigPageds from "./pages/ExaminerConfigPageds";
+import ExaminerEvaluationPageds from "./pages/ExaminerEvaluationPageds";
+
+import Dashmexaminerallocate from "./pages/Dashmexaminerallocate";
+
+
+
+
+
+
 
 
 
@@ -1081,6 +1180,102 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+        <Route path="/dashmexaminerallocate" element={<Dashmexaminerallocate />} />
+
+        <Route path="/reevaluationapplicationds" element={<ReevaluationApplicationPageds />} />
+        <Route path="/examinerconfigds" element={<ExaminerConfigPageds />} />
+        <Route path="/examinerevaluationds" element={<ExaminerEvaluationPageds />} />
+
+        <Route path="/dashmcrmh1" element={<Dashmcrmh1 />} />
+        <Route path="/dashmcrmh1admin" element={<Dashmcrmh1admin />} />
+
+
+        <Route path="/dashboardsummary" element={<DashboardSummaryReportds />} />
+        <Route path="/coursefacultyassigned" element={<CourseFacultyAssignedReportds />} />
+        <Route path="/facultycoursesummary" element={<FacultyCourseSummaryReportds />} />
+        <Route path="/facultyoverallsummary" element={<FacultyOverallSummaryReportds />} />
+        <Route path="/coursecompletionstatus" element={<CourseCompletionStatusReportds />} />
+        <Route path="/facultycoursestudentdetails" element={<FacultyCourseStudentDetailsReportds />} />
+
+        <Route path="/managecategoryassigneeds" element={<ManageCategoryAssigneeds />} />
+
+        <Route path="/managecategoryassigneeds1" element={<ManageCategoryAssigneeds1 />} />
+
+          <Route path="/questionbanklistds" element={<QuestionBankListds />} />
+        <Route path="/managesectionsds/:questionbankcode" element={<ManageSectionsds />} />
+        <Route path="/managequestionsds/:questionbankcode" element={<ManageQuestionsds />} />
+        <Route path="/vieweditlogsds/:questionbankcode" element={<ViewEditLogsds />} />
+        <Route path="/generatepdfds/:questionbankcode" element={<GeneratePDFds />} />
+
+        <Route path="/transcriptpageds" element={<TranscriptPageds />} />
+
+        
+        <Route path="/creategrievanceds1" element={<CreateGrievanceFormds1 />} />
+        <Route path="/admingrievancedashboardds1" element={<AdminGrievanceDashboardds1 />} />
+        <Route path="/assigneegrievancepageds1" element={<AssigneeGrievancePageds1 />} />
+        <Route path="/managegrievancecategoriesds1" element={<ManageGrievanceCategoriesds1 />} />
+        <Route path="/manageapikeyds" element={<ManageApiKeyds />} />
+        <Route path="/geminichatds" element={<GeminiChatds />} />
+
+         <Route path="/creategrievanceds" element={<CreateGrievanceFormds />} />
+        <Route path="/admingrievancedashboardds" element={<AdminGrievanceDashboardds />} />
+        <Route path="/assigneegrievancepageds" element={<AssigneeGrievancePageds />} />
+        <Route path="/managegrievancecategoriesds" element={<ManageGrievanceCategoriesds />} />
+
+           <Route path="/facultyregistrationform" element={<FacultyRegistrationFormPage />} />
+
+        <Route
+          path="/facultyregistrationmanagement"
+          element={<FacultyRegistrationManagementPage />}
+        />
+        <Route path="/facultybankdetails" element={<FacultyBankDetailsPage />} />
+
+        <Route path="/ledgerstudpageds" element={<LedgerStudPageds />} />
+        <Route path="/ledgerinstallmentpageds" element={<LedgerInstallmentPageds />} />
+
+         <Route path="/studentledgerreportds" element={<StudentLedgerReportPageds />} />
+        <Route path="/collegerepledgerreportds" element={<CollegeStudentLedgerReportPageds />} />
+
+        <Route path="/bulktabulationregisterpageds" element={<BulkTabulationRegisterPage />} />
+
+<Route path="/dashmstudalloc1exam" element={<Dashmstudalloc1exam />} />
+
+        <Route path="/dashmpcounselnew" element={<Dashmpcounselnew />} />
+<Route path="/dashmpcounselnewadmin" element={<Dashmpcounselnewadmin />} />
+<Route path="/dashmpcounselc" element={<Dashmpcounselc />} />
+<Route path="/dashmpcounselcadmin" element={<Dashmpcounselcadmin />} />
+<Route path="/dashmpmealplan" element={<Dashmpmealplan />} />
+<Route path="/dashmpmealplanadmin" element={<Dashmpmealplanadmin />} />
+<Route path="/dashmpfood" element={<Dashmpfood />} />
+<Route path="/dashmpfoodadmin" element={<Dashmpfoodadmin />} />
+
+
+        <Route path="/dashmstudallocf" element={<Dashmstudallocf />} />
+
+         <Route path="/examstructurepageds" element={<ExamMarksStructurePageds />} />
+                <Route path="/marksentrypageds" element={<MarksEntryPageds />} />
+                <Route path="/tabulationregisterpageds" element={<TabulationRegisterPage />} />
+
+        <Route path="/dashmwbin" element={<Dashmwbin />} />
+<Route path="/dashmwbinadmin" element={<Dashmwbinadmin />} />
+<Route path="/dashmwcolschedule1" element={<Dashmwcolschedule1 />} />
+<Route path="/dashmwcolschedule1admin" element={<Dashmwcolschedule1admin />} />
+<Route path="/dashmwdisposal1" element={<Dashmwdisposal1 />} />
+<Route path="/dashmwdisposal1admin" element={<Dashmwdisposal1admin />} />
+<Route path="/dashmwspill1" element={<Dashmwspill1 />} />
+<Route path="/dashmwspill1admin" element={<Dashmwspill1admin />} />
+
+
+        <Route path="/dashmwcollection" element={<Dashmwcollection />} />
+<Route path="/dashmwcollectionadmin" element={<Dashmwcollectionadmin />} />
+<Route path="/dashmwcolschedule" element={<Dashmwcolschedule />} />
+<Route path="/dashmwcolscheduleadmin" element={<Dashmwcolscheduleadmin />} />
+<Route path="/dashmwdisposal" element={<Dashmwdisposal />} />
+<Route path="/dashmwdisposaladmin" element={<Dashmwdisposaladmin />} />
+<Route path="/dashmwspill" element={<Dashmwspill />} />
+<Route path="/dashmwspilladmin" element={<Dashmwspilladmin />} />
+
 
 <Route path="/viewmmcevmeddis" element={<Viewmmcevmeddis />} />
 <Route path="/viewmmcevmed" element={<Viewmmcevmed />} />

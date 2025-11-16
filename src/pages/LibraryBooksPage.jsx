@@ -21,7 +21,8 @@ import {
 import { Edit, Delete } from "@mui/icons-material";
 import { useParams, useNavigate } from "react-router-dom";
 import global1 from "./global1";
-import ep1 from "../api/ep1";
+// import ep1 from "../ap1/ep1";
+import ep1 from '../api/ep1';
 
 const LIMIT = 10;
 
@@ -64,6 +65,8 @@ const LibraryBooksPage = () => {
     duedate: "",
     expectedreturndate: "",
     fineperday: "",
+    programcode: "",
+    semester: "",
   });
 
   const fetchLibrary = async () => {
@@ -190,8 +193,8 @@ const LibraryBooksPage = () => {
       // ✅ 3. Create fine entry only if calculated fineAmount > 0
       if (fineAmount > 0) {
         const finePayload = {
-          name: "Library Fine",
-          user: issueForm.regno,
+          name: global1.name,
+          user: global1.user,
           feegroup: "Library",
           regno: issueForm.regno,
           student: issueForm.student,
@@ -200,7 +203,7 @@ const LibraryBooksPage = () => {
           paymode: "unpaid",
           paydetails: "",
           feecategory: "fine",
-          semester: "N/A",
+          semester: issueForm.semester,
           type: "library",
           installment: "N/A",
           comments: `Late issue fine`,
@@ -208,6 +211,7 @@ const LibraryBooksPage = () => {
           colid: Number(global1.colid) || 0,
           classdate: issueDate,
           status: "due",
+          programcode: issueForm.programcode
         };
 
         await ep1.post(`/api/v2/createledgerstud`, finePayload);
@@ -285,7 +289,7 @@ const LibraryBooksPage = () => {
 
         if (res.data?.data) {
           const s = res.data.data;
-          const student = { regno: s.regno, name: s.name };
+          const student = { regno: s.regno, name: s.name, programcode: s.programcode, semester: s.semester };
 
           // 🟢 Update both state and UI fields
           setStudentResults([student]);
@@ -293,6 +297,8 @@ const LibraryBooksPage = () => {
             ...prev,
             regno: student.regno,
             student: student.name,
+            programcode: student.programcode,
+            semester: student.semester
           }));
         } else {
           setStudentResults([]);

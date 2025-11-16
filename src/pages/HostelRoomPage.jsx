@@ -59,6 +59,10 @@ const HostelRoomPage = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(5);
   const [totalPages, setTotalPages] = useState(1);
+  const [programcode, setProgramcode] = useState("");
+  const [semester, setSemester] = useState("");
+  const [admissionyear, setAdmissionyear] = useState("");
+
 
   const fetchRooms = async () => {
     try {
@@ -100,6 +104,9 @@ const HostelRoomPage = () => {
       const res = await ep1.get(`/api/v2/searchstudent?regno=${studentReg}`);
       if (res.data && res.data.data) {
         setStudentName(res.data.data.name || studentReg);
+        setProgramcode(res.data.data.programcode);
+        setSemester(res.data.data.semester);
+        setAdmissionyear(res.data.data.admissionyear);
         // check if already allocated
        const check = await ep1.get(`/api/v2/checkbedallocation?regno=${studentReg}`);
         setAlreadyAllocated(check.data.allocated);
@@ -143,8 +150,8 @@ const HostelRoomPage = () => {
 
       // create ledgerstud
       await ep1.post("/api/v2/createledgerstud", {
-      name: "Hostel Rent",
-      user: studentReg,
+      name: global1.name,
+      user: global1.user,
       feegroup: "Hostel",
       regno: studentReg,
       student: studentName,
@@ -153,7 +160,6 @@ const HostelRoomPage = () => {
       paymode: "Not Paid",
       paydetails: "",
       feecategory: "Hostel",
-      semester: "",
       type: "Debit",
       installment: "One-time",
       comments: `Allocated bed ${selectedBed} in ${selectedRoom.roomname}`,
@@ -161,6 +167,9 @@ const HostelRoomPage = () => {
       colid: parseInt(global1.colid),
       classdate: new Date(),
       status: "Due",
+      programcode: programcode,
+      admissionyear: admissionyear,
+      semester: semester
     });
     // update hostel application
       await ep1.post("/api/v2/updatehostelapp", {
@@ -199,8 +208,8 @@ const HostelRoomPage = () => {
     // ✅ Create negative rent entry
     if (allocation) {
       await ep1.post("/api/v2/createledgerstud", {
-        name: "Hostel Rent Reversal",
-        user: allocation.regno,
+        name: global1.name,
+        user: global1.user,
         feegroup: "Hostel",
         regno: allocation.regno,
         student: allocation.student,
@@ -211,7 +220,6 @@ const HostelRoomPage = () => {
         paymode: "Adjustment",
         paydetails: "",
         feecategory: "Hostel",
-        semester: "",
         type: "Credit",
         installment: "One-time",
         comments: `Deallocated bed ${allocation.bednumber} in ${allocation.roomname}`,
@@ -219,6 +227,9 @@ const HostelRoomPage = () => {
         colid: Number(global1.colid),
         classdate: new Date(),
         status: "Reversed",
+        programcode: programcode,
+        admissionyear: admissionyear,
+        semester: semester
       });
     }
 
@@ -299,7 +310,7 @@ const HostelRoomPage = () => {
                 sx={{ cursor: "pointer", color: "primary.main" }}
                 onClick={() => navigate(`/hostelbuldingmanager`)}
               >
-                Back to Library
+                Back to Hostel bulding
               </Typography>
             </Box>
           </Box>

@@ -947,13 +947,13 @@ level:level,
            >
              Approve student
            </Button>
-            <Button onClick={digitalall}
+            {/* <Button onClick={digitalall}
              variant="contained"
              color="secondary"
              style={{ padding: '5px 10px', fontSize: '12px', height: '30px', width: '160px', marginLeft: 6 }}
            >
              Digital evaluation
-           </Button>
+           </Button> */}
          </Box>
 
          
