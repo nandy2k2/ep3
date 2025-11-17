@@ -150,7 +150,7 @@ const Vendorproductmanagementds = () => {
         gst: parseFloat(formData.gst),
         discount: parseFloat(formData.discount)
       };
-      await ep1.put(`/api/v2/updatevendorproductds/${editId}`, payload);
+      await ep1.post(`/api/v2/updatevendorproductds?id=${editId}`, payload);
       showSnackbar("Vendor product updated successfully", "success");
       setOpenDialog(false);
       resetForm();
@@ -163,7 +163,7 @@ const Vendorproductmanagementds = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this vendor product?")) {
       try {
-        await ep1.delete(`/api/v2/deletevendorproductds/${id}`);
+        await ep1.get(`/api/v2/deletevendorproductds?id=${id}`);
         showSnackbar("Vendor product deleted successfully", "success");
         fetchVendorProducts();
       } catch (error) {
@@ -264,7 +264,7 @@ const Vendorproductmanagementds = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashboardds")}>
+          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashdashfacnew")}>
             <ArrowBack />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

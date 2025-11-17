@@ -96,7 +96,7 @@ const Productmanagementds = () => {
         ...formData,
         price: parseFloat(formData.price)
       };
-      await ep1.put(`/api/v2/updateproductds/${editId}`, payload);
+      await ep1.post(`/api/v2/updateproductds?id=${editId}`, payload);
       showSnackbar("Product updated successfully", "success");
       setOpenDialog(false);
       resetForm();
@@ -109,7 +109,7 @@ const Productmanagementds = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await ep1.delete(`/api/v2/deleteproductds/${id}`);
+        await ep1.get(`/api/v2/deleteproductds?id=${id}`);
         showSnackbar("Product deleted successfully", "success");
         fetchProducts();
       } catch (error) {
@@ -192,7 +192,7 @@ const Productmanagementds = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashboardds")}>
+          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashdashfacnew")}>
             <ArrowBack />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

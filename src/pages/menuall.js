@@ -505,11 +505,19 @@ export function menuitemsall() {
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner registration management" />}
 </ListItem>
 
+
+ <ListItem button component={RouterLink} to="/dashmexamupload">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Upload students" />}
+</ListItem>
+
  <ListItem button component={RouterLink} to="/dashmexaminerallocate">
 <ListItemIcon>
 <PersonIcon />
 </ListItemIcon>
-{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner allocate" />}
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Digital Examination dashboard" />}
 </ListItem>
 
  {/* <ListItem button component={RouterLink} to="/facultyregistrationform">
@@ -519,19 +527,19 @@ export function menuitemsall() {
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner registration" />}
 </ListItem> */}
 
-           <ListItem button component={RouterLink} to="/dashmstudalloc1">
+           {/* <ListItem button component={RouterLink} to="/dashmstudalloc1">
 <ListItemIcon>
 <PersonIcon />
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Student list" />}
-</ListItem>
+</ListItem> */}
 
-  <ListItem button component={RouterLink} to="/dashmstudallocf">
+  {/* <ListItem button component={RouterLink} to="/dashmstudallocf">
 <ListItemIcon>
 <PersonIcon />
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Examiner list" />}
-</ListItem>
+</ListItem> */}
 
 <ListItem button component={RouterLink} to="/dashmstudalloc1exam">
 <ListItemIcon>
@@ -1001,6 +1009,13 @@ export function menuitemsall() {
 <PersonIcon />
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Past PO search" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/returnmanagementds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Product return" />}
 </ListItem>
 
 

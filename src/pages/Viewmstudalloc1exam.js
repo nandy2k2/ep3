@@ -576,7 +576,7 @@ status:status,
         <Container maxWidth="100%" sx={{ mt: 4, mb: 4 }}>
         <Box display="flex" marginBottom={4} marginTop={2}>
            
-           <Button
+           {/* <Button
              variant="contained"
              color="success"
              style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '80px' }}
@@ -591,7 +591,7 @@ status:status,
              onClick={handleOpenAddBulk}
            >
              Bulk
-           </Button>
+           </Button> */}
            <Button
              variant="contained"
              color="primary"

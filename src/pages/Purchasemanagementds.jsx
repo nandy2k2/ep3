@@ -133,7 +133,7 @@ const Purchasemanagementds = () => {
   const handleUpdateStatus = async (id, status) => {
     if (window.confirm(`Are you sure you want to mark this purchase as ${status}?`)) {
       try {
-        await ep1.put(`/api/v2/updatepurchaseds/${id}`, { status });
+        await ep1.post(`/api/v2/updatepurchaseds?id=${id}`, { status });
         showSnackbar(`Purchase marked as ${status}`, "success");
         fetchPurchases();
       } catch (error) {
@@ -145,7 +145,7 @@ const Purchasemanagementds = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this purchase?")) {
       try {
-        await ep1.delete(`/api/v2/deletepurchaseds/${id}`);
+        await ep1.get(`/api/v2/deletepurchaseds?id=${id}`);
         showSnackbar("Purchase deleted successfully", "success");
         fetchPurchases();
       } catch (error) {
@@ -276,7 +276,7 @@ const Purchasemanagementds = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashboardds")}>
+          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashdashfacnew")}>
             <ArrowBack />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

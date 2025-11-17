@@ -131,7 +131,7 @@ const Paymentmanagementds = () => {
   const handleDelete = async (id, purchaseId) => {
     if (window.confirm("Are you sure you want to delete this payment? This will revert the purchase to pending status.")) {
       try {
-        await ep1.delete(`/api/v2/deletepaymentds/${id}`);
+        await ep1.get(`/api/v2/deletepaymentds?id=${id}`);
         showSnackbar("Payment deleted successfully", "success");
         fetchPayments();
         fetchPendingPurchases();
@@ -234,7 +234,7 @@ const Paymentmanagementds = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashboardds")}>
+          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashdashfacnew")}>
             <ArrowBack />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

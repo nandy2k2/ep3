@@ -135,6 +135,7 @@ const QuestionBankListds = () => {
   };
 
   const handleDelete = async () => {
+    //alert(deleteCode + ' ' + global1.colid + ' ' + global1.user);
     try {
       await ep1.post('/api/v2/deletequestionbankds', {
         params: {

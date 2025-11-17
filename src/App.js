@@ -1134,6 +1134,10 @@ import ExaminerEvaluationPageds from "./pages/ExaminerEvaluationPageds";
 
 import Dashmexaminerallocate from "./pages/Dashmexaminerallocate";
 
+import Returnmanagementds from "./pages/Returnmanagementds";
+
+import Dashmexamupload from "./pages/Dashmexamupload";
+
 
 
 
@@ -1180,6 +1184,10 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+        <Route path="/dashmexamupload" element={<Dashmexamupload />} />
+
+        <Route path="/returnmanagementds" element={<Returnmanagementds />} />
 
         <Route path="/dashmexaminerallocate" element={<Dashmexaminerallocate />} />
 

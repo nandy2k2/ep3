@@ -99,7 +99,7 @@ const Vendormanagementds = () => {
 
   const handleUpdate = async () => {
     try {
-      await ep1.put(`/api/v2/updatevendords/${editId}`, formData);
+      await ep1.post(`/api/v2/updatevendords?id=${editId}`, formData);
       showSnackbar("Vendor updated successfully", "success");
       setOpenDialog(false);
       resetForm();
@@ -112,7 +112,7 @@ const Vendormanagementds = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this vendor?")) {
       try {
-        await ep1.delete(`/api/v2/deletevendords/${id}`);
+        await ep1.get(`/api/v2/deletevendords?id=${id}`);
         showSnackbar("Vendor deleted successfully", "success");
         fetchVendors();
       } catch (error) {
@@ -206,7 +206,7 @@ const Vendormanagementds = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashboardds")}>
+          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashdashfacnew")}>
             <ArrowBack />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

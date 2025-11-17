@@ -247,34 +247,34 @@ return '';
 }
 }
  },
- {
-field:'faculty',
-headerName:'Examiner',
-type:'text',
-width:200,
-editable:false,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'facultyid',
-headerName:'Examiner ID',
-type:'text',
-width:200,
-editable:false,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
+//  {
+// field:'faculty',
+// headerName:'Examiner',
+// type:'text',
+// width:200,
+// editable:false,
+// valueFormatter: (params) => {
+// if (params.value) {
+// return params.value;
+// } else {
+// return '';
+// }
+// }
+//  },
+//  {
+// field:'facultyid',
+// headerName:'Examiner ID',
+// type:'text',
+// width:200,
+// editable:false,
+// valueFormatter: (params) => {
+// if (params.value) {
+// return params.value;
+// } else {
+// return '';
+// }
+// }
+//  },
 
   
           { field: 'actions', headerName: 'Actions', width: 300, renderCell: (params) => {
@@ -308,13 +308,22 @@ return '';
 
 
     const coursetitleref = useRef();
+
+    const program=global1.program;
+    const semester=global1.semester;
+    const examode=global1.examode;
+    const year=global1.year;
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getstudalloc1byfac', {
+      const response = await ep1.get('/api/v2/getstudalloc1byfac1', {
         params: {
           token: token,
           colid: colid,
-          user: user
+          user: user,
+          program: program,
+          semester: semester,
+          examode: examode,
+          year: year
         }
       });
       setRows(response.data.data.classes);

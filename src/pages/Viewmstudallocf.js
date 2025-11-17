@@ -296,13 +296,22 @@ return '';
 
 
     const coursetitleref = useRef();
+
+     const program=global1.program;
+        const semester=global1.semester;
+        const examode=global1.examode;
+        const year=global1.year;
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getstudalloc1byfac', {
+      const response = await ep1.get('/api/v2/getstudalloc1byfac1', {
         params: {
           token: token,
           colid: colid,
-          user: user
+          user: user,
+          program: program,
+          semester: semester,
+          examode: examode,
+          year: year
         }
       });
       setRows(response.data.data.classes);
@@ -566,7 +575,7 @@ year:year,
         <Container maxWidth="100%" sx={{ mt: 4, mb: 4 }}>
         <Box display="flex" marginBottom={4} marginTop={2}>
            
-           <Button
+           {/* <Button
              variant="contained"
              color="success"
              style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '80px' }}
@@ -581,7 +590,7 @@ year:year,
              onClick={handleOpenAddBulk}
            >
              Bulk
-           </Button>
+           </Button> */}
            <Button
              variant="contained"
              color="primary"

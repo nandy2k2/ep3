@@ -177,9 +177,7 @@ const ManageQuestionsds = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this question?')) {
       try {
-        await ep1.post('/api/v2/deletequestionds', {
-          params: { _id: id },
-        });
+        await ep1.get(`/api/v2/deletequestionds?_id=${id}&colid=${global1.colid}&user=${global1.user}`);
         setSuccess('Question deleted successfully');
         fetchQuestions(selectedSection._id);
       } catch (err) {

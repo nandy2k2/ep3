@@ -339,7 +339,7 @@ return '';
                 const year1=e.target.value;
                 //alert(year);
         
-              const response = await ep1.get('/api/v2/getexamalloc', {
+              const response = await ep1.get('/api/v2/getexamdcode', {
                 params: {
                   token: token,
                   colid: colid,
@@ -360,13 +360,13 @@ return '';
                // const year=e.target.value;
                 //alert(year);
         
-              const response = await ep1.get('/api/v2/getallocprograms', {
+              const response = await ep1.get('/api/v2/getexamprograms', {
                 params: {
                   token: token,
                   colid: colid,
                   year:year,
                   user: user,
-                  examode: exam1
+                  examcode: exam1
                 }
               });
               setPrograms(response.data.data.classes);
@@ -382,13 +382,13 @@ return '';
                // const year=e.target.value;
                 //alert(year);
         
-              const response = await ep1.get('/api/v2/getallocsemester', {
+              const response = await ep1.get('/api/v2/getexamsemester', {
                 params: {
                   token: token,
                   colid: colid,
                   year:year,
                   user: user,
-                  examode: exam,
+                  examcode: exam,
                   program: program1
                 }
               });
@@ -419,20 +419,18 @@ return '';
         const semester1=e.target.value;
         setSemester(e.target.value);
         
-      // const response = await ep1.get('/api/v2/getexamadmitbyyrprogsem', {
-      //   params: {
-      //     token: token,
-      //     colid: colid,
-      //     user: user,
-      //     year: year,
-      //     examcode: exam,
-      //     program: program,
-      //     semester: semester1
+      const response = await ep1.get('/api/v2/getexamadmitbyyrprogsem', {
+        params: {
+          token: token,
+          colid: colid,
+          user: user,
+          year: year,
+          examcode: exam,
+          program: program,
+          semester: semester1
 
-      //   }
-      // });
-
-
+        }
+      });
       // const response = await ep1.get('/api/v2/getexamadmitbyfac', {
       //   params: {
       //     token: token,
@@ -440,7 +438,7 @@ return '';
       //     user: user
       //   }
       // });
-      //setRows(response.data.data.classes);
+      setRows(response.data.data.classes);
     };
 
     const fetchViewPager = async (e) => {
@@ -509,7 +507,7 @@ return '';
      global1.year=year;
      global1.examode=exam;
 
-     navigate('/allocatefaculties');
+     navigate('/dashmstudalloc1');
 
      
 
@@ -518,42 +516,6 @@ return '';
 
      
     //   setRows(response.data.data.classes);
-    };
-
-    const studlist = async () => {
-
-        //alert(year + ' ' + exam + ' ' + program + ' ' + semester);
-        
-        if(!year || !exam || !program || !semester) {
-            alert('Please select year, program, examcode and semester');
-            return;
-
-        }
-     global1.program=program;
-     global1.semester=semester;
-     global1.year=year;
-     global1.examode=exam;
-
-     navigate('/dashmstudalloc1');
-
-    };
-
-    const examinerlist = async () => {
-
-        //alert(year + ' ' + exam + ' ' + program + ' ' + semester);
-        
-        if(!year || !exam || !program || !semester) {
-            alert('Please select year, program, examcode and semester');
-            return;
-
-        }
-     global1.program=program;
-     global1.semester=semester;
-     global1.year=year;
-     global1.examode=exam;
-
-     navigate('/dashmstudallocf');
-
     };
 
     const approveadmitall1 = async () => {
@@ -985,26 +947,12 @@ level:level,
            >
              Approve student
            </Button> */}
-            <Button onClick={studlist}
-             variant="contained"
-             color="secondary"
-             style={{ padding: '5px 10px', fontSize: '12px', height: '30px', width: '160px', marginLeft: 6 }}
-           >
-             Uploaded students
-           </Button>
             <Button onClick={digitalall}
              variant="contained"
              color="secondary"
              style={{ padding: '5px 10px', fontSize: '12px', height: '30px', width: '160px', marginLeft: 6 }}
            >
-             Allocate examiner
-           </Button>
-            <Button onClick={examinerlist}
-             variant="contained"
-             color="secondary"
-             style={{ padding: '5px 10px', fontSize: '12px', height: '30px', width: '160px', marginLeft: 6 }}
-           >
-             Examiner list
+             Digital evaluation
            </Button>
          </Box>
 
@@ -1012,7 +960,7 @@ level:level,
 
          <br />
 
-         Selected option {year} {program} {exam} {semester}
+         {year} {program} {exam} {semester}
          <br />
           <Grid container spacing={3}>
 
@@ -1087,69 +1035,7 @@ level:level,
 
 
             <Grid item xs={12}>
-              {/* <Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}> */}
-              {/* <h1>Table Component</h1> */}
-             
-
-
-                {/* <DataGrid getRowId={(row) => row._id} 
-                
-        rows={rows}
-        columns={columns}
-       
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 10,
-            },
-          },
-        }}
-        processRowUpdate={(updatedRow, originalRow) =>
-            handleOpenEdit1(updatedRow)
-          }
-        pageSizeOptions={[10]}
-        disableRowSelectionOnClick
-      /> */}
-                {/* add button handler */}
-                {/* <AddUserModal
-                  open={openAdd}
-                  handleClose={handleCloseAdd}
-                  handleInputChange={handleInputChange}
-                  handleAddUser={handleAddUser}
-                  newUser={newUser}
-                  fetchViewPage={fetchViewPage}
-                />
-
-                <AddUserModalBulk
-                  open={openAddBulk}
-                  handleClose={handleCloseAddBulk}
-                  handleInputChange={handleInputChange}
-                  handleAddUser={handleAddUser}
-                  newUser={newUser}
-                  fetchViewPage={fetchViewPage}
-                />
-  
-                <EditUserModal
-                  open={openEdit}
-                  handleClose={handleCloseEdit}
-                  handleInputChange={handleInputChange}
-                  handleEditUser={handleEditUser}
-                  selectedUser={selectedUser}
-                />
-  
-                <DeleteUserModal
-                  open={openDelete}
-                  handleClose={handleCloseDelete}
-                  handleDeleteUser={handleDeleteUser}
-                  selectedUser={selectedUser}
-                />
-  
-                <ExportUserModal
-                  open={openExport}
-                  handleClose={() => setOpenExport(false)}
-                  handleExport={handleExport}
-                /> */}
-              {/* </Paper> */}
+            
             </Grid>
           </Grid>
         </Container>

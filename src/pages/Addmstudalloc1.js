@@ -98,15 +98,20 @@ yearref.current.value=transcript;
 
 const student=studentref.current.value;
 const regno=regnoref.current.value;
-const examode=examoderef.current.value;
-const program=programref.current.value;
-const semester=semesterref.current.value;
+// const examode=examoderef.current.value;
+// const program=programref.current.value;
+// const semester=semesterref.current.value;
 const course=courseref.current.value;
 const coursecode=coursecoderef.current.value;
 const link=linkref.current.value;
 const status=statusref.current.value;
-const year=yearref.current.value;
+// const year=yearref.current.value;
 const component=componentref.current.value;
+
+const program=global1.program;
+    const semester=global1.semester;
+    const examode=global1.examode;
+    const year=global1.year;
 
 
 //alert(coursetitle + '-' + dateadded);
@@ -165,11 +170,11 @@ status1:'Submitted',
 
        <button onClick={setstudent}>Set Student</button>
  <button onClick={setregno}>Set Regno</button>
- <button onClick={setexamode}>Set Exam code</button>
+ {/* <button onClick={setexamode}>Set Exam code</button> */}
  <button onClick={setcourse}>Set Course</button>
  <button onClick={setcoursecode}>Set Coursecode</button>
  <button onClick={setlink}>Set Answer link</button>
- <button onClick={setyear}>Set Year</button>
+ {/* <button onClick={setyear}>Set Year</button> */}
 
 
       <br /><br />
@@ -180,14 +185,14 @@ status1:'Submitted',
 <p>Regno</p>
 <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={regnoref} /><br /><br />
 
-<p>Exam code</p>
+{/* <p>Exam code</p>
 <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={examoderef} /><br /><br />
 
 <p>Program</p>
 <TextField id="outlined-basic"  type="String" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={programref} /><br /><br />
 
 <p>Semester</p>
-<TextField id="outlined-basic"  type="String" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={semesterref} /><br /><br />
+<TextField id="outlined-basic"  type="String" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={semesterref} /><br /><br /> */}
 
 <p>Course</p>
 <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={courseref} /><br /><br />
@@ -212,8 +217,8 @@ sx={{ width: '100%'}}
 </Select>
 <br /><br />
 
-<p>Year</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={yearref} /><br /><br />
+{/* <p>Year</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={yearref} /><br /><br /> */}
 
 
       </DialogContent>

@@ -95,7 +95,7 @@ const Productrequestadminds = () => {
   const handleReject = async (id) => {
     if (window.confirm("Are you sure you want to reject this request?")) {
       try {
-        await ep1.put(`/api/v2/updateproductrequestdsstatus/${id}`, { status: "rejected" });
+        await ep1.post(`/api/v2/updateproductrequestdsstatus?id=${id}`, { status: "rejected" });
         showSnackbar("Request rejected", "success");
         fetchRequests();
       } catch (error) {
@@ -128,7 +128,7 @@ const Productrequestadminds = () => {
       };
 
       await ep1.post("/api/v2/addpurchaseds", payload);
-      await ep1.put(`/api/v2/updateproductrequestdsstatus/${selectedRequest._id}`, {
+      await ep1.post(`/api/v2/updateproductrequestdsstatus?id=${selectedRequest._id}`, {
         status: "approved"
       });
 
@@ -225,7 +225,7 @@ const Productrequestadminds = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashboardds")}>
+          <IconButton edge="start" color="inherit" onClick={() => navigate("/dashdashfacnew")}>
             <ArrowBack />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
