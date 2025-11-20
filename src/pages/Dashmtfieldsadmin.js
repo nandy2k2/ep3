@@ -15,11 +15,11 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './menucas1';
+import { mainListItems, secondaryListItems } from './menucasadmin1';
 import { useState } from 'react';
 // import Chart from './Charts';
 // import Deposits from './Deposits';
-import ViewPage from './chattest3';
+import ViewPage from './Viewmtfieldsadmin';
 import Login from './Login';
 import global1 from './global1';
 
@@ -109,7 +109,7 @@ function DashboardContent() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                           Chatbot
+                            k
                         </Typography>
                         <IconButton color="inherit">
     <Badge color="inherit">

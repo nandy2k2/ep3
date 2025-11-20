@@ -41,6 +41,12 @@ export default function Chatbot() {
   const [input, setInput] = useState('');
   const chatEndRef = useRef(null);
 
+  const [collection, setCollection] = useState('');
+  const [filterText, setFilterText] = useState('{}');
+  const [projText, setProjText] = useState('{}');
+  const [sortText, setSortText] = useState('{}');
+  const [limit, setLimit] = useState(50);
+
   // Scroll to bottom on every message change
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -115,6 +121,35 @@ export default function Chatbot() {
     };
   }
 
+  if (userText.toLowerCase().includes('help')) {
+    return {
+      text: 'First set model and filter for search, then write your query in english to get report. to set model, type Model-<model name>. To set filter, type Filter-<filter>. Then write your query in english.',
+    };
+  }
+
+  if (userText.toLowerCase().includes('collection')) {
+    return {
+      text: collection,
+    };
+  }
+
+  if (userText.toLowerCase().includes('model')) {
+    var ar1=userText.split('-');
+    //alert(userText + ',' + ar1[1].toString());
+    setCollection(ar1[1]);
+    return {
+      text: 'Model added ' + collection + '. Please add filters.',
+    };
+  }
+
+  if (userText.toLowerCase().includes('filter')) {
+    var ar1=userText.split('-');
+    setFilterText(ar1[1]);
+    return {
+      text: 'Filter added ' + filterText,
+    };
+  }
+
   if (userText.toLowerCase().includes('consultancy')) {
 
     const a1=addconsultany(userText);
@@ -142,17 +177,58 @@ export default function Chatbot() {
 
         setOpen(true);
 
-        const response123 = await ep1.get('/api/v2/getfeesbyfac', {
-                params: {
-                  token: global1.token,
-                  colid: global1.colid,
-                  user: global1.user
-                }
-              });
+        // const response123 = await ep1.get('/api/v2/getfeesbyfac', {
+        //         params: {
+        //           token: global1.token,
+        //           colid: global1.colid,
+        //           user: global1.user
+        //         }
+        //       });
+
+        const filter = JSON.parse(filterText);
+      const projection = projText.trim() ? JSON.parse(projText) : null;
+      const sort = sortText.trim() ? JSON.parse(sortText) : null;
+
+      const body = { collection, filter, projection, sort, limit };
+
+      const response123 = await fetch('http://localhost:3000/api/v2/getdynamicresult', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      console.log(response123);
+      const data = await response123.json();
+      console.log(data);
+
+    //   const response123 = await ep1.post('/api/v2/getdynamicresult', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(body)
+    //   });
+
+        //   const response123 = await ep1.post('/api/v2/getdynamicresult', {
+        //         params: {
+        //           token: global1.token,
+        //           colid: global1.colid,
+        //           user: global1.user,
+        //           collection: 'fees'
+        //         }
+        //       });
 
               //const parsedData1 = JSON.parse(response123.data.data.classes);
-              const data1=response123.data.data.classes;
+            //   console.log(response123.data.results);
+              const data1=data.results;
               console.log(data1);
+
+             
+
+              var data3=JSON.stringify(data1, null, 2);
+
+            //   return {
+            //     text: 'Data from server : \n' + JSON.stringify(data1, null, 2),
+            //   };
+
+
               var data2='"\nFeecategory,Feeitem,Amount\n';
               data1.map((data12) => (
           data2=data2 + data12.feecategory + ',' + data12.feeeitem + ',' + data12.amount + '\n'
@@ -162,12 +238,9 @@ data2=data2 + '\n"';
 
   const response = await ep1.get('/api/v2/testgemini1', {
             params: {
-               
-                // user: user,
-                // colid: colid,
                 apikey: apikey,
                  //question:'Create a smart and professional reply for ' + userText
-                question: 'Check the data and provide a detailed summary on \n\n' + data2
+                question: 'Check the data and provide a detailed summary on \n\n' + data3
             }
   
         });

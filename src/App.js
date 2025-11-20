@@ -1138,6 +1138,22 @@ import Returnmanagementds from "./pages/Returnmanagementds";
 
 import Dashmexamupload from "./pages/Dashmexamupload";
 
+import Dashchattest4 from "./pages/Dashchattest4";
+
+import Dashchattest4d from "./pages/Dashchattest4d";
+
+import Dashmtall from './pages/Dashmtall';
+import Dashmtalladmin from './pages/Dashmtalladmin';
+import Dashmtfields from './pages/Dashmtfields';
+import Dashmtfieldsadmin from './pages/Dashmtfieldsadmin';
+
+import chattest44 from './pages/chattest44';
+
+import Dashmtbcolumnsall from './pages/Dashmtbcolumnsall';
+import Dashmtbcolumnsalladmin from './pages/Dashmtbcolumnsalladmin';
+
+
+
 
 
 
@@ -1184,6 +1200,22 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+        <Route path="/dashmtbcolumnsall" element={<Dashmtbcolumnsall />} />
+        <Route path="/dashmtbcolumnsalladmin" element={<Dashmtbcolumnsalladmin />} />
+
+
+        <Route path="/chattest44" element={<chattest44 />} />
+
+        <Route path="/dashmtall" element={<Dashmtall />} />
+        <Route path="/dashmtalladmin" element={<Dashmtalladmin />} />
+        <Route path="/dashmtfields" element={<Dashmtfields />} />
+        <Route path="/dashmtfieldsadmin" element={<Dashmtfieldsadmin />} />
+
+
+        <Route path="/dashchattest4d" element={<Dashchattest4d />} />
+
+        <Route path="/dashchattest4" element={<Dashchattest4 />} />
 
         <Route path="/dashmexamupload" element={<Dashmexamupload />} />
 

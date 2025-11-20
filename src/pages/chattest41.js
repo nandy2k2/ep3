@@ -41,6 +41,13 @@ export default function Chatbot() {
   const [input, setInput] = useState('');
   const chatEndRef = useRef(null);
 
+  const [collection, setCollection] = useState('');
+  const [filterText, setFilterText] = useState('{}');
+  const [projText, setProjText] = useState('{}');
+  const [sortText, setSortText] = useState('{}');
+  const [limit, setLimit] = useState(50);
+  const [filter1, setFilter1] = useState('"colid":' + global1.colid);
+
   // Scroll to bottom on every message change
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -115,6 +122,50 @@ export default function Chatbot() {
     };
   }
 
+  if (userText.toLowerCase().includes('help')) {
+    return {
+      text: 'First set model and filter for search, then write your query in english to get report. to set model, type Model-<model name>. To set filter, type Filter-<filter>. Then write your query in english.',
+    };
+  }
+
+  if (userText.toLowerCase().includes('collection')) {
+    return {
+      text: collection,
+    };
+  }
+
+  if (userText.toLowerCase().includes('model')) {
+    var ar1=userText.split('-');
+    //alert(userText + ',' + ar1[1].toString());
+    setCollection(ar1[1]);
+    return {
+      text: 'Model added ' + collection + '. Please add filters.',
+    };
+  }
+
+  if (userText.toLowerCase().includes('filter')) {
+    var ar1=userText.split('-');
+    setFilterText(ar1[1]);
+    return {
+      text: 'Filter added ' + filterText,
+    };
+  }
+
+  if (userText.toLowerCase().includes('condition')) {
+    var ar1=userText.split('-');
+    setFilter1(filter1 + ',' + ar1[1]);
+    return {
+      text: 'Filter added ' + filter1,
+    };
+  }
+
+  if (userText.toLowerCase().includes('allcond')) {
+    
+    return {
+      text: 'Filter added ' + filter1,
+    };
+  }
+
   if (userText.toLowerCase().includes('consultancy')) {
 
     const a1=addconsultany(userText);
@@ -133,6 +184,13 @@ export default function Chatbot() {
 //   const apikey='AIzaSyA0f6r8i3D9kR7X6U8z5H9J2L3M4N5O6P';
 // const apikey='AIzaSyCn-8JB63WBjgp6TZfMgA-MCKY9hCsVVxA';
   //AIzaSyCn-8JB63WBjgp6TZfMgA-MCKY9hCsVVxA"
+
+  if (userText.toLowerCase().includes('query')) {
+
+    var ar1=userText.split('-');
+    var qtext=ar1[1];
+
+
   const apikey=global1.geminikey;
   if(!apikey || apikey.length<10) {
     return {
@@ -142,36 +200,46 @@ export default function Chatbot() {
 
         setOpen(true);
 
-        const response123 = await ep1.get('/api/v2/getfeesbyfac', {
-                params: {
-                  token: global1.token,
-                  colid: global1.colid,
-                  user: global1.user
-                }
-              });
+      const filter2='{' + filter1 + '}';
+      alert(filter2);
 
-              //const parsedData1 = JSON.parse(response123.data.data.classes);
-              const data1=response123.data.data.classes;
+        // const filter = JSON.parse(filterText);
+        const filter = JSON.parse(filter2);
+      const projection = projText.trim() ? JSON.parse(projText) : null;
+      const sort = sortText.trim() ? JSON.parse(sortText) : null;
+
+       const body = { collection, filter, projection, sort, limit };
+      
+
+      const response123 = await fetch('http://localhost:3000/api/v2/getdynamicresult', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      console.log(response123);
+      const data = await response123.json();
+      console.log(data);
+
+      const data1=data.results;
               console.log(data1);
-              var data2='"\nFeecategory,Feeitem,Amount\n';
-              data1.map((data12) => (
-          data2=data2 + data12.feecategory + ',' + data12.feeeitem + ',' + data12.amount + '\n'
-        ))
-data2=data2 + '\n"';
-              //alert(data2);
 
-  const response = await ep1.get('/api/v2/testgemini1', {
+              var data3=JSON.stringify(data1, null, 2);
+
+              //  return {
+              //   text: 'Query ' + qtext + ' Response ' + data3,
+              // };
+        
+       const response = await ep1.get('/api/v2/testgemini1', {
             params: {
-               
-                // user: user,
-                // colid: colid,
                 apikey: apikey,
-                 //question:'Create a smart and professional reply for ' + userText
-                question: 'Check the data and provide a detailed summary on \n\n' + data2
+                 
+                // question: 'Check the data and provide a detailed summary on \n\n' + data3
+                question: qtext + '\n\n' + data3
             }
   
         });
-        var backend= '';
+
+         var backend= '';
         if(response.data.status!='Success') {
             setOpen(false);
             return {
@@ -182,18 +250,53 @@ data2=data2 + '\n"';
 
               setOpen(false);
 
-        const parsedData = JSON.parse(response.data.data.classes); // Parse the JSON string
+         const parsedData = JSON.parse(response.data.data.classes); // Parse the JSON string
   var topic1='';
 parsedData.forEach((module, index) => {
-  //console.log(`\n=== Module ${index + 1} ===`);
   
   module.ingredients.forEach((topic, i) => {
     topic1=topic1+topic+' ';
-    //console.log(`${i + 1}. ${topic}`);
+    
   });
-  //console.log(`\n=== Module ${index + 1} === ${topic1} in ${coursename}`);
-  //console.log('Module ' + topic1);
+  
 });
+
+
+
+
+
+    
+
+    return {
+      text: topic1,
+  
+    };
+  }
+
+
+
+
+  
+
+    
+              
+
+            //   return {
+            //     text: 'Data from server : \n' + JSON.stringify(data1, null, 2),
+            //   };
+
+
+//               var data2='"\nFeecategory,Feeitem,Amount\n';
+//               data1.map((data12) => (
+//           data2=data2 + data12.feecategory + ',' + data12.feeeitem + ',' + data12.amount + '\n'
+//         ))
+// data2=data2 + '\n"';
+              //alert(data2);
+
+ 
+       
+
+       
 
     //     const aiarray=response.data.data.classes.split('\n');
     //     //console.log('Count ' + aiarray.length);
@@ -205,7 +308,7 @@ parsedData.forEach((module, index) => {
 
   return {
     // text: topic1 + `. You said: "${userText}". Try typing 'options' for choices.`,
-    text: topic1 + `. However, let's come back to work. Try typing 'options' for choices.`,
+    text:  `Let's come back to work. Try typing 'options' for choices.`,
     // buttons: [
     //   { id: 'help', label: 'Help' },
     //   { id: 'start', label: 'Start Over' }

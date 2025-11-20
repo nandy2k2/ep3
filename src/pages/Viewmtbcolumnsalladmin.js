@@ -4,8 +4,7 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmfees';
-import AddUserModalBulk from './Addmfeesbulk';
+import AddUserModal from './Addmtbcolumnsall';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -14,26 +13,12 @@ import dayjs from 'dayjs';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
 
-import pdfToText from 'react-pdftotext';
-
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-
-import Tesseract from 'tesseract.js';
-
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-
 
 function ViewPage() {
     const [rows, setRows] = useState([]);
     const [results, setResults] = useState([]);
     const [second, setSecond] = useState([]);
     const [openAdd, setOpenAdd] = useState(false);
-    const [openAddBulk, setOpenAddBulk] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [openExport, setOpenExport] = useState(false);
@@ -43,22 +28,10 @@ function ViewPage() {
       price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '', dateadded: ''
     });
 
-     const [file, setFile] = useState();
-    const [dialogopen, setDialogopen] = React.useState(false);
-    const [itemstocheck, setItemstocheck] = useState();
-
-    const [selectedImage, setSelectedImage] = useState(null);
-  const handleImageUpload = (event) => {
-    const image = event.target.files[0];
-    setSelectedImage(URL.createObjectURL(image));
-  };
-
     const user=global1.user;
     const token=global1.token;
     const colid=global1.colid;
     const name=global1.name;
-
-    const [open, setOpen] = React.useState(false);
 
     const handleDeleteClick = async (id) => {
         alert(id);
@@ -78,7 +51,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deletefeesbyfac', {
+        const response = await ep1.get('/api/v2/deletetbcolumnsallbyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -92,24 +65,24 @@ function ViewPage() {
 
     const columns = [
         // { field: '_id', headerName: 'ID' },
+        {
+            field: 'user',
+            headerName: 'Added by',
+            type: 'text',
+            width: 200,
+            editable: false,
+        },
+        {
+            field: 'name',
+            headerName: 'Name',
+            type: 'text',
+            width: 200,
+            editable: false,
+        },
     
      {
-field:'academicyear',
-headerName:'Academic year',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'programcode',
-headerName:'Program code',
+field:'tbl',
+headerName:'Table',
 type:'text',
 width:200,
 editable:true,
@@ -122,92 +95,8 @@ return '';
 }
  },
 {
-field:'feegroup',
-headerName:'Fee group',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'semester',
-headerName:'Semester',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'feeeitem',
-headerName:'Fee item',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'feecategory',
-headerName:'Fee category',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'classdate',
-headerName:'Due date',
-type:'date',
-width:200,
-editable:true,
-valueGetter: (params) => {
-if (!params.value) {
-return new Date();
-}
-return new Date(params.value);
- },
-valueFormatter: params => dayjs(params?.value).format('DD/MM/YYYY'),
- },
-{
-field:'amount',
-headerName:'Amount',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'status',
-headerName:'Status',
+field:'fields',
+headerName:'Fields',
 type:'text',
 width:200,
 editable:true,
@@ -220,32 +109,15 @@ return '';
 }
  },
 
-  
-          { field: 'actions', headerName: 'Actions', width: 300, renderCell: (params) => {
+    
+          { field: 'actions', headerName: 'Actions', width: 100, renderCell: (params) => {
             return (
-             <table>
-                <tr>
-                  <td>
-                  <Button
+              <Button
                 onClick={(e) => onButtonClick(e, params.row)}
                 variant="contained"
               >
                 Delete
               </Button>
-                  </td>
-                  <td width="10px"></td>
-                  <td>
-                  <Button
-                onClick={(e) => onButtonClickgo(e, params.row)}
-                variant="contained"
-              >
-                Check document
-                
-              </Button>
-                  </td>
-                 
-                </tr>
-              </table>
             );
           } }
       ];
@@ -254,7 +126,7 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getfeesbyfac', {
+      const response = await ep1.get('/api/v2/tbcolumnsalldocs', {
         params: {
           token: token,
           colid: colid,
@@ -265,37 +137,37 @@ return '';
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getfeescountbyfac', {
-        params: {
-          token: token,
-          colid: colid,
-          user: user
-        }
-      });
-      setResults(response.data.data.classes);
-    };
-
-    const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getfeessecondbyfac', {
-        params: {
-          token: token,
-          colid: colid,
-          user: user
-        }
-      });
-      setSecond(response.data.data.classes);
-    };
-
-    const refreshpage=async()=> {
-      fetchViewPage();
-      // getgraphdata();
-      // getgraphdatasecond();
-    }
+        const response = await ep1.get('/api/v2/gettbcolumnsallcount', {
+          params: {
+            token: token,
+            colid: colid,
+            user: user
+          }
+        });
+        setResults(response.data.data.classes);
+      };
+  
+      const getgraphdatasecond = async () => {
+        const response = await ep1.get('/api/v2/gettbcolumnsallsecond', {
+          params: {
+            token: token,
+            colid: colid,
+            user: user
+          }
+        });
+        setSecond(response.data.data.classes);
+      };
+  
+      const refreshpage=async()=> {
+        fetchViewPage();
+        getgraphdata();
+        getgraphdatasecond();
+      }
   
     useEffect(() => {
       fetchViewPage();
-      // getgraphdata();
-      // getgraphdatasecond();
+      getgraphdata();
+      getgraphdatasecond();
     }, []);
   
     const handleExport = () => {
@@ -311,10 +183,6 @@ return '';
     const handleOpenAdd = () => {
       setOpenAdd(true);
     };
-
-    const handleOpenAddBulk = () => {
-        setOpenAddBulk(true);
-      };
   
     const handleCloseAdd = () => {
       setOpenAdd(false);
@@ -323,14 +191,6 @@ return '';
         price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
       });
     };
-
-    const handleCloseAddBulk = () => {
-        setOpenAddBulk(false);
-        setNewUser({
-          coursecode: '', coursetitle: '', year: '', coursetype: '', duration: '', offeredtimes: '', imagelink: '',
-          price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
-        });
-      };
   
     const handleOpenEdit = (user) => {
       global1.coursetitle = user.coursetitle;
@@ -350,35 +210,21 @@ return '';
     const handleOpenEdit1 =async (user) => {
     
             //const title=titleref.current.value;
-            const academicyear=user.academicyear;
-const programcode=user.programcode;
-const feegroup=user.feegroup;
-const semester=user.semester;
-const feeeitem=user.feeeitem;
-const feecategory=user.feecategory;
-const classdate=new Date(user.classdate);
-const amount=user.amount;
-const status=user.status;
+            const tbl=user.tbl;
+const fields=user.fields;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updatefeesbyfac', {
+            const response =await ep1.get('/api/v2/updatetbcolumnsallbyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            academicyear:academicyear,
-programcode:programcode,
-feegroup:feegroup,
-semester:semester,
-feeeitem:feeeitem,
-feecategory:feecategory,
-classdate:classdate,
-amount:amount,
-status:status,
+            tbl:tbl,
+fields:fields,
 
             status1:'Submitted',
             comments:''
@@ -441,79 +287,6 @@ status:status,
         setSelectedUser({ ...selectedUser, [field]: value });
       }
     };
-
-     function extractText1(event) {
-     
-      const file1 = event.target.files[0];
-      setFile(file1);
-     
-    }
-
-    const onButtonClickgo = async(e, row) => {
-      e.stopPropagation();
-      var itemstocheck=row.name + '~' + row.title + '~' + row.journal;
-      setItemstocheck(itemstocheck);
-      global1.itemstocheck=itemstocheck;
-      setDialogopen(true);
-      
-     
-    
-  };
-
-  const processpdf=async()=> {
-    if(!file) {
-      alert('Please select file');
-      return;
-    }
-    
-    setOpen(true);
-    pdfToText(file)
-    .then((text) => checktext1(text,itemstocheck))
-    .catch((error) => alert("Failed to extract text from pdf"));
-    setOpen(false);
-
-  }
-
-  const recognizeText = async (e, row) => {
-    e.stopPropagation();
-    var itemstocheck=row.name + '~' + row.title + '~' + row.journal;
-    setItemstocheck(itemstocheck);
-    
-  };
-
-  const processimage=async()=> {
-    
-    if(!selectedImage) {
-      alert('Please select image');
-      return;
-    }
-    if (selectedImage) {
-      const result = await Tesseract.recognize(selectedImage);
-     //alert(result.data.text);
-     checktext1(result.data.text,itemstocheck);
-    }
-
-  }
-
-  const checktext1=(stext,itemstocheck)=> {
-    const ar1=itemstocheck.split('~');
-    var found=0;
-    var notthere='';
-    for(var i=0;i<ar1.length;i++) {
-      if(stext.toLowerCase().indexOf(ar1[i])>-1) {
-        found=found + 1;
-      } else {
-        notthere=notthere + ar1[i] + ' ';
-      }
-
-    }
-    var percentage=Math.round(parseFloat(found)/parseFloat(ar1.length) * 100);
-    alert('Percentage match ' + percentage + '. Missing items ' + notthere);
-  }
-
-    const handleDialogclose = () => {
-      setDialogopen(false);
-    };
   
     return (
       <React.Fragment>
@@ -527,14 +300,6 @@ status:status,
              onClick={handleOpenAdd}
            >
              Add 
-           </Button>
-           <Button
-             variant="contained"
-             color="success"
-             style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '80px' }}
-             onClick={handleOpenAddBulk}
-           >
-             Bulk
            </Button>
            <Button
              variant="contained"
@@ -553,83 +318,77 @@ status:status,
              Refresh
            </Button>
          </Box>
+
+
+
+
           <Grid container spacing={3}>
 
-        
-
-<Dialog
-        open={dialogopen}
-        onClose={handleDialogclose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Document Validator"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-
-
-<Grid item xs={12}>
-<Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}>
-<Box>
-
-  Select pdf or image file document proof
- 
-  {/* Checking for {itemstocheck} */}
-  <br /><br />
- 
-  <table>
-    <tr>
-      <td>
-        Select pdf
-      </td>
-      <td width="20px"></td>
-      <td>
-      <input type="file" accept="application/pdf" onChange={extractText1} />
-      </td>
-      </tr><tr>
-      <td>Select image</td>
-      <td width="20px"></td>
-      <td>
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
-      </td>
-    </tr>
-  </table>
-  <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
-</Box>
-</Paper>
+          <Grid item xs={6}>
+          
+          <div style={{textAlign: 'center'}}>
+          h
+          </div>
+          <br />
+        <BarChart
+    xAxis={[
+      {
+        id: 'barCategories',
+        data: second.map((labels) => {
+          return (
+              labels._id        
+              );
+          }),
+        scaleType: 'band',
+        colorMap: {
+          type: 'piecewise',
+          thresholds: [new Date(2021, 1, 1), new Date(2023, 1, 1)],
+          colors: ['#F6C179', '#C27F1D', '#A6B0A3','#EDDBAC','#A6DAEE','#DEBFEB',,'#C85479','#F3646E','#AED3AD'],
+        }
+      },
+    ]}
+    series={[
+      {
+        data: second.map((labels1) => {
+          return (
+            parseInt(labels1.total_attendance)       
+              );
+          }),
+      },
+    ]}
+    width={500}
+    height={300}
+  />
+  
 </Grid>
+<Grid item xs={6}>
 
-</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogclose} autoFocus>Close</Button>
-          <Button onClick={processpdf}>
-            Check pdf
-          </Button>
-          <Button onClick={processimage}>
-            Check image
-          </Button>
-        </DialogActions>
-      </Dialog>
+<div style={{textAlign: 'center'}}>
+          k
+          </div>
+ <br />
+ <PieChart
+ colors={['#D1A3B4','#BBD1A3', '#A3C4D1','#EDDBAC','#A6DAEE','#DEBFEB',,'#C85479','#F3646E','#AED3AD']} 
+series={[
+  {
+    data: 
+      results.map((labels1,i) => {
+        return { id: i, value: parseInt(labels1.total_attendance)  , label: labels1._id}
+        }),
+  },
+  
+]}
+width={400}
+height={250}
+/>
 
-
+</Grid>
 
 
             <Grid item xs={12}>
               <Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}>
               {/* <h1>Table Component</h1> */}
-             
-
-
+               
                 <DataGrid getRowId={(row) => row._id} 
                 
         rows={rows}
@@ -655,16 +414,6 @@ status:status,
                   handleInputChange={handleInputChange}
                   handleAddUser={handleAddUser}
                   newUser={newUser}
-                  fetchViewPage={fetchViewPage}
-                />
-
-                <AddUserModalBulk
-                  open={openAddBulk}
-                  handleClose={handleCloseAddBulk}
-                  handleInputChange={handleInputChange}
-                  handleAddUser={handleAddUser}
-                  newUser={newUser}
-                  fetchViewPage={fetchViewPage}
                 />
   
                 <EditUserModal

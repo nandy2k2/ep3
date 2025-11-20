@@ -19,7 +19,7 @@ import { mainListItems, secondaryListItems } from './menucas1';
 import { useState } from 'react';
 // import Chart from './Charts';
 // import Deposits from './Deposits';
-import ViewPage from './chattest3';
+import ViewPage from './Viewmtbcolumnsall';
 import Login from './Login';
 import global1 from './global1';
 
@@ -109,7 +109,7 @@ function DashboardContent() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                           Chatbot
+                            Columns
                         </Typography>
                         <IconButton color="inherit">
     <Badge color="inherit">

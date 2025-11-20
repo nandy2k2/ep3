@@ -1,32 +1,24 @@
 import ep1 from '../api/ep1';
-import epai1 from '../api/epai';
 import React, { useEffect, useState, useRef } from 'react';
 import global1 from './global1';
-import { Button, Box, Paper, Container, Grid, TextField } from '@mui/material';
+import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmmcourseco';
-import AddUserModalBulk from './Addmmcoursecobulk';
+import AddUserModal from './Addmtfields';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
 import { DataGrid } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
-import { useNavigate } from 'react-router-dom';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
 
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-
 
 function ViewPage() {
-    const navigate = useNavigate();
     const [rows, setRows] = useState([]);
     const [results, setResults] = useState([]);
     const [second, setSecond] = useState([]);
     const [openAdd, setOpenAdd] = useState(false);
-    const [openAddBulk, setOpenAddBulk] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [openExport, setOpenExport] = useState(false);
@@ -36,15 +28,10 @@ function ViewPage() {
       price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '', dateadded: ''
     });
 
-    const [open, setOpen] = React.useState(false);
-
     const user=global1.user;
     const token=global1.token;
     const colid=global1.colid;
     const name=global1.name;
-
-    const keywordsref=useRef();
-    const policyref=useRef();
 
     const handleDeleteClick = async (id) => {
         alert(id);
@@ -64,7 +51,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deletemcoursecobyfac', {
+        const response = await ep1.get('/api/v2/deletetfieldsbyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -76,120 +63,26 @@ function ViewPage() {
         const a = await fetchViewPage();
     };
 
-    const onButtonClickm = async() => {
-      //e.stopPropagation();
-
-
-      
-      const keywords=keywordsref.current.value;
-      const policy=policyref.current.value;
-      if(!keywords || !policy) {
-        alert('Please enter Keywords and Policy name');
-        return;
-      }
-      setOpen(true);
-      
-      //alert('Please wait while document is generated');
-     
-
-      //do whatever you want with the row
-      //alert(row._id);
-      const response = await epai1.get('/api/v1/getresponse2', {
-          params: {
-              user:user,
-              colid:colid,
-              prompt:'Create a detailed policy for ' + policy + ' with focus on ' + keywords
-          }
-
-      });
-      var backend= '<html><head><title>' + policy + '</title></head><body>'; 
-      backend=backend + '<br /><br />';
-      backend=backend + '<h5>' + policy +  '</h5><hr />';
-      //alert(response.data.data.classes);
-      //const a=response.data.data.classes;
-      const aiarray=response.data.data.classes.split('\n');
-      //console.log('Count ' + aiarray.length);
-
-
-    for(var i=0;i<aiarray.length; i++) {
-        backend=backend + aiarray[i].toString() + '<br />';
-    }
-
-    backend=backend + '<br />';
-
-    backend=backend + '<div id="google_translate_element"></div>\n';
-
-    backend=backend + '<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>\n';
-
-    backend=backend + '<script type="text/javascript">\n';
-    backend=backend + 'function googleTranslateElementInit() {\n';
-    backend=backend + "new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');\n";
-    backend=backend + '}\n';
-    backend = backend + '</script>\n';
-
-
-
-                 backend=backend + '</body></html>';
-
-                 setOpen(false);
-
-    const element = document.createElement("a");
-    const file = new Blob([backend], {type: 'text/plain'});
-    element.href = URL.createObjectURL(file);
-    element.download ='policy_' +  policy + ".html";
-    document.body.appendChild(element); // Required for this to work in FireFox
-    element.click();
-      //const a = await fetchViewPage();
-  };
-
     const columns = [
         // { field: '_id', headerName: 'ID' },
+        {
+            field: 'user',
+            headerName: 'Added by',
+            type: 'text',
+            width: 200,
+            editable: false,
+        },
+        {
+            field: 'name',
+            headerName: 'Name',
+            type: 'text',
+            width: 200,
+            editable: false,
+        },
     
      {
-field:'year',
-headerName:'Academic year',
-type:'text',
-width:200,
-editable:false,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'course',
-headerName:'Course',
-type:'text',
-width:200,
-editable:false,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'coursecode',
-headerName:'Course code',
-type:'text',
-width:200,
-editable:false,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'cocode',
-headerName:'CO code',
+field:'tbl',
+headerName:'Table',
 type:'text',
 width:200,
 editable:true,
@@ -202,8 +95,8 @@ return '';
 }
  },
 {
-field:'co',
-headerName:'Course outcome',
+field:'tfield',
+headerName:'Field',
 type:'text',
 width:200,
 editable:true,
@@ -218,7 +111,7 @@ return '';
 {
 field:'type',
 headerName:'Type',
-type:'dropdown',
+type:'text',
 width:200,
 editable:true,
 valueFormatter: (params) => {
@@ -230,9 +123,9 @@ return '';
 }
  },
 {
-field:'targetlevel',
-headerName:'Target level',
-type:'dropdown',
+field:'example',
+headerName:'Example',
+type:'text',
 width:200,
 editable:true,
 valueFormatter: (params) => {
@@ -244,7 +137,7 @@ return '';
 }
  },
 
-  
+    
           { field: 'actions', headerName: 'Actions', width: 100, renderCell: (params) => {
             return (
               <Button
@@ -259,55 +152,45 @@ return '';
 
 
     const coursetitleref = useRef();
-
-    const coursename=global1.faccoursename;
-    const coursecode=global1.faccoursecode;
-    const lmsyear=global1.lmsyear;
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getmcoursecobyfac', {
+      const response = await ep1.get('/api/v2/tfieldsdocs', {
         params: {
           token: token,
           colid: colid,
-          user: user,
-          coursecode: coursecode,
-          year: lmsyear
+          user: user
         }
       });
       setRows(response.data.data.classes);
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getmcoursecocountbyfac', {
-        params: {
-          token: token,
-          colid: colid,
-          user: user,
-          coursecode: coursecode,
-          year: lmsyear
-        }
-      });
-      setResults(response.data.data.classes);
-    };
-
-    const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getmcoursecosecondbyfac', {
-        params: {
-          token: token,
-          colid: colid,
-          user: user,
-          coursecode: coursecode,
-          year: lmsyear
-        }
-      });
-      setSecond(response.data.data.classes);
-    };
-
-    const refreshpage=async()=> {
-      fetchViewPage();
-      getgraphdata();
-      getgraphdatasecond();
-    }
+        const response = await ep1.get('/api/v2/gettfieldscount', {
+          params: {
+            token: token,
+            colid: colid,
+            user: user
+          }
+        });
+        setResults(response.data.data.classes);
+      };
+  
+      const getgraphdatasecond = async () => {
+        const response = await ep1.get('/api/v2/gettfieldssecond', {
+          params: {
+            token: token,
+            colid: colid,
+            user: user
+          }
+        });
+        setSecond(response.data.data.classes);
+      };
+  
+      const refreshpage=async()=> {
+        fetchViewPage();
+        getgraphdata();
+        getgraphdatasecond();
+      }
   
     useEffect(() => {
       fetchViewPage();
@@ -324,34 +207,10 @@ return '';
       saveAs(data, 'ViewPage_data.xlsx');
       setOpenExport(false);
     };
-
-     const gotopersonal = () => {
-        const keywords=policyref.current.value;
-        if(!keywords) {
-            alert('Please enter API Key');
-            return;
-            }
-        global1.geminikey=keywords;
-        navigate('/dashchattest');
-      };
-
-      const gotodynamic = () => {
-        const keywords=policyref.current.value;
-        if(!keywords) {
-            alert('Please enter API Key');
-            return;
-            }
-        global1.geminikey=keywords;
-        navigate('/dashchattest4');
-      };
   
     const handleOpenAdd = () => {
       setOpenAdd(true);
     };
-
-    const handleOpenAddBulk = () => {
-        setOpenAddBulk(true);
-      };
   
     const handleCloseAdd = () => {
       setOpenAdd(false);
@@ -360,14 +219,6 @@ return '';
         price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
       });
     };
-
-    const handleCloseAddBulk = () => {
-        setOpenAddBulk(false);
-        setNewUser({
-          coursecode: '', coursetitle: '', year: '', coursetype: '', duration: '', offeredtimes: '', imagelink: '',
-          price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
-        });
-      };
   
     const handleOpenEdit = (user) => {
       global1.coursetitle = user.coursetitle;
@@ -387,31 +238,25 @@ return '';
     const handleOpenEdit1 =async (user) => {
     
             //const title=titleref.current.value;
-            const year=user.year;
-const course=user.course;
-const coursecode=user.coursecode;
-const cocode=user.cocode;
-const co=user.co;
+            const tbl=user.tbl;
+const tfield=user.tfield;
 const type=user.type;
-const targetlevel=user.targetlevel;
+const example=user.example;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updatemcoursecobyfac', {
+            const response =await ep1.get('/api/v2/updatetfieldsbyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            year:year,
-course:course,
-coursecode:coursecode,
-cocode:cocode,
-co:co,
+            tbl:tbl,
+tfield:tfield,
 type:type,
-targetlevel:targetlevel,
+example:example,
 
             status1:'Submitted',
             comments:''
@@ -478,54 +323,15 @@ targetlevel:targetlevel,
     return (
       <React.Fragment>
         <Container maxWidth="100%" sx={{ mt: 4, mb: 4 }}>
-      
-          <Grid container spacing={3}>
-
-        
-
-
-
-<Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
-
-
-            <Grid item xs={12}>
-              <Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}>
-             <p>Get a Gemini API Key from Google AI Studio</p>
-             <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label="Gemini API Key"  variant="outlined" inputRef={policyref} /><br /><br />
-
-<br /><br />
- <Box display="flex" marginBottom={4} marginTop={2}>
+        <Box display="flex" marginBottom={4} marginTop={2}>
            
            <Button
              variant="contained"
              color="success"
-             style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '180px' }}
-             onClick={()=> gotopersonal()}
-           >
-             Personal data 
-           </Button>
-            <Button
-             variant="contained"
-             color="success"
-             style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '180px' }}
-             onClick={()=> gotodynamic()}
-           >
-             Dynamic report 
-           </Button>
-           <Button
-             variant="contained"
-             color="success"
              style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '80px' }}
-             onClick={handleOpenAddBulk}
+             onClick={handleOpenAdd}
            >
-             Bulk
+             Add 
            </Button>
            <Button
              variant="contained"
@@ -544,15 +350,124 @@ targetlevel:targetlevel,
              Refresh
            </Button>
          </Box>
-         <br /><br />
-<Button onClick={onButtonClickm}
-             variant="contained"
-             color="secondary"
-             style={{  fontSize: '12px', marginTop: '-30px', height: '40px', width: '300px' }}
-           >
-             Generate through AI
-           </Button>
-              
+
+
+
+
+          <Grid container spacing={3}>
+
+          <Grid item xs={6}>
+          
+          <div style={{textAlign: 'center'}}>
+          Fields
+          </div>
+          <br />
+        <BarChart
+    xAxis={[
+      {
+        id: 'barCategories',
+        data: second.map((labels) => {
+          return (
+              labels._id        
+              );
+          }),
+        scaleType: 'band',
+        colorMap: {
+          type: 'piecewise',
+          thresholds: [new Date(2021, 1, 1), new Date(2023, 1, 1)],
+          colors: ['#F6C179', '#C27F1D', '#A6B0A3','#EDDBAC','#A6DAEE','#DEBFEB',,'#C85479','#F3646E','#AED3AD'],
+        }
+      },
+    ]}
+    series={[
+      {
+        data: second.map((labels1) => {
+          return (
+            parseInt(labels1.total_attendance)       
+              );
+          }),
+      },
+    ]}
+    width={500}
+    height={300}
+  />
+  
+</Grid>
+<Grid item xs={6}>
+
+<div style={{textAlign: 'center'}}>
+          h
+          </div>
+ <br />
+ <PieChart
+ colors={['#D1A3B4','#BBD1A3', '#A3C4D1','#EDDBAC','#A6DAEE','#DEBFEB',,'#C85479','#F3646E','#AED3AD']} 
+series={[
+  {
+    data: 
+      results.map((labels1,i) => {
+        return { id: i, value: parseInt(labels1.total_attendance)  , label: labels1._id}
+        }),
+  },
+  
+]}
+width={400}
+height={250}
+/>
+
+</Grid>
+
+
+            <Grid item xs={12}>
+              <Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}>
+              {/* <h1>Table Component</h1> */}
+               
+                <DataGrid getRowId={(row) => row._id} 
+                
+        rows={rows}
+        columns={columns}
+       
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 10,
+            },
+          },
+        }}
+        processRowUpdate={(updatedRow, originalRow) =>
+            handleOpenEdit1(updatedRow)
+          }
+        pageSizeOptions={[10]}
+        disableRowSelectionOnClick
+      />
+                {/* add button handler */}
+                <AddUserModal
+                  open={openAdd}
+                  handleClose={handleCloseAdd}
+                  handleInputChange={handleInputChange}
+                  handleAddUser={handleAddUser}
+                  newUser={newUser}
+                />
+  
+                <EditUserModal
+                  open={openEdit}
+                  handleClose={handleCloseEdit}
+                  handleInputChange={handleInputChange}
+                  handleEditUser={handleEditUser}
+                  selectedUser={selectedUser}
+                />
+  
+                <DeleteUserModal
+                  open={openDelete}
+                  handleClose={handleCloseDelete}
+                  handleDeleteUser={handleDeleteUser}
+                  selectedUser={selectedUser}
+                />
+  
+                <ExportUserModal
+                  open={openExport}
+                  handleClose={() => setOpenExport(false)}
+                  handleExport={handleExport}
+                />
               </Paper>
             </Grid>
           </Grid>

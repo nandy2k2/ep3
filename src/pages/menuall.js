@@ -1091,6 +1091,34 @@ export function menuitemsall() {
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="AI Chatbot" />}
 </ListItem>
 
+<ListItem button component={RouterLink} to="/dashchattest4d">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="AI Chatbot 2" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/dashmtall">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Config Tables" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmtfields">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Config Fields" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/dashmtbcolumnsall">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Columns" />}
+</ListItem>
+
+
 </AccordionDetails>
 </Accordion>
 

@@ -125,14 +125,14 @@ const Signup = () => {
             try {
                
                 global1.instype=response1.data.data.classes[0].type;
-                localStorage.setItem('instype', response1.data.data.classes[0].type);
+                //localStorage.setItem('instype', response1.data.data.classes[0].type);
             } catch(err) {
     
             }
             try {
                 
                 global1.insname=response1.data.data.classes[0].institutionname;
-                localStorage.setItem('insname', response1.data.data.classes[0].institutionname);
+                //localStorage.setItem('insname', response1.data.data.classes[0].institutionname);
             } catch(err) {
     
             }
@@ -140,7 +140,7 @@ const Signup = () => {
             try {
                 
                 global1.logo=response1.data.data.classes[0].logo;
-                localStorage.setItem('logo', response1.data.data.classes[0].logo);
+                //localStorage.setItem('logo', response1.data.data.classes[0].logo);
             } catch(err) {
     
             }
@@ -148,7 +148,7 @@ const Signup = () => {
             try {
              
                 global1.univid=response1.data.data.classes[0].admincolid;
-                localStorage.setItem('univid', response1.data.data.classes[0].admincolid);
+                //localStorage.setItem('univid', response1.data.data.classes[0].admincolid);
             } catch(err) {
     
             }
@@ -156,7 +156,7 @@ const Signup = () => {
             try {
             
                 global1.collegecode=response1.data.data.classes[0].institutioncode;
-                localStorage.setItem('collegecode', response1.data.data.classes[0].institutioncode);
+                //localStorage.setItem('collegecode', response1.data.data.classes[0].institutioncode);
             } catch(err) {
     
             }
@@ -164,7 +164,7 @@ const Signup = () => {
             try {
                 
                 name1=name1 + ' ' + response1.data.data.classes[0].institutionname;
-                localStorage.setItem('name1', name1);
+                //localStorage.setItem('name1', name1);
                 
             } catch(err) {
     

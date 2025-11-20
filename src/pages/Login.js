@@ -74,13 +74,13 @@ const username=email;
         const name=response.data.name;
         const colid=response.data.colid;
         const role=response.data.role;
-        localStorage.setItem('user', user);
-        localStorage.setItem('name', name);
-        localStorage.setItem('colid', colid);
-        localStorage.setItem('role', role);
+        //localStorage.setItem('user', user);
+        //localStorage.setItem('name', name);
+        //localStorage.setItem('colid', colid);
+        //localStorage.setItem('role', role);
         const department=response.data.department;
-        localStorage.setItem('department', department);
-        localStorage.setItem('admincolid', colid);
+        //localStorage.setItem('department', department);
+        //localStorage.setItem('admincolid', colid);
         global1.studid = response.data.user;
         global1.user = response.data.user;
         global1.name = response.data.name;
@@ -172,7 +172,7 @@ const username=email;
             //console.log(response1.data.data.classes);
             //alert(response1.data.data.classes[0].type + ' ' + response1.data.data.classes[0].institutionname);
             global1.instype=response1.data.data.classes[0].type;
-            localStorage.setItem('instype', response1.data.data.classes[0].type);
+            //localStorage.setItem('instype', response1.data.data.classes[0].type);
         } catch(err) {
 
         }
@@ -180,7 +180,7 @@ const username=email;
             //console.log(response1.data.data.classes);
             //alert(response1.data.data.classes[0].type + ' ' + response1.data.data.classes[0].institutionname);
             global1.insname=response1.data.data.classes[0].institutionname;
-            localStorage.setItem('insname', response1.data.data.classes[0].institutionname);
+            //localStorage.setItem('insname', response1.data.data.classes[0].institutionname);
         } catch(err) {
 
         }
@@ -189,7 +189,7 @@ const username=email;
             //console.log(response1.data.data.classes);
             //alert(response1.data.data.classes[0].type + ' ' + response1.data.data.classes[0].institutionname);
             global1.univid=response1.data.data.classes[0].admincolid;
-            localStorage.setItem('univid', response1.data.data.classes[0].admincolid);
+            //localStorage.setItem('univid', response1.data.data.classes[0].admincolid);
         } catch(err) {
 
         }
@@ -198,7 +198,7 @@ const username=email;
             //console.log(response1.data.data.classes);
             //alert(response1.data.data.classes[0].type + ' ' + response1.data.data.classes[0].institutionname);
             global1.collegecode=response1.data.data.classes[0].institutioncode;
-            localStorage.setItem('collegecode', response1.data.data.classes[0].institutioncode);
+            //localStorage.setItem('collegecode', response1.data.data.classes[0].institutioncode);
         } catch(err) {
 
         }
@@ -207,7 +207,7 @@ const username=email;
             //console.log(response1.data.data.classes);
             //alert(response1.data.data.classes[0].type + ' ' + response1.data.data.classes[0].institutionname);
             name1=name1 + ' ' + response1.data.data.classes[0].institutionname;
-            localStorage.setItem('name1', name1);
+            //localStorage.setItem('name1', name1);
             
         } catch(err) {
 
