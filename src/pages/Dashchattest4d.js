@@ -19,7 +19,7 @@ import { mainListItems, secondaryListItems } from './menucas1';
 import { useState } from 'react';
 // import Chart from './Charts';
 // import Deposits from './Deposits';
-import ViewPage from './chattest46';
+import ViewPage from './chattest49';
 import Login from './Login';
 import global1 from './global1';
 
