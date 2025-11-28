@@ -24,7 +24,7 @@ export default function Chatbot() {
   const [projText, setProjText] = useState('{}');
   const [sortText, setSortText] = useState('{}');
   const [limit, setLimit] = useState(50);
-  const [filter1, setFilter1] = useState('"colid":' + global1.colid);
+  const [filter1, setFilter1] = useState('"colid":' + global1.colid + ',"user":"' + global1.user + '"');
   const [geminiApiKey, setGeminiApiKey] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [lastReportData, setLastReportData] = useState(null);
@@ -233,7 +233,7 @@ export default function Chatbot() {
         label: item.title
       }));
 
-      global1.chat='';
+      //global1.chat='';
 
       return {
         text: 'Find below some options',
@@ -336,7 +336,7 @@ export default function Chatbot() {
     if(global1.chat=='filter') {
         
       setFilter1(filter1 + ',' + userText);
-      return { text: 'Filter added ' + filter1 + ',' + ar1[1] };
+      return { text: 'Filter added ' + filter1 + ',' + userText };
     }
 
     if (userText.toLowerCase().includes('condition')) {

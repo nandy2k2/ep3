@@ -15,6 +15,10 @@ function AddUserModal({ open, handleClose, handleInputChange, handleAddUser, new
     const yearref=useRef();
 const coursenameref=useRef();
 const coursecoderef=useRef();
+const programref=useRef();
+const programcoderef=useRef();
+const semesterref=useRef();
+const hoursref=useRef();
 const typeref=useRef();
 
 
@@ -46,6 +50,10 @@ const year=yearref.current.value;
 const coursename=coursenameref.current.value;
 const coursecode=coursecoderef.current.value;
 const type=typeref.current.value;
+const program=programref.current.value;
+const programcode=programcoderef.current.value;
+const semester=semesterref.current.value;
+const hours=hoursref.current.value;
 
 
 //alert(coursetitle + '-' + dateadded);
@@ -60,6 +68,9 @@ const type=typeref.current.value;
             colid: colid,
             name: name,
            year:year,
+           program:program,
+           programcode:programcode,
+           semester:semester,
 coursename:coursename,
 coursecode:coursecode,
 type:type,
@@ -101,6 +112,16 @@ sx={{ width: '100%'}}
 <MenuItem value="2021-22">2021-22</MenuItem>
 </Select>
 <br /><br />
+
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label="Program"  variant="outlined" inputRef={programref} /><br /><br />
+
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label="Programcode"  variant="outlined" inputRef={programcoderef} /><br /><br />
+
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label="Semester"  variant="outlined" inputRef={semesterref} /><br /><br />
+
+
+<TextField id="outlined-basic"  type="number" sx={{ width: "100%"}} label="Hours"  variant="outlined" inputRef={hoursref} /><br /><br />
+
 
 <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label="Coursename"  variant="outlined" inputRef={coursenameref} /><br /><br />
 

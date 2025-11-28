@@ -36,7 +36,7 @@ function ExaminerEvaluationPageds() {
   const fetchPapers = async () => {
     try {
       const res = await ep1.get("/api/v2/reevaluation/examiner-papersds", {
-        params: { examinerEmail: global1.user },
+        params: { examinerEmail: global1.user, colid: Number(global1.colid) },
       });
       setPapers(res.data);
     } catch (err) {
@@ -61,6 +61,7 @@ function ExaminerEvaluationPageds() {
         _id: selectedPaper._id,
         examinerRole: selectedPaper.examinerRole,
         marks: parseFloat(marks),
+        colid: Number(global1.colid),
       });
 
       setSuccess("Marks submitted successfully!");

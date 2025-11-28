@@ -26,7 +26,7 @@ function ExamMarksStructurePageds() {
   const [formData, setFormData] = useState({
     name: global1.name,
     user: global1.user,
-    colid: global1.colid,
+    colid: Number(global1.colid),
     program: "",
     examcode: "",
     month: "",

@@ -99,7 +99,7 @@ return;
     };
 
 
-  const searchapi = async (rownumber,year,coursename,coursecode,type,program,programcode,semester,hours,status1) => {
+  const searchapi = async (rownumber,tbl,activity,description,type,address,domain,status1) => {
        
 
 //     const coursetitle=coursetitleref.current.value;
@@ -130,20 +130,18 @@ return;
     //alert(department);
     //setLoading(true);
     //setIsuploading(true);
-    const response = await ep1.get('/api/v2/createmfaccoursesbyfac', {
+    const response = await ep1.get('/api/v2/createtblapibyfac', {
         params: {
             user: user,
             token: token,
             colid: colid,
             name: name,
-            year:year,
-            program:program,
-            programcode:programcode,
-            semester:semester,
-            hours:hours,
-coursename:coursename,
-coursecode:coursecode,
+            tbl:tbl,
+activity:activity,
+description:description,
 type:type,
+address:address,
+domain:domain,
 status1:'Submitted',
             comments:''
 
@@ -178,44 +176,32 @@ const processfile=async()=> {
             rownumber=rownumber + 1;
             //rownumber=rownumber + 1;
             if(!row[0]){
-f1=f1 + 'row ' + rownumber + '-' + 'Academic year' + ',';
+f1=f1 + 'row ' + rownumber + '-' + 'Table' + ',';
 return;
 }
 if(!row[1]){
-f1=f1 + 'row ' + rownumber + '-' + 'Coursename' + ',';
+f1=f1 + 'row ' + rownumber + '-' + 'Activity' + ',';
 return;
 }
 if(!row[2]){
-f1=f1 + 'row ' + rownumber + '-' + 'Coursecode' + ',';
+f1=f1 + 'row ' + rownumber + '-' + 'Description' + ',';
 return;
 }
 if(!row[3]){
 f1=f1 + 'row ' + rownumber + '-' + 'Type' + ',';
 return;
 }
-
 if(!row[4]){
-f1=f1 + 'row ' + rownumber + '-' + 'Program' + ',';
+f1=f1 + 'row ' + rownumber + '-' + 'API' + ',';
 return;
 }
-
 if(!row[5]){
-f1=f1 + 'row ' + rownumber + '-' + 'Program code' + ',';
-return;
-}
-
-if(!row[6]){
-f1=f1 + 'row ' + rownumber + '-' + 'Semester' + ',';
-return;
-}
-
-if(!row[7]){
-f1=f1 + 'row ' + rownumber + '-' + 'Hours' + ',';
+f1=f1 + 'row ' + rownumber + '-' + 'Domain' + ',';
 return;
 }
 
 
-            searchapi(rownumber,row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],status1);
+            searchapi(rownumber,row[0],row[1],row[2],row[3],row[4],row[5],status1);
            
         });
 
@@ -251,7 +237,7 @@ const getfiledata=()=> {
 
 
       Please upload excel file with data in proper format with following columns in order.<br /><br />
-      year,coursename,coursecode,type,Program, Programcode, Semester, Hours (Number), status <br /><br />
+      tbl,activity,description,type,address,domain,status <br /><br />
                         Do not add any extra column or rows. Date must be in mm/dd/yyyy format. Value of status must always be Submitted.
             <br />
 

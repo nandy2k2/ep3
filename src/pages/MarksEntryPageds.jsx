@@ -88,7 +88,7 @@ function MarksEntryPageds() {
       // Fetch paper structure
       const paperRes = await ep1.get("/api/v2/listexammarks1ds", {
         params: {
-          colid: global1.colid,
+          colid: Number(global1.colid),
           program: searchParams.program,
           year: searchParams.year,
           month: searchParams.month,
@@ -163,7 +163,7 @@ function MarksEntryPageds() {
         _id: mark._id, // Include ID for update
         name: global1.name,
         user: global1.user,
-        colid: global1.colid,
+        colid: Number(global1.colid),
         student: studentData.name,
         regno: studentData.regno,
         mothername: studentData.mothername,

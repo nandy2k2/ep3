@@ -1153,6 +1153,37 @@ import Dashmtbcolumnsall from './pages/Dashmtbcolumnsall';
 import Dashmtbcolumnsalladmin from './pages/Dashmtbcolumnsalladmin';
 
 
+import ReevaluationApplicationNewPageds from "./pages/ReevaluationApplicationNewPageds";
+import AdminReevaluationManagementPageds from "./pages/AdminReevaluationManagementPageds";
+import ExaminerReevaluationEvaluationPageds from "./pages/ExaminerReevaluationEvaluationPageds";
+import AdminExaminer3AllocationPageds from "./pages/AdminExaminer3AllocationPageds";
+
+
+import Dashboardreevalds from "./pages/Dashboardreevalds";
+
+import Dashmtblapi from './pages/Dashmtblapi';
+import Dashmtblapiadmin from './pages/Dashmtblapiadmin';
+
+import Dashreports from './pages/Dashreports';
+import Dashmwreport1 from './pages/Dashmwreport1';
+import Dashmwreport2 from './pages/Dashmwreport2';
+
+import RequestedAttendanceds from './pages/RequestedAttendanceds';
+import StudentAttendanceViewds from './pages/StudentAttendanceViewds';
+import SupplementaryAttendanceds from './pages/SupplementaryAttendanceds';
+
+// NEW IMPORTS
+import AnswerSheetEvaluationListPageds from "./pages/AnswerSheetEvaluationListPageds";
+import AnswerSheetEvaluationPageds from "./pages/AnswerSheetEvaluationPageds";
+import ReevaluationQuestionWiseViewPageds from "./pages/ReevaluationQuestionWiseViewPageds";
+import ReevaluationQuestionWiseEditPageds from "./pages/ReevaluationQuestionWiseEditPageds";
+
+
+
+
+
+
+
 
 
 
@@ -1200,6 +1231,35 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+           {/* NEW ROUTES */}
+        <Route path="/AnswerSheetEvaluationListPageds" element={<AnswerSheetEvaluationListPageds />} />
+        <Route path="/AnswerSheetEvaluationPageds" element={<AnswerSheetEvaluationPageds />} />
+        <Route path="/ReevaluationQuestionWiseViewPageds" element={<ReevaluationQuestionWiseViewPageds />} />
+        <Route path="/ReevaluationQuestionWiseEditPageds" element={<ReevaluationQuestionWiseEditPageds />} />
+
+
+        <Route path="/supplementaryattendanceds" element={<SupplementaryAttendanceds />} />
+        <Route path="/studentattendanceds" element={<StudentAttendanceViewds />} />
+        <Route path="/requestedattendanceds" element={<RequestedAttendanceds />} />
+
+        {/* <Route path="/requestedattendanceds" element={<RequestedAttendanceds />} />
+        <Route path="/studentattendanceviewds" element={<StudentAttendanceViewds />} />
+        <Route path="/studentattendanceviewds" element={<StudentAttendanceViewds />} /> */}
+
+        <Route path="/dashmwreport2" element={<Dashmwreport2 />} />
+        <Route path="/dashreports" element={<Dashreports />} />
+        <Route path="/dashmwreport1" element={<Dashmwreport1 />} />
+
+        <Route path="/dashmtblapi" element={<Dashmtblapi />} />
+        <Route path="/dashmtblapiadmin" element={<Dashmtblapiadmin />} />
+
+
+        <Route path="/dashboardreevalds" element={<Dashboardreevalds />} />
+        <Route path="/reevaluation-application-new" element={<ReevaluationApplicationNewPageds />} />
+        <Route path="/admin-reevaluation-management" element={<AdminReevaluationManagementPageds />} />
+        <Route path="/examiner-reevaluation-evaluation" element={<ExaminerReevaluationEvaluationPageds />} />
+        <Route path="/admin-examiner3-allocation" element={<AdminExaminer3AllocationPageds />} />
 
         <Route path="/dashmtbcolumnsall" element={<Dashmtbcolumnsall />} />
         <Route path="/dashmtbcolumnsalladmin" element={<Dashmtbcolumnsalladmin />} />

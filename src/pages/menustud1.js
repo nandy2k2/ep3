@@ -122,6 +122,23 @@ export function mainListItems({ open }) {
           </AccordionDetails>
           </Accordion>
 
+            <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>My Attendance</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/studentattendanceviewds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="My Attendance" />}
+</ListItem>
+
+        </AccordionDetails>
+        </Accordion>
+
 
        <Accordion>
         <AccordionSummary aria-controls="panel3-content" id="panel3-header">
@@ -341,6 +358,13 @@ export function mainListItems({ open }) {
 <PersonIcon />
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Apply" />}
+</ListItem>
+
+  <ListItem button component={RouterLink} to="/reevaluation-application-new">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Apply New" />}
 </ListItem>
 
 

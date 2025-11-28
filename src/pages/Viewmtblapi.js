@@ -4,8 +4,8 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmmfaccourses';
-import AddUserModalBulk from './Addmmfaccoursesbulk';
+import AddUserModal from './Addmtblapi';
+import AddUserModalBulk from './Addmtblapibulk';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -13,27 +13,22 @@ import { DataGrid } from '@mui/x-data-grid';
 import dayjs from 'dayjs';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
-import { useNavigate } from 'react-router-dom';
 
-import Tooltip from '@mui/material/Tooltip';
+import pdfToText from 'react-pdftotext';
 
-import DeleteIcon from '@mui/icons-material/Delete';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import AvTimerIcon from '@mui/icons-material/AvTimer';
-import Battery4BarIcon from '@mui/icons-material/Battery4Bar';
-import BookIcon from '@mui/icons-material/Book';
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import AnnouncementIcon from '@mui/icons-material/Announcement';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import QuizIcon from '@mui/icons-material/Quiz';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
+import Tesseract from 'tesseract.js';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 function ViewPage() {
-  const navigate = useNavigate();
     const [rows, setRows] = useState([]);
     const [results, setResults] = useState([]);
     const [second, setSecond] = useState([]);
@@ -48,11 +43,22 @@ function ViewPage() {
       price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '', dateadded: ''
     });
 
+     const [file, setFile] = useState();
+    const [dialogopen, setDialogopen] = React.useState(false);
+    const [itemstocheck, setItemstocheck] = useState();
+
+    const [selectedImage, setSelectedImage] = useState(null);
+  const handleImageUpload = (event) => {
+    const image = event.target.files[0];
+    setSelectedImage(URL.createObjectURL(image));
+  };
+
     const user=global1.user;
     const token=global1.token;
     const colid=global1.colid;
     const name=global1.name;
-    const lastlogin=global1.lastlogin;
+
+    const [open, setOpen] = React.useState(false);
 
     const handleDeleteClick = async (id) => {
         alert(id);
@@ -72,7 +78,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deletemfaccoursesbyfac', {
+        const response = await ep1.get('/api/v2/deletetblapibyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -84,193 +90,12 @@ function ViewPage() {
         const a = await fetchViewPage();
     };
 
-    const onButtonClickgo = async(e, row) => {
-      e.stopPropagation();
-      //do whatever you want with the row
-      //alert(row._id);
-      global1.faccoursename=row.coursename;
-      global1.faccoursecode=row.coursecode;
-      navigate('/dashmmfaccoursesatt');
-      // const response = await ep1.get('/api/v2/deletemfaccoursesbyfac', {
-      //     params: {
-      //         id: row._id,
-      //         token: token,
-      //         user: user
-      //     }
-
-      // });
-      // alert(response.data.status);
-      const a = await fetchViewPage();
-  };
-
-  const onButtonClicken = async(e, row) => {
-    e.stopPropagation();
-    //do whatever you want with the row
-    //alert(row._id);
-    global1.lmsyear=row.year;
-    global1.faccoursename=row.coursename;
-    global1.faccoursecode=row.coursecode;
-    navigate('/dashmclassenr1');
-};
-
-const onButtonClicksy = async(e, row) => {
-  e.stopPropagation();
-  //do whatever you want with the row
-  //alert(row._id);
-  global1.lmsyear=row.year;
-  global1.faccoursename=row.coursename;
-  global1.faccoursecode=row.coursecode;
-  navigate('/dashmmsyllabus');
-};
-
-const onButtonClickas = async(e, row) => {
-  e.stopPropagation();
-  global1.lmsyear=row.year;
-  global1.faccoursename=row.coursename;
-  global1.faccoursecode=row.coursecode;
-  global1.lmsfaculty=row.user;
-  navigate('/dashmmassignments');
-};
-
-const onButtonClickan = async(e, row) => {
-  e.stopPropagation();
-  global1.lmsyear=row.year;
-  global1.faccoursename=row.coursename;
-  global1.faccoursecode=row.coursecode;
-  global1.lmsfaculty=row.user;
-  navigate('/dashmmanouncements');
-};
-
-const onButtonClickou = async(e, row) => {
-  e.stopPropagation();
-  global1.lmsyear=row.year;
-  global1.faccoursename=row.coursename;
-  global1.faccoursecode=row.coursecode;
-  global1.lmsfaculty=row.user;
-  navigate('/dashmmcourseco');
-};
-
-const onButtonClickca = async(e, row) => {
-  e.stopPropagation();
-  global1.lmsyear=row.year;
-  global1.faccoursename=row.coursename;
-  global1.faccoursecode=row.coursecode;
-  global1.lmsfaculty=row.user;
-  navigate('/dashmmcalendar');
-};
-
-const onButtonClickma = async(e, row) => {
-  e.stopPropagation();
-  global1.lmsyear=row.year;
-  global1.faccoursename=row.coursename;
-  global1.faccoursecode=row.coursecode;
-  global1.lmsfaculty=row.user;
-  navigate('/dashmmcoursematerial');
-};
-
-const subscritionpage=()=> {
-  navigate('/signinpay');
-}
-
-const onButtonClickrep = async(e, row) => {
-  e.stopPropagation();
-  //do whatever you want with the row
-  //alert(row._id);
-  
-  global1.faccoursecode=row.coursecode;
-  global1.lmsyear=row.year;
- 
-  
-  navigate('/dashmattccode');
-
-};
-
-const onButtonClickq = async(e, row) => {
-  e.stopPropagation();
-  global1.lmsyear=row.year;
-  global1.faccoursename=row.coursename;
-  global1.faccoursecode=row.coursecode;
-  global1.lmsfaculty=row.user;
-  navigate('/dashmtestnew');
-};
-
     const columns = [
         // { field: '_id', headerName: 'ID' },
-
-        {
-field:'name',
-headerName:'Name',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-    if (params.value) {
-      return params.value;
-      } else {
-      return '';
-      }
-  
-  }
- },
     
      {
-field:'year',
-headerName:'Academic year',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-    if (params.value) {
-      return params.value;
-      } else {
-      return '';
-      }
-  
-  }
- },
-   {
-field:'program',
-headerName:'Program',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-    if (params.value) {
-      return params.value;
-      } else {
-      return '';
-      }
-  
-  }
- },
-   {
-field:'programcode',
-headerName:'Program code',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-    if (params.value) {
-      return params.value;
-      } else {
-      return '';
-      }
-  
-  }
- },
-   {
-field:'semester',
-headerName:'Semester',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-    if (params.value) {
-      return params.value;
-      } else {
-      return '';
-      }
-  
-  }
- },
-{
-field:'coursename',
-headerName:'Coursename',
+field:'tbl',
+headerName:'Table',
 type:'text',
 width:200,
 editable:true,
@@ -283,8 +108,8 @@ return '';
 }
  },
 {
-field:'coursecode',
-headerName:'Coursecode',
+field:'activity',
+headerName:'Activity',
 type:'text',
 width:200,
 editable:true,
@@ -296,9 +121,9 @@ return '';
 }
 }
  },
- {
-field:'hours',
-headerName:'hours',
+{
+field:'description',
+headerName:'Description',
 type:'text',
 width:200,
 editable:true,
@@ -324,150 +149,61 @@ return '';
 }
 }
  },
-//  { field: 'actions', headerName: 'Attainment', width: 100, renderCell: (params) => {
-//   return (
-//     <Button
-//       onClick={(e) => onButtonClickgo(e, params.row)}
-//       variant="contained"
-//     >
-//       Marks
-//     </Button>
-    
-//   );
-// } },
+{
+field:'address',
+headerName:'API',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+{
+field:'domain',
+headerName:'Domain',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
 
   
-          { field: 'actions', headerName: 'Actions', width: 1050, renderCell: (params) => {
+          { field: 'actions', headerName: 'Actions', width: 300, renderCell: (params) => {
             return (
-              <div>
-                <table>
-                  <tr>
-                    <td>
-                    <Button
+             <table>
+                <tr>
+                  <td>
+                  <Button
                 onClick={(e) => onButtonClick(e, params.row)}
                 variant="contained"
               >
-                 <Tooltip title="Delete">
-      <DeleteIcon />
-      </Tooltip>
+                Delete
               </Button>
-                    </td>
-                    <td width="5px"></td>
-                    <td>
-                    <Button
-      onClick={(e) => onButtonClickgo(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Marks">
-      <BarChartIcon />
-      </Tooltip>
-    </Button>
-    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClicken(e, params.row)}
-      variant="contained"
-    >
-      <Tooltip title="Students">
-      <PersonAddAltIcon />
-      </Tooltip>
-    </Button>
-    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClicksy(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Syllabus">
-      <BookIcon />
-      </Tooltip>
-    </Button>
-                    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClickas(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Assignments">
-      <AssignmentIcon />
-      </Tooltip>
-    </Button>
-                    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClickou(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Course outcome">
-      <EmojiObjectsIcon />
-      </Tooltip>
-    </Button>
-                    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClickma(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Course material">
-      <LibraryBooksIcon />
-      </Tooltip>
-    </Button>
-                    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClickan(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Course announcement">
-      <AnnouncementIcon />
-      </Tooltip>
-    </Button>
-                    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClickca(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Course calendar">
-      <CalendarMonthIcon />
-      </Tooltip>
-    </Button>
-                    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClickrep(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Attendance report">
-      <Battery4BarIcon />
-      </Tooltip>
-    </Button>
-                    </td>
-                    <td width="5px"></td>
-                    <td>
-    <Button
-      onClick={(e) => onButtonClickq(e, params.row)}
-      variant="contained"
-    >
-       <Tooltip title="Assessment">
-      <QuizIcon />
-      </Tooltip>
-    </Button>
-                    </td>
-                  </tr>
-                </table>
-             
-            
-    </div>
-              
+                  </td>
+                  <td width="10px"></td>
+                  <td>
+                  <Button
+                onClick={(e) => onButtonClickgo(e, params.row)}
+                variant="contained"
+              >
+                Check document
+                
+              </Button>
+                  </td>
+                 
+                </tr>
+              </table>
             );
           } }
       ];
@@ -476,7 +212,7 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getmfaccoursesbyfac', {
+      const response = await ep1.get('/api/v2/gettblapibyfac', {
         params: {
           token: token,
           colid: colid,
@@ -487,7 +223,7 @@ return '';
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getmfaccoursescountbyfac', {
+      const response = await ep1.get('/api/v2/gettblapicountbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -495,11 +231,10 @@ return '';
         }
       });
       setResults(response.data.data.classes);
-      console.log(response.data.data.classes);
     };
 
     const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getmfaccoursessecondbyfac', {
+      const response = await ep1.get('/api/v2/gettblapisecondbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -507,26 +242,18 @@ return '';
         }
       });
       setSecond(response.data.data.classes);
-      console.log(response.data.data.classes);
     };
 
     const refreshpage=async()=> {
       fetchViewPage();
-    //   getgraphdata();
-    //   getgraphdatasecond();
+      // getgraphdata();
+      // getgraphdatasecond();
     }
   
     useEffect(() => {
       fetchViewPage();
-      try {
-        getgraphdata();
-         getgraphdatasecond();
-
-      } catch (err) {
-        
-
-      }
-  
+      // getgraphdata();
+      // getgraphdatasecond();
     }, []);
   
     const handleExport = () => {
@@ -581,33 +308,29 @@ return '';
     const handleOpenEdit1 =async (user) => {
     
             //const title=titleref.current.value;
-            const year=user.year;
-            const program=user.program;
-            const programcode=user.programcode;
-            const semester=user.semester;
-            const hours=user.hours;
-const coursename=user.coursename;
-const coursecode=user.coursecode;
+            const tbl=user.tbl;
+const activity=user.activity;
+const description=user.description;
 const type=user.type;
+const address=user.address;
+const domain=user.domain;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updatemfaccoursesbyfac', {
+            const response =await ep1.get('/api/v2/updatetblapibyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            year:year,
-            program:program,
-            programcode:programcode,
-            semester:semester,
-            hours:hours,
-coursename:coursename,
-coursecode:coursecode,
+            tbl:tbl,
+activity:activity,
+description:description,
 type:type,
+address:address,
+domain:domain,
 
             status1:'Submitted',
             comments:''
@@ -670,22 +393,83 @@ type:type,
         setSelectedUser({ ...selectedUser, [field]: value });
       }
     };
+
+     function extractText1(event) {
+     
+      const file1 = event.target.files[0];
+      setFile(file1);
+     
+    }
+
+    const onButtonClickgo = async(e, row) => {
+      e.stopPropagation();
+      var itemstocheck=row.name + '~' + row.title + '~' + row.journal;
+      setItemstocheck(itemstocheck);
+      global1.itemstocheck=itemstocheck;
+      setDialogopen(true);
+      
+     
+    
+  };
+
+  const processpdf=async()=> {
+    if(!file) {
+      alert('Please select file');
+      return;
+    }
+    
+    setOpen(true);
+    pdfToText(file)
+    .then((text) => checktext1(text,itemstocheck))
+    .catch((error) => alert("Failed to extract text from pdf"));
+    setOpen(false);
+
+  }
+
+  const recognizeText = async (e, row) => {
+    e.stopPropagation();
+    var itemstocheck=row.name + '~' + row.title + '~' + row.journal;
+    setItemstocheck(itemstocheck);
+    
+  };
+
+  const processimage=async()=> {
+    
+    if(!selectedImage) {
+      alert('Please select image');
+      return;
+    }
+    if (selectedImage) {
+      const result = await Tesseract.recognize(selectedImage);
+     //alert(result.data.text);
+     checktext1(result.data.text,itemstocheck);
+    }
+
+  }
+
+  const checktext1=(stext,itemstocheck)=> {
+    const ar1=itemstocheck.split('~');
+    var found=0;
+    var notthere='';
+    for(var i=0;i<ar1.length;i++) {
+      if(stext.toLowerCase().indexOf(ar1[i])>-1) {
+        found=found + 1;
+      } else {
+        notthere=notthere + ar1[i] + ' ';
+      }
+
+    }
+    var percentage=Math.round(parseFloat(found)/parseFloat(ar1.length) * 100);
+    alert('Percentage match ' + percentage + '. Missing items ' + notthere);
+  }
+
+    const handleDialogclose = () => {
+      setDialogopen(false);
+    };
   
     return (
       <React.Fragment>
         <Container maxWidth="100%" sx={{ mt: 4, mb: 4 }}>
-          Your subscription is valid till {lastlogin} <br /><br />
-          <Button
-                   
-                   variant="outlined"
-                   color="primary"
-                   
-                   sx={{ padding: 1.5 }}
-                   onClick={() => subscritionpage()}
-                 >
-                   Extend subscription
-                 </Button>
-                 <br /><br />
         <Box display="flex" marginBottom={4} marginTop={2}>
            
            <Button
@@ -723,10 +507,10 @@ type:type,
          </Box>
           <Grid container spacing={3}>
 
-          <Grid item xs={6}>
+          {/* <Grid item xs={6}>
           
           <div style={{textAlign: 'center'}}>
-          Course type
+          g
           </div>
           <br />
         <BarChart
@@ -735,7 +519,7 @@ type:type,
         id: 'barCategories',
         data: second.map((labels) => {
           return (
-              labels._id ? labels._id : ''        
+            labels._id ? labels._id : ''         
               );
           }),
         scaleType: 'band',
@@ -763,7 +547,7 @@ type:type,
 <Grid item xs={6}>
 
 <div style={{textAlign: 'center'}}>
-          Year wise analysis
+          j
           </div>
  <br />
  <PieChart
@@ -772,7 +556,7 @@ series={[
   {
     data: 
       results.map((labels1,i) => {
-        return { id: i, value: parseInt(labels1.total_attendance)  , label: labels1._id? labels1._id : '' }
+        return { id: i, value: parseInt(labels1.total_attendance)  , label: labels1._id? labels1._id : ''}
         }),
   },
   
@@ -781,7 +565,75 @@ width={400}
 height={250}
 />
 
+</Grid> */}
+
+
+<br />
+
+<Dialog
+        open={dialogopen}
+        onClose={handleDialogclose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Document Validator"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+
+
+<Grid item xs={12}>
+<Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}>
+<Box>
+
+  Select pdf or image file document proof
+ 
+  {/* Checking for {itemstocheck} */}
+  <br /><br />
+ 
+  <table>
+    <tr>
+      <td>
+        Select pdf
+      </td>
+      <td width="20px"></td>
+      <td>
+      <input type="file" accept="application/pdf" onChange={extractText1} />
+      </td>
+      </tr><tr>
+      <td>Select image</td>
+      <td width="20px"></td>
+      <td>
+      <input type="file" accept="image/*" onChange={handleImageUpload} />
+      </td>
+    </tr>
+  </table>
+  <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+        
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
+</Box>
+</Paper>
 </Grid>
+
+</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogclose} autoFocus>Close</Button>
+          <Button onClick={processpdf}>
+            Check pdf
+          </Button>
+          <Button onClick={processimage}>
+            Check image
+          </Button>
+        </DialogActions>
+      </Dialog>
+
 
 
 
@@ -816,6 +668,7 @@ height={250}
                   handleInputChange={handleInputChange}
                   handleAddUser={handleAddUser}
                   newUser={newUser}
+                  fetchViewPage={fetchViewPage}
                 />
 
                 <AddUserModalBulk
@@ -824,6 +677,7 @@ height={250}
                   handleInputChange={handleInputChange}
                   handleAddUser={handleAddUser}
                   newUser={newUser}
+                  fetchViewPage={fetchViewPage}
                 />
   
                 <EditUserModal

@@ -84,6 +84,86 @@ export function menuitemsall() {
   return (
     <div style={{overflowY: 'scroll', height: 600, width: 300, fontSize:10}}>
 
+         <Accordion>
+        <AccordionSummary aria-controls="panel2-content" id="panel2-header">
+          <SettingsIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>AI Chatbot</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+        
+
+          
+ {/* <ListItem button component={RouterLink} to="/dashchattest">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Personal data" />}
+</ListItem> */}
+
+{/* <ListItem button component={RouterLink} to="/dashmchatentry">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="AI Chatbot" />}
+</ListItem> */}
+
+<ListItem button component={RouterLink} to="/dashchattest4d">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="AI Chatbot" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/dashmtall">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Config Tables" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmtfields">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Config Fields" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/dashmtbcolumnsall">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Columns" />}
+</ListItem>
+
+ <ListItem button component={RouterLink} to="/dashmtblapi">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="API Configuration" />}
+</ListItem>
+
+
+</AccordionDetails>
+</Accordion>
+
+<Accordion>
+        <AccordionSummary aria-controls="panel2-content" id="panel2-header">
+          <SettingsIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Reports</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/dashreports">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: '14px'}} primary="Reports" />}
+</ListItem>
+
+          </AccordionDetails>
+          </Accordion>
+
+
         <Accordion>
         <AccordionSummary aria-controls="panel1-content" id="panel1-header">
           <AccountCircleIcon sx={{ marginRight: 1 }} />
@@ -602,6 +682,13 @@ export function menuitemsall() {
         </AccordionSummary>
         <AccordionDetails>
 
+           <ListItem button component={RouterLink} to="/dashboardreevalds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Dashboard" />}
+</ListItem>
+
            <ListItem button component={RouterLink} to="/examinerconfigds">
 <ListItemIcon>
 <PersonIcon />
@@ -1067,60 +1154,7 @@ export function menuitemsall() {
         </AccordionDetails>
         </Accordion>
 
-         <Accordion>
-        <AccordionSummary aria-controls="panel2-content" id="panel2-header">
-          <SettingsIcon sx={{ marginRight: 1 }} />
-          {open && <Typography sx={{fontSize: 14}}>AI Chatbot</Typography>}
-        </AccordionSummary>
-        <AccordionDetails>
-
-        
-
-          
- {/* <ListItem button component={RouterLink} to="/dashchattest">
-<ListItemIcon>
-<PersonIcon />
-</ListItemIcon>
-{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Personal data" />}
-</ListItem> */}
-
-<ListItem button component={RouterLink} to="/dashmchatentry">
-<ListItemIcon>
-<PersonIcon />
-</ListItemIcon>
-{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="AI Chatbot" />}
-</ListItem>
-
-<ListItem button component={RouterLink} to="/dashchattest4d">
-<ListItemIcon>
-<PersonIcon />
-</ListItemIcon>
-{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="AI Chatbot 2" />}
-</ListItem>
-
- <ListItem button component={RouterLink} to="/dashmtall">
-<ListItemIcon>
-<PersonIcon />
-</ListItemIcon>
-{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Config Tables" />}
-</ListItem>
- <ListItem button component={RouterLink} to="/dashmtfields">
-<ListItemIcon>
-<PersonIcon />
-</ListItemIcon>
-{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Config Fields" />}
-</ListItem>
-
- <ListItem button component={RouterLink} to="/dashmtbcolumnsall">
-<ListItemIcon>
-<PersonIcon />
-</ListItemIcon>
-{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Columns" />}
-</ListItem>
-
-
-</AccordionDetails>
-</Accordion>
+      
 
             <Accordion>
         <AccordionSummary aria-controls="panel2-content" id="panel2-header">
@@ -2164,6 +2198,20 @@ export function menuitemsall() {
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Attendance report studentwise" />}
 </ListItem>
+
+{/* <ListItem button component={RouterLink} to="/studentattendanceviewds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Supplementary Attendance" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/requestedattendanceds">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Supplementary Request" />}
+</ListItem> */}
 
         </AccordionDetails>
         </Accordion>
