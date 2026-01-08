@@ -16,6 +16,8 @@ import generateBonafidePDF from "../utils/generatebonafidecertif";
 import generateDegreePDF from "../utils/generateDegreeCertificate";
 import generateTransferPDF from "../utils/generateTC";
 import generateAdmissionLetterPDF from "../utils/generateadmissionletter";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const CERTIFICATE_TYPES = [
   "Bonafide",
@@ -25,6 +27,7 @@ const CERTIFICATE_TYPES = [
 ];
 
 const CertificateGenerator = () => {
+  const navigate = useNavigate();
   const [regno, setRegno] = useState("");
   const [certificateType, setCertificateType] = useState("Bonafide");
   const [userData, setUserData] = useState(null);
@@ -388,6 +391,14 @@ const CertificateGenerator = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
+       <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                <Button
+                                  startIcon={<ArrowBack />}
+                                  onClick={() => navigate("/dashdashfacnew")}
+                                >
+                                  Back
+                                </Button>
+                              </Box>
       <Typography variant="h5" gutterBottom>
         Certificate Generator (Admin)
       </Typography>

@@ -21,8 +21,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function ExaminerConfigPageds() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: global1.name,
     user: global1.user,
@@ -119,9 +122,17 @@ function ExaminerConfigPageds() {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                <Button
+                                  startIcon={<ArrowBack />}
+                                  onClick={() => navigate("/dashboardreevalds")}
+                                >
+                                  Back
+                                </Button>
+                                <Typography variant="h4" gutterBottom>
         Examiner Configuration
       </Typography>
+                              </Box>
 
       <Card sx={{ mb: 3 }}>
         <CardContent>

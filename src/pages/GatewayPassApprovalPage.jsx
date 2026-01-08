@@ -103,7 +103,7 @@ const GatewayPassApprovalPage = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
-        <IconButton onClick={() => navigate("/dashboard")}>
+        <IconButton onClick={() => navigate("/dashboardpagehostel")}>
           <ArrowBack />
         </IconButton>
         <Typography variant="h4">Gateway Pass Approval</Typography>

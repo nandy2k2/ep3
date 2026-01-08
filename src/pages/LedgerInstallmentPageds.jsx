@@ -35,10 +35,12 @@ import {
   Add as AddIcon,
   Search as SearchIcon,
   Clear as ClearIcon,
+  ArrowBack
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import global1 from "./global1";
 import ep1 from "../api/ep1";
+import { useNavigate } from "react-router-dom";
 
 // Styled Components
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -80,6 +82,7 @@ const getAmountColor = (amount) => {
 };
 
 function LedgerInstallmentPageds() {
+  const navigate = useNavigate();
   const [entries, setEntries] = useState([]);
   const [selectedEntries, setSelectedEntries] = useState([]);
   const [regno, setRegno] = useState("");
@@ -297,6 +300,14 @@ function LedgerInstallmentPageds() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 3 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                    <Button
+                      startIcon={<ArrowBack />}
+                      onClick={() => navigate("/dashdashfacnew")}
+                    >
+                      Back
+                    </Button>
+                  </Box>
       {/* Header */}
       <HeaderBox>
         <Typography variant="h4" sx={{ fontWeight: 700, mb: 0.5 }}>

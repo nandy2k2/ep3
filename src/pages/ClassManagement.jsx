@@ -26,6 +26,7 @@ import {
   People,
   CalendarToday,
   Schedule,
+  ArrowBack,
 } from "@mui/icons-material";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -400,6 +401,9 @@ export default function ClassManagement() {
       <Container maxWidth="xl" sx={{ py: 4 }}>
         {/* Header */}
         <Box textAlign="center" mb={4}>
+                    <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")}>
+                      Back
+                    </Button>
           <Typography
             variant="h3"
             fontWeight={700}

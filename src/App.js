@@ -1179,6 +1179,79 @@ import ReevaluationQuestionWiseViewPageds from "./pages/ReevaluationQuestionWise
 import ReevaluationQuestionWiseEditPageds from "./pages/ReevaluationQuestionWiseEditPageds";
 
 
+import DashboardCrmds from "./pages/DashboardCrmds";
+import Categoryds from "./pages/Categoryds";
+import Leadsds from "./pages/Leadsds";
+import Leaddetailds from "./pages/Leaddetailds";
+import Programmasterds from "./pages/Programmasterds";
+import Landingpageds from "./pages/Landingpageds";
+import Dripcampaignds from "./pages/Dripcampaignds";
+import Apikeyds from "./pages/Apikeyds";
+import Analyticsds from "./pages/Analyticsds";
+import Publiclandingpageds from "./pages/Publiclandingpageds";
+import CommunicationSettings from "./pages/CommunicationSettings";
+import Sourceds from "./pages/Sourceds";
+
+import Dashchattest4a from "./pages/Dashchattest4a";
+
+// Add these imports after other page imports (around line 400+)
+import ApiConfig from './pages/ApiConfig';
+import ApiChatbot from './pages/ApiChatbot';
+import ApiChatbot1 from './pages/ApiChatbot1';
+
+import DataApiConfig from './pages/DataApiConfigds';
+import AiDataManager from './pages/AiDataManager';
+
+import AlumniLoginds from "./pages/Alumni/AlumniLoginds";
+import AlumniDashboardds from "./pages/Alumni/AlumniDashboardds";
+import AlumniProfileds from "./pages/Alumni/AlumniProfileds";
+import AlumniEventsds from "./pages/Alumni/AlumniEventsds";
+import AlumniJobsds from "./pages/Alumni/AlumniJobsds";
+import AlumniMaterialsds from "./pages/Alumni/AlumniMaterialsds";
+import AlumniDonationsds from "./pages/Alumni/AlumniDonationsds";
+import AlumniDocumentsds from "./pages/Alumni/AlumniDocumentsds";
+import AdminDashboardAlumnids from "./pages/Admin/AdminDashboardAlumnids";
+import AdminAlumniManagementds from "./pages/Admin/AdminAlumniManagementds";
+import AdminEventManagementds from "./pages/Admin/AdminEventManagementds";
+import AdminDonationManagementds from "./pages/Admin/AdminDonationManagementds";
+import AdminApplicationsManagement from "./pages/Admin/AdminApplicationsManagement";
+import AlumniRegistrationForm from "./pages/Public/AlumniRegistrationForm";
+import StudentJobsPortalds from "./pages/Student/StudentJobsPortalds";
+import StudentMaterialsLibraryds from "./pages/Student/StudentMaterialsLibraryds";
+
+import Dashmtblemitter from './pages/Dashmtblemitter';
+import Dashmtblemitteradmin from './pages/Dashmtblemitteradmin';
+
+import Dashmtblerrorlog from './pages/Dashmtblerrorlog';
+import Dashmtblerrorlogadmin from './pages/Dashmtblerrorlogadmin';
+
+
+import WorkflowConfigds from './pages/WorkflowConfigds';
+import WorkflowChatbotds from './pages/WorkflowChatbotds';
+
+import WorkflowChatbotds1 from './pages/WorkflowChatbotds1';
+import WorkflowConfigds1 from './pages/WorkflowConfigds1';
+
+// Add imports
+import MarksheetDataEntryPageds from "./pages/MarksheetDataEntryPageds";
+import MarksheetGenerationPageds from "./pages/MarksheetGenerationPageds";
+
+import UserManagementdsnov17 from "./pages/UserManagementdsnov17";
+
+import Layout from "./components/Commonmeritds/Layoutmeritds";
+import Dashboarddsmeritds from "./components/Dashboardmeritds/Dashboarddsmeritds";
+import ProgrammeList from "./components/Programmemeritds/ProgrammeListdsmeritds";
+import SubjectList from "./components/Subjectmeritds/SubjectListdsmeritds";
+import StudentList from "./components/Studentmeritds/StudentListdsmeritds";
+import AllocationHome from "./components/Allocationmeritds/AllocationHomedsmeritds";
+import SessionExecution from "./components/Allocationmeritds/SessionExecutiondsmeritds";
+import ReportList from "./components/Reportsmeritds/ReportListdsmeritds";
+
+import StudentMasterListds from "./pages/StudentMasterListds";
+
+
+
+
 
 
 
@@ -1231,6 +1304,83 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+         <Route path="/studentmasterlistds" element={<StudentMasterListds />} />
+
+         <Route path="/dashboardmeritlist" element={<Layout><Dashboarddsmeritds /></Layout>} />
+        <Route path="/programmesmeritlist" element={<Layout><ProgrammeList /></Layout>} />
+        <Route path="/subjectsmeritlist" element={<Layout><SubjectList /></Layout>} />
+        <Route path="/studentsmeritlist" element={<Layout><StudentList /></Layout>} />
+        <Route path="/allocationsmeritlist" element={<Layout><AllocationHome /></Layout>} />
+        <Route path="/allocations/execute/:sessionId" element={<Layout><SessionExecution /></Layout>} />
+        <Route path="/reportsmeritlist" element={<Layout><ReportList /></Layout>} />
+
+        <Route path="/usermanagementdsnov17" element={<UserManagementdsnov17 />} />
+
+        <Route path="/marksheetdataentryds" element={<MarksheetDataEntryPageds />} />
+        <Route path="/marksheetgenerationds" element={<MarksheetGenerationPageds />} />
+
+        <Route path="/workflowchatbotds1" element={<WorkflowChatbotds1 />} />
+        <Route path="/workflowconfigds1" element={<WorkflowConfigds1 />} />
+
+        <Route path="/workflowconfigds" element={<WorkflowConfigds />} />
+        <Route path="/workflowchatbotds" element={<WorkflowChatbotds />} />
+
+        <Route path="/dashmtblerrorlog" element={<Dashmtblerrorlog />} />
+        <Route path="/dashmtblerrorlogadmin" element={<Dashmtblerrorlogadmin />} />
+
+
+        <Route path="/dashmtblemitter" element={<Dashmtblemitter />} />
+        <Route path="/dashmtblemitteradmin" element={<Dashmtblemitteradmin />} />
+
+
+         {/* Alumni Portal Routes */}
+        <Route path="/alumni/login" element={<AlumniLoginds />} />
+        <Route path="/alumni/dashboard" element={<AlumniDashboardds />} />
+        <Route path="/alumni/profile" element={<AlumniProfileds />} />
+        <Route path="/alumni/events" element={<AlumniEventsds />} />
+        <Route path="/alumni/jobs" element={<AlumniJobsds />} />
+        <Route path="/alumni/materials" element={<AlumniMaterialsds />} />
+        <Route path="/alumni/donations" element={<AlumniDonationsds />} />
+        <Route path="/alumni/documents" element={<AlumniDocumentsds />} />
+        
+        {/* Public Alumni Registration */}
+        <Route path="/alumni/register" element={<AlumniRegistrationForm />} />
+        
+        {/* Admin Alumni Portal Routes */}
+        <Route path="/admin/alumni/dashboard" element={<AdminDashboardAlumnids />} />
+        <Route path="/admin/alumni/management" element={<AdminAlumniManagementds />} />
+        <Route path="/admin/alumni/events" element={<AdminEventManagementds />} />
+        <Route path="/admin/alumni/donations" element={<AdminDonationManagementds />} />
+        <Route path="/admin/alumni/applications" element={<AdminApplicationsManagement />} />
+        
+        {/* Student Portal Routes */}
+        <Route path="/student/jobs" element={<StudentJobsPortalds />} />
+        <Route path="/student/materials" element={<StudentMaterialsLibraryds />} />
+
+         {/* AI API upload ROUTES */}
+          <Route path="/dataconfig" element={<DataApiConfig />} />
+          <Route path="/aidatamanager" element={<AiDataManager />} />
+
+         {/* API Configuration and Chatbot */}
+<Route path="/apiconfig" element={<ApiConfig />} />
+<Route path="/apichatbot" element={<ApiChatbot />} />
+<Route path="/apichatbot1" element={<ApiChatbot1 />} />
+
+        <Route path="/dashchattest4a" element={<Dashchattest4a />} />
+
+          <Route path="/dashboardcrmds" element={<DashboardCrmds />} />
+                <Route path="/categoryds" element={<Categoryds />} />
+                <Route path="/leadsds" element={<Leadsds />} />
+                <Route path="/leaddetailds/:id" element={<Leaddetailds />} />
+                <Route path="/programmasterds" element={<Programmasterds />} />
+                <Route path="/landingpageds" element={<Landingpageds />} />
+                <Route path="/dripcampaignds" element={<Dripcampaignds />} />
+                <Route path="/apikeyds" element={<Apikeyds />} />
+                <Route path="/analyticsds" element={<Analyticsds />} />
+                <Route path="/landing/:slug" element={<Publiclandingpageds />} />
+                <Route path="/communicationsettings" element={<CommunicationSettings />} />
+                <Route path="/sourceds" element={<Sourceds />} />
 
            {/* NEW ROUTES */}
         <Route path="/AnswerSheetEvaluationListPageds" element={<AnswerSheetEvaluationListPageds />} />

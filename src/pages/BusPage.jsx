@@ -25,6 +25,7 @@ import {
   Add as AddIcon,
   Edit as EditIcon,
   Delete as DeleteIcon,
+  ArrowBack,
 } from "@mui/icons-material";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
@@ -106,6 +107,12 @@ export default function BusPage() {
       p={3}
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
+      <Button
+        startIcon={<ArrowBack />}
+        onClick={() => navigate("/route")}
+      >
+        Back
+      </Button>
       <Typography variant="h4" mb={2}>
         Buses for Route
       </Typography>

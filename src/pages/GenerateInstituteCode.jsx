@@ -12,11 +12,13 @@ import {
   Divider,
   TextField,
 } from "@mui/material";
-import { ContentCopy, CheckCircle } from "@mui/icons-material";
+import { ContentCopy, CheckCircle, ArrowBack } from "@mui/icons-material";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { useNavigate } from "react-router-dom";
 
 const GenerateInstituteCode = () => {
+  const navigate = useNavigate();
   // Keep colid internal only; do not render it
   const [result, setResult] = useState(null);
   const [msg, setMsg] = useState("");
@@ -67,6 +69,14 @@ const GenerateInstituteCode = () => {
 
   return (
     <Box sx={{ p: { xs: 2, md: 3 } }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                <Button
+                                  startIcon={<ArrowBack />}
+                                  onClick={() => navigate("/dashdashfacnew")}
+                                >
+                                  Back
+                                </Button>
+                              </Box>
       <Paper sx={{ p: { xs: 2, md: 3 }, borderRadius: 3 }}>
         <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5 }}>
           Generate Institute Code

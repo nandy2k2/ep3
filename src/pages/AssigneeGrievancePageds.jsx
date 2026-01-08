@@ -22,8 +22,11 @@ import {
 } from '@mui/material';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material';
 
 const AssigneeGrievancePageds = () => {
+  const navigate = useNavigate();
   const [grievances, setGrievances] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -100,9 +103,18 @@ const AssigneeGrievancePageds = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom sx={{ mb: 3, fontWeight: 'bold' }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+              <Button
+                startIcon={<ArrowBack />}
+                onClick={() => navigate("/dashdashfacnew")}
+              >
+                Back
+              </Button>
+              <Typography variant="h4" gutterBottom sx={{ mb: 3, fontWeight: 'bold' }}>
         My Assigned Grievances
       </Typography>
+            </Box>
+      
 
       {error && (
         <Alert severity="error" sx={{ mb: 2 }}>

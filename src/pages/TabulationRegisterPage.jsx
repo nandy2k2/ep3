@@ -18,6 +18,8 @@ import {
 import PrintIcon from "@mui/icons-material/Print";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function TabulationRegisterPage() {
   const [searchParams, setSearchParams] = useState({
@@ -35,6 +37,7 @@ function TabulationRegisterPage() {
   const [availableData, setAvailableData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const years = Array.from({ length: 15 }, (_, i) => 2020 + i);
 
@@ -43,7 +46,11 @@ function TabulationRegisterPage() {
   };
 
   useEffect(() => {
-    if (searchParams.program && searchParams.branch && searchParams.regulation) {
+    if (
+      searchParams.program &&
+      searchParams.branch &&
+      searchParams.regulation
+    ) {
       fetchAvailableData();
     } else {
       setAvailableData([]);
@@ -114,7 +121,10 @@ function TabulationRegisterPage() {
       });
       setSummaryData(summaryRes.data);
     } catch (error) {
-      setError("Failed to generate: " + (error.response?.data?.message || error.message));
+      setError(
+        "Failed to generate: " +
+          (error.response?.data?.message || error.message)
+      );
     }
     setLoading(false);
   };
@@ -131,11 +141,23 @@ function TabulationRegisterPage() {
   // Helper function to get semester data
   const getSemesterData = (semNum) => {
     if (!summaryData || !summaryData.semesterSummary) return null;
-    return summaryData.semesterSummary.find((s) => parseInt(s.semester) === semNum) || null;
+    return (
+      summaryData.semesterSummary.find(
+        (s) => parseInt(s.semester) === semNum
+      ) || null
+    );
   };
 
   return (
     <Box sx={{ p: 2, width: "100%", overflowX: "auto" }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+        <Button
+          startIcon={<ArrowBack />}
+          onClick={() => navigate("/dashboardreevalds")}
+        >
+          Back
+        </Button>
+      </Box>
       {/* Search Form */}
       <Card sx={{ mb: 2 }} className="no-print">
         <CardContent>
@@ -143,7 +165,14 @@ function TabulationRegisterPage() {
             Tabulation Register
           </Typography>
 
-          <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2, mb: 2 }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 2,
+              mb: 2,
+            }}
+          >
             <TextField
               label="Registration Number"
               name="regno"
@@ -200,13 +229,18 @@ function TabulationRegisterPage() {
             >
               {availableSemesters.map((s) => (
                 <MenuItem key={s} value={s}>
-             {s}
+                  {s}
                 </MenuItem>
               ))}
             </TextField>
           </Box>
 
-          <Button variant="contained" onClick={handleGenerate} disabled={loading} sx={{ height: "40px" }}>
+          <Button
+            variant="contained"
+            onClick={handleGenerate}
+            disabled={loading}
+            sx={{ height: "40px" }}
+          >
             {loading ? <CircularProgress size={20} /> : "GENERATE"}
           </Button>
 
@@ -222,7 +256,12 @@ function TabulationRegisterPage() {
       {studentData && currentSemData && summaryData && (
         <>
           <Box className="no-print" sx={{ mb: 2, textAlign: "right" }}>
-            <Button variant="contained" startIcon={<PrintIcon />} onClick={handlePrint} size="small">
+            <Button
+              variant="contained"
+              startIcon={<PrintIcon />}
+              onClick={handlePrint}
+              size="small"
+            >
               PRINT
             </Button>
           </Box>
@@ -239,20 +278,37 @@ function TabulationRegisterPage() {
           >
             {/* HEADER */}
             {/* HEADER - CENTERED */}
-<Box sx={{ textAlign: "center", mb: 2, borderBottom: "2px solid #000", pb: 1 }}>
-  <Typography sx={{ fontSize: "0.9rem", fontWeight: "bold" }}>
-    {currentSemData.program}
-  </Typography>
-  <Typography sx={{ fontSize: "0.9rem", fontWeight: "bold" }}>
-    SEMESTER {currentSemData.semester} {currentSemData.month?.toUpperCase()} {currentSemData.year}
-  </Typography>
-  <Typography sx={{ fontSize: "1rem", fontWeight: "bold" }}>
-    TABULATION REGISTER
-  </Typography>
-</Box>
+            <Box
+              sx={{
+                textAlign: "center",
+                mb: 2,
+                borderBottom: "2px solid #000",
+                pb: 1,
+              }}
+            >
+              <Typography sx={{ fontSize: "0.9rem", fontWeight: "bold" }}>
+                {currentSemData.program}
+              </Typography>
+              <Typography sx={{ fontSize: "0.9rem", fontWeight: "bold" }}>
+                SEMESTER {currentSemData.semester}{" "}
+                {currentSemData.month?.toUpperCase()} {currentSemData.year}
+              </Typography>
+              <Typography sx={{ fontSize: "1rem", fontWeight: "bold" }}>
+                TABULATION REGISTER
+              </Typography>
+            </Box>
 
             {/* STUDENT INFO */}
-            <Box sx={{ border: "2px solid #000", p: 1, mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1 }}>
+            <Box
+              sx={{
+                border: "2px solid #000",
+                p: 1,
+                mb: 2,
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gap: 1,
+              }}
+            >
               <Box>
                 <Typography sx={{ fontSize: "0.75rem" }}>
                   <strong>Enrollment No:</strong> {studentData.enrollmentNo}
@@ -280,18 +336,54 @@ function TabulationRegisterPage() {
             </Box>
 
             {/* MAIN TABLE: LEFT (Marks) + RIGHT (All Semesters) */}
-            <Box sx={{ display: "grid", gridTemplateColumns: "60% 40%", gap: 1, mb: 2 }}>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "60% 40%",
+                gap: 1,
+                mb: 2,
+              }}
+            >
               {/* LEFT SIDE - CURRENT SEMESTER MARKS */}
               <Box sx={{ border: "2px solid #000" }}>
-                <Typography sx={{ fontSize: "0.8rem", fontWeight: "bold", p: 0.5, bgcolor: "#f0f0f0", textAlign: "center" }}>
-                  Current Semester - {currentSemData.month?.toUpperCase()} {currentSemData.year} (SEM {currentSemData.semester})
+                <Typography
+                  sx={{
+                    fontSize: "0.8rem",
+                    fontWeight: "bold",
+                    p: 0.5,
+                    bgcolor: "#f0f0f0",
+                    textAlign: "center",
+                  }}
+                >
+                  Current Semester - {currentSemData.month?.toUpperCase()}{" "}
+                  {currentSemData.year} (SEM {currentSemData.semester})
                 </Typography>
 
                 <Table size="small" sx={{ border: "none" }}>
                   <TableHead>
                     <TableRow sx={{ bgcolor: "#e0e0e0" }}>
-                      {["Paper Code", "Paper Name", "T/P", "SE", "IA", "Credit", "Total", "Per(%)", "Grade", "GP"].map((h, idx) => (
-                        <TableCell key={idx} sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", fontWeight: "bold", textAlign: "center" }}>
+                      {[
+                        "Paper Code",
+                        "Paper Name",
+                        "T/P",
+                        "SE",
+                        "IA",
+                        "Credit",
+                        "Total",
+                        "Per(%)",
+                        "Grade",
+                        "GP",
+                      ].map((h, idx) => (
+                        <TableCell
+                          key={idx}
+                          sx={{
+                            border: "1px solid #000",
+                            fontSize: "0.65rem",
+                            p: "2px",
+                            fontWeight: "bold",
+                            textAlign: "center",
+                          }}
+                        >
                           {h}
                         </TableCell>
                       ))}
@@ -299,15 +391,24 @@ function TabulationRegisterPage() {
                   </TableHead>
                   <TableBody>
                     {currentSemData.marks.map((mark, idx) => {
-                      const theoryTotal = (mark.thObtained || 0) + (mark.iatObtained || 0);
+                      const theoryTotal =
+                        (mark.thObtained || 0) + (mark.iatObtained || 0);
                       const theoryMax = (mark.thMax || 0) + (mark.iatMax || 0);
-                      const theoryPercentage = theoryMax > 0 ? ((theoryTotal / theoryMax) * 100).toFixed(2) : 0;
+                      const theoryPercentage =
+                        theoryMax > 0
+                          ? ((theoryTotal / theoryMax) * 100).toFixed(2)
+                          : 0;
 
-                      const practicalTotal = (mark.prObtained || 0) + (mark.iapObtained || 0);
-                      const practicalMax = (mark.prMax || 0) + (mark.iapMax || 0);
-                      const practicalPercentage = practicalMax > 0 ? ((practicalTotal / practicalMax) * 100).toFixed(2) : 0;
+                      const practicalTotal =
+                        (mark.prObtained || 0) + (mark.iapObtained || 0);
+                      const practicalMax =
+                        (mark.prMax || 0) + (mark.iapMax || 0);
+                      const practicalPercentage =
+                        practicalMax > 0
+                          ? ((practicalTotal / practicalMax) * 100).toFixed(2)
+                          : 0;
 
-                      const isFailed = mark.grade === 'F'; // CHECK IF FAILED
+                      const isFailed = mark.grade === "F"; // CHECK IF FAILED
 
                       const getGradePoint = (perc) => {
                         if (perc >= 90) return "10";
@@ -336,18 +437,24 @@ function TabulationRegisterPage() {
                           {/* THEORY ROW */}
                           {mark.thMax && mark.thMax > 0 && (
                             <TableRow>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px" }}>{mark.paperCode}</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px" }}>{mark.paperName}</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center", fontWeight: "bold" }}>T</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>
-                                {mark.thObtained}/{mark.thMax}
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                }}
+                              >
+                                {mark.paperCode}
                               </TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>
-                                {mark.iatObtained}/{mark.iatMax}
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                }}
+                              >
+                                {mark.paperName}
                               </TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>{mark.credit}</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center", fontWeight: "bold" }}>{theoryTotal}</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>{theoryPercentage}%</TableCell>
                               <TableCell
                                 sx={{
                                   border: "1px solid #000",
@@ -355,12 +462,85 @@ function TabulationRegisterPage() {
                                   p: "2px",
                                   textAlign: "center",
                                   fontWeight: "bold",
-                                  bgcolor: getGrade(theoryPercentage) === "F" ? "#ffcdd2" : "#c8e6c9",
+                                }}
+                              >
+                                T
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {mark.thObtained}/{mark.thMax}
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {mark.iatObtained}/{mark.iatMax}
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {mark.credit}
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {theoryTotal}
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {theoryPercentage}%
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                  fontWeight: "bold",
+                                  bgcolor:
+                                    getGrade(theoryPercentage) === "F"
+                                      ? "#ffcdd2"
+                                      : "#c8e6c9",
                                 }}
                               >
                                 {getGrade(theoryPercentage)}
                               </TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center", fontWeight: "bold" }}>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                  fontWeight: "bold",
+                                }}
+                              >
                                 {getGradePoint(theoryPercentage)}
                               </TableCell>
                             </TableRow>
@@ -369,18 +549,24 @@ function TabulationRegisterPage() {
                           {/* PRACTICAL ROW */}
                           {mark.prMax && mark.prMax > 0 && (
                             <TableRow>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px" }}>{mark.paperCode}</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px" }}>{mark.paperName}</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center", fontWeight: "bold" }}>P</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>
-                                {mark.prObtained}/{mark.prMax}
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                }}
+                              >
+                                {mark.paperCode}
                               </TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>
-                                {mark.iapObtained}/{mark.iapMax}
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                }}
+                              >
+                                {mark.paperName}
                               </TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>{mark.credit}</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center", fontWeight: "bold" }}>{practicalTotal}</TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>{practicalPercentage}%</TableCell>
                               <TableCell
                                 sx={{
                                   border: "1px solid #000",
@@ -388,12 +574,85 @@ function TabulationRegisterPage() {
                                   p: "2px",
                                   textAlign: "center",
                                   fontWeight: "bold",
-                                  bgcolor: getGrade(practicalPercentage) === "F" ? "#ffcdd2" : "#c8e6c9",
+                                }}
+                              >
+                                P
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {mark.prObtained}/{mark.prMax}
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {mark.iapObtained}/{mark.iapMax}
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {mark.credit}
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {practicalTotal}
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {practicalPercentage}%
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                  fontWeight: "bold",
+                                  bgcolor:
+                                    getGrade(practicalPercentage) === "F"
+                                      ? "#ffcdd2"
+                                      : "#c8e6c9",
                                 }}
                               >
                                 {getGrade(practicalPercentage)}
                               </TableCell>
-                              <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center", fontWeight: "bold" }}>
+                              <TableCell
+                                sx={{
+                                  border: "1px solid #000",
+                                  fontSize: "0.65rem",
+                                  p: "2px",
+                                  textAlign: "center",
+                                  fontWeight: "bold",
+                                }}
+                              >
                                 {getGradePoint(practicalPercentage)}
                               </TableCell>
                             </TableRow>
@@ -404,16 +663,50 @@ function TabulationRegisterPage() {
 
                     {/* GRAND TOTAL ROW */}
                     <TableRow sx={{ bgcolor: "#fff9c4" }}>
-                      <TableCell colSpan={6} sx={{ border: "1px solid #000", fontSize: "0.7rem", p: "4px", fontWeight: "bold", textAlign: "right" }}>
+                      <TableCell
+                        colSpan={6}
+                        sx={{
+                          border: "1px solid #000",
+                          fontSize: "0.7rem",
+                          p: "4px",
+                          fontWeight: "bold",
+                          textAlign: "right",
+                        }}
+                      >
                         GRAND TOTAL:
                       </TableCell>
-                      <TableCell sx={{ border: "1px solid #000", fontSize: "0.7rem", p: "4px", fontWeight: "bold", textAlign: "center" }}>
+                      <TableCell
+                        sx={{
+                          border: "1px solid #000",
+                          fontSize: "0.7rem",
+                          p: "4px",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                        }}
+                      >
                         {currentSemData.totalObtained}
                       </TableCell>
-                      <TableCell sx={{ border: "1px solid #000", fontSize: "0.7rem", p: "4px", fontWeight: "bold", textAlign: "center" }}>
+                      <TableCell
+                        sx={{
+                          border: "1px solid #000",
+                          fontSize: "0.7rem",
+                          p: "4px",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                        }}
+                      >
                         {currentSemData.percentage}%
                       </TableCell>
-                      <TableCell colSpan={2} sx={{ border: "1px solid #000", fontSize: "0.7rem", p: "4px", fontWeight: "bold", textAlign: "center" }}>
+                      <TableCell
+                        colSpan={2}
+                        sx={{
+                          border: "1px solid #000",
+                          fontSize: "0.7rem",
+                          p: "4px",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                        }}
+                      >
                         SGPA: {currentSemData.sgpa}
                       </TableCell>
                     </TableRow>
@@ -421,16 +714,42 @@ function TabulationRegisterPage() {
                 </Table>
 
                 {/* Failed Papers and Result */}
-                <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid #000" }}>
+                <Box
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    border: "1px solid #000",
+                  }}
+                >
                   <Box sx={{ borderRight: "1px solid #000", p: 0.5 }}>
-                    <Typography sx={{ fontSize: "0.7rem", fontWeight: "bold" }}>Failed Papers:</Typography>
-                    <Typography sx={{ fontSize: "0.7rem", color: currentSemData.failedPapers === "None" ? "green" : "red", fontWeight: "bold" }}>
+                    <Typography sx={{ fontSize: "0.7rem", fontWeight: "bold" }}>
+                      Failed Papers:
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: "0.7rem",
+                        color:
+                          currentSemData.failedPapers === "None"
+                            ? "green"
+                            : "red",
+                        fontWeight: "bold",
+                      }}
+                    >
                       {currentSemData.failedPapers}
                     </Typography>
                   </Box>
                   <Box sx={{ p: 0.5 }}>
-                    <Typography sx={{ fontSize: "0.7rem", fontWeight: "bold" }}>Result:</Typography>
-                    <Typography sx={{ fontSize: "0.7rem", fontWeight: "bold", color: currentSemData.result === "Pass" ? "green" : "red" }}>
+                    <Typography sx={{ fontSize: "0.7rem", fontWeight: "bold" }}>
+                      Result:
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: "0.7rem",
+                        fontWeight: "bold",
+                        color:
+                          currentSemData.result === "Pass" ? "green" : "red",
+                      }}
+                    >
                       {currentSemData.result}
                     </Typography>
                   </Box>
@@ -439,16 +758,42 @@ function TabulationRegisterPage() {
 
               {/* RIGHT SIDE - ALL 8 SEMESTERS */}
               <Box sx={{ border: "2px solid #000" }}>
-                <Typography sx={{ fontSize: "0.8rem", fontWeight: "bold", p: 0.5, bgcolor: "#f0f0f0", textAlign: "center" }}>
+                <Typography
+                  sx={{
+                    fontSize: "0.8rem",
+                    fontWeight: "bold",
+                    p: 0.5,
+                    bgcolor: "#f0f0f0",
+                    textAlign: "center",
+                  }}
+                >
                   Academic Record - All 8 Semesters
                 </Typography>
 
                 <Table size="small">
                   <TableHead>
                     <TableRow sx={{ bgcolor: "#e0e0e0" }}>
-                      <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", fontWeight: "bold" }}>Particulars</TableCell>
+                      <TableCell
+                        sx={{
+                          border: "1px solid #000",
+                          fontSize: "0.65rem",
+                          p: "2px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Particulars
+                      </TableCell>
                       {allEightSemesters.map((sem) => (
-                        <TableCell key={sem} sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", fontWeight: "bold", textAlign: "center" }}>
+                        <TableCell
+                          key={sem}
+                          sx={{
+                            border: "1px solid #000",
+                            fontSize: "0.65rem",
+                            p: "2px",
+                            fontWeight: "bold",
+                            textAlign: "center",
+                          }}
+                        >
                           {sem}
                         </TableCell>
                       ))}
@@ -464,14 +809,33 @@ function TabulationRegisterPage() {
                       { label: "Result", key: "result" },
                     ].map((row, idx) => (
                       <TableRow key={idx}>
-                        <TableCell sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", fontWeight: "bold" }}>{row.label}</TableCell>
+                        <TableCell
+                          sx={{
+                            border: "1px solid #000",
+                            fontSize: "0.65rem",
+                            p: "2px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {row.label}
+                        </TableCell>
                         {allEightSemesters.map((sem) => {
                           const semData = getSemesterData(sem);
                           return (
-                            <TableCell key={sem} sx={{ border: "1px solid #000", fontSize: "0.65rem", p: "2px", textAlign: "center" }}>
+                            <TableCell
+                              key={sem}
+                              sx={{
+                                border: "1px solid #000",
+                                fontSize: "0.65rem",
+                                p: "2px",
+                                textAlign: "center",
+                              }}
+                            >
                               {semData
                                 ? row.key === "monthYear"
-                                  ? `${semData.month?.substring(0, 3)}/${semData.year}`
+                                  ? `${semData.month?.substring(0, 3)}/${
+                                      semData.year
+                                    }`
                                   : row.key === "total"
                                   ? `${semData.total}/${semData.maxTotal}`
                                   : row.key === "percentage"
@@ -486,8 +850,27 @@ function TabulationRegisterPage() {
 
                     {/* CGPA ROW */}
                     <TableRow sx={{ bgcolor: "#e8f5e9" }}>
-                      <TableCell sx={{ border: "1px solid #000", fontSize: "0.7rem", p: "4px", fontWeight: "bold" }}>CGPA</TableCell>
-                      <TableCell colSpan={8} sx={{ border: "1px solid #000", fontSize: "0.8rem", p: "4px", fontWeight: "bold", textAlign: "center", color: "#1b5e20" }}>
+                      <TableCell
+                        sx={{
+                          border: "1px solid #000",
+                          fontSize: "0.7rem",
+                          p: "4px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        CGPA
+                      </TableCell>
+                      <TableCell
+                        colSpan={8}
+                        sx={{
+                          border: "1px solid #000",
+                          fontSize: "0.8rem",
+                          p: "4px",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                          color: "#1b5e20",
+                        }}
+                      >
                         {summaryData?.cgpa}
                       </TableCell>
                     </TableRow>
@@ -497,16 +880,36 @@ function TabulationRegisterPage() {
             </Box>
 
             {/* FOOTER - SIGNATURES */}
-            <Box sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2, mt: 4, pt: 2, borderTop: "2px solid #000" }}>
-              {["Tabulator-1", "Tabulator-2", "Chief Tabulator", "Principal"].map((sig, idx) => (
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: 2,
+                mt: 4,
+                pt: 2,
+                borderTop: "2px solid #000",
+              }}
+            >
+              {[
+                "Tabulator-1",
+                "Tabulator-2",
+                "Chief Tabulator",
+                "Principal",
+              ].map((sig, idx) => (
                 <Box key={idx} sx={{ textAlign: "center" }}>
-                  <Typography sx={{ fontSize: "0.75rem", fontWeight: "bold", mt: 3 }}>{sig}</Typography>
+                  <Typography
+                    sx={{ fontSize: "0.75rem", fontWeight: "bold", mt: 3 }}
+                  >
+                    {sig}
+                  </Typography>
                 </Box>
               ))}
             </Box>
 
             <Box sx={{ textAlign: "right", mt: 1 }}>
-              <Typography sx={{ fontSize: "0.7rem", fontStyle: "italic" }}>Generated: {new Date().toLocaleDateString("en-IN")}</Typography>
+              <Typography sx={{ fontSize: "0.7rem", fontStyle: "italic" }}>
+                Generated: {new Date().toLocaleDateString("en-IN")}
+              </Typography>
             </Box>
           </Box>
         </>

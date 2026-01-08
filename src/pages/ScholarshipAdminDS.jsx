@@ -15,11 +15,15 @@ import {
   FormControl,
   InputLabel,
   Stack,
+  Box
 } from "@mui/material";
 import global1 from "./global1";
-import ep1 from "../api/ep1"
+import ep1 from "../api/ep1";
+import { useNavigate } from "react-router-dom";
+import { ArrowBack } from "@mui/icons-material";
 
 const ScholarshipAdminDS = () => {
+  const navigate = useNavigate();
   const [scholarships, setScholarships] = useState([]);
   const [applications, setApplications] = useState([]);
   const [selectedScholarship, setSelectedScholarship] = useState("");
@@ -66,6 +70,14 @@ const ScholarshipAdminDS = () => {
 
   return (
     <Container maxWidth="100%" sx={{ pt: 6 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                    <Button
+                      startIcon={<ArrowBack />}
+                      onClick={() => navigate("/dashdashfacnew")}
+                    >
+                      Back
+                    </Button>
+                  </Box>
       <Paper elevation={4} sx={{ p: 4, borderRadius: 3 }}>
         <Typography variant="h4" color="primary" gutterBottom>
           Scholarship Applications – Admin

@@ -14,6 +14,8 @@ import PrintIcon from "@mui/icons-material/Print";
 import html2pdf from "html2pdf.js";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function TranscriptPageds() {
   const [searchParams, setSearchParams] = useState({
@@ -25,6 +27,7 @@ function TranscriptPageds() {
   const [transcriptData, setTranscriptData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
@@ -206,6 +209,14 @@ function TranscriptPageds() {
 
   return (
     <Box sx={{ p: 2 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+              <Button
+                startIcon={<ArrowBack />}
+                onClick={() => navigate("/dashboardreevalds")}
+              >
+                Back
+              </Button>
+            </Box>
       <Card>
         <CardContent>
           <Typography variant="h6" gutterBottom>

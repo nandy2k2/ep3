@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Box, Button, Dialog, DialogTitle, DialogContent,
   DialogActions, TextField, Typography, Snackbar, Alert
 } from '@mui/material';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { ArrowBack } from '@mui/icons-material';
 
 export default function BusDetailPage() {
+  const navigate = useNavigate();
   const { busId } = useParams();
   const [bus, setBus] = useState(null);
   const [seats, setSeats] = useState([]);
@@ -215,6 +217,9 @@ const handleDeallocate = async (allocationId, seatNo, regno, student) => {
 
   return (
     <Box p={3}>
+      <Button startIcon={<ArrowBack />} onClick={() => navigate(-1) } sx={{ mb: 2 }}>
+        Back
+      </Button>
       <Typography variant="h4" gutterBottom>
         {bus.busname} ({bus.busnumber})
       </Typography>

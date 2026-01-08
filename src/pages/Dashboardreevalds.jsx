@@ -119,13 +119,7 @@ function Dashboard() {
   ];
 
   const handleLogout = () => {
-    // Clear global1 data
-    global1.name = "";
-    global1.colid = "";
-    global1.user = "";
-    global1.regno = "";
-    global1.role = "";
-    navigate("/");
+    navigate("/dashdashfacnew");
   };
 
   return (
@@ -170,7 +164,7 @@ function Dashboard() {
               }}
             >
               <ExitToAppIcon />
-              <Typography>Logout</Typography>
+              <Typography>Back</Typography>
             </CardActionArea>
           </Box>
         </Box>

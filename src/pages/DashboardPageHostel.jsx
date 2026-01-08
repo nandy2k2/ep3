@@ -13,15 +13,15 @@ import {
   Hotel,
   People,
   Assessment,
-  ExitToApp,
   CardTravel,
   HowToVote,
   Restaurant,
-  Assignment,
   Settings,
+  ArrowBack,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import global1 from "./global1";
+
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -82,6 +82,9 @@ const DashboardPage = () => {
   return (
     <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
       <Box sx={{ mb: 4 }}>
+        <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")}>
+          Back
+        </Button>
         <Typography variant="h4" gutterBottom>
           Hostel Management Dashboard
         </Typography>

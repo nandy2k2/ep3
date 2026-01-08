@@ -20,8 +20,11 @@ import {
 } from "@mui/material";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function ExaminerEvaluationPageds() {
+  const navigate = useNavigate();
   const [papers, setPapers] = useState([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -91,9 +94,17 @@ function ExaminerEvaluationPageds() {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                      <Button
+                                        startIcon={<ArrowBack />}
+                                        onClick={() => navigate("/dashboardreevalds")}
+                                      >
+                                        Back
+                                      </Button>
+                                      <Typography variant="h4" gutterBottom>
         Reevaluation Papers
       </Typography>
+                                    </Box>
 
       {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
       {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}

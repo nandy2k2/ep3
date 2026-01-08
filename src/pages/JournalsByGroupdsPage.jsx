@@ -10,8 +10,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { DataGrid } from "@mui/x-data-grid";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const JournalsByGroupdsPage = () => {
+  const navigate = useNavigate();
   const [accountGroups, setAccountGroups] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState("");
   const [entries, setEntries] = useState([]);
@@ -79,9 +83,18 @@ const JournalsByGroupdsPage = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+              <Button
+                startIcon={<ArrowBack />}
+                onClick={() => navigate("/dashdashfacnew")}
+              >
+                Back
+              </Button>
+              <Typography variant="h4" gutterBottom>
         Journal Entries by Account Group
       </Typography>
+            </Box>
+      
       <Paper sx={{ p: 3, mb: 3 }}>
         <FormControl fullWidth>
           <Select

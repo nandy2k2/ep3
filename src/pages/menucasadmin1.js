@@ -60,7 +60,50 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export function mainListItems({ open }) {
   return (
-    <div>
+    <div style={{ overflowY: 'scroll', height: 600, width: 300, fontSize: 10 }}>
+
+       <Accordion>
+        <AccordionSummary aria-controls="panel1-content" id="panel1-header">
+          <AccountCircleIcon sx={{ marginRight: 1 }} />
+          {open && <Typography>AI Chatbot</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/dashchattest4a">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primary="AI Chatbot" />}
+</ListItem>
+
+        </AccordionDetails>
+        </Accordion>
+
+         <Accordion>
+                <AccordionSummary aria-controls="panel2-content" id="panel2-header">
+                  <SettingsIcon sx={{ marginRight: 1 }} />
+                  {open && <Typography sx={{ fontSize: 14 }}>AI Agents</Typography>}
+                </AccordionSummary>
+                <AccordionDetails>
+        
+                   <ListItem button component={RouterLink} to="/dashmtblemitter">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="AI Agents" />}
+                  </ListItem>
+
+                  <ListItem button component={RouterLink} to="/dashmtblerrorlogadmin">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Error Logs" />}
+                  </ListItem>
+        
+                </AccordionDetails>
+                </Accordion>
+
+
       <Accordion>
         <AccordionSummary aria-controls="panel1-content" id="panel1-header">
           <AccountCircleIcon sx={{ marginRight: 1 }} />
@@ -216,7 +259,7 @@ export function mainListItems({ open }) {
                 </AccordionSummary>
                 <AccordionDetails>
         
-                   <ListItem button component={RouterLink} to="/Dashmcrmh1admin">
+                   <ListItem button component={RouterLink} to="/dashboardcrmds">
         <ListItemIcon>
         <PersonIcon />
         </ListItemIcon>

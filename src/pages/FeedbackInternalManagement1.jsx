@@ -5,7 +5,7 @@ import {
   IconButton, Chip, Fab, Paper, Divider, Snackbar, Alert
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { Add, Edit, Delete, Analytics, People, Share, ContentCopy, FilterList } from "@mui/icons-material";
+import { Add, Edit, Delete, Analytics, People, Share, ContentCopy, FilterList, ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
@@ -219,6 +219,9 @@ export default function FeedbackInternalManagement1() {
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
       <Box textAlign="center" mb={4}>
+        <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")}>
+          Back
+        </Button>
         <Typography variant="h3" fontWeight={700} color="primary.main" gutterBottom>
           📝 Internal Feedback Management
         </Typography>

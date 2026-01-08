@@ -139,6 +139,32 @@ export function mainListItems({ open }) {
         </AccordionDetails>
         </Accordion>
 
+        <Accordion>
+                <AccordionSummary aria-controls="panel2-content" id="panel2-header">
+                  <SettingsIcon sx={{ marginRight: 1 }} />
+                  {open && <Typography sx={{ fontSize: 14 }}>Alumni interaction</Typography>}
+                </AccordionSummary>
+                <AccordionDetails>
+        
+                    <ListItem button component={RouterLink} to="/student/jobs">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Job dashboard" />}
+                  </ListItem>
+
+                  <ListItem button component={RouterLink} to="/student/materials">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Study material" />}
+                  </ListItem>
+        
+        
+        
+                </AccordionDetails>
+                </Accordion>
+
 
        <Accordion>
         <AccordionSummary aria-controls="panel3-content" id="panel3-header">

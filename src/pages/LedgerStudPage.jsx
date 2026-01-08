@@ -27,6 +27,7 @@ import {
   Add as AddIcon,
   Payment as PaymentIcon,
   Clear as ClearIcon,
+  ArrowBack
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import global1 from "./global1";
@@ -34,6 +35,7 @@ import ep1 from "../api/ep1";
 // CORRECT:
 import AddLedgerFormds from "./AddLedgerFormds";
 import PaymentDialogds from "./PaymentDialogds";
+import { useNavigate } from "react-router-dom";
 // Styled Components
 const StyledCard = styled(Card)(({ theme }) => ({
   borderRadius: "12px",
@@ -84,6 +86,7 @@ const getAmountColor = (amount) => {
 };
 
 function LedgerStudPage() {
+  const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
   const [ledgers, setLedgers] = useState([]);
   const [summary, setSummary] = useState(null);
@@ -260,6 +263,14 @@ function LedgerStudPage() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 3 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+              <Button
+                startIcon={<ArrowBack />}
+                onClick={() => navigate("/dashdashfacnew")}
+              >
+                Back
+              </Button>
+            </Box>
       {/* Success Alert */}
       {successMessage && (
         <Alert

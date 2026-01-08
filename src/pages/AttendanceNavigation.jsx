@@ -26,7 +26,8 @@ import {
   Work,
   Person,
   Business,
-  AdminPanelSettings
+  AdminPanelSettings,
+  ArrowBack
 } from '@mui/icons-material';
 import global1 from './global1';
 
@@ -128,6 +129,9 @@ const AttendanceNavigation = () => {
               <Work />
             </Avatar>
             <Box>
+              <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+                Back
+              </Button>
               <Typography variant="h3" fontWeight="bold" gutterBottom>
                 Attendance & Payroll System
               </Typography>

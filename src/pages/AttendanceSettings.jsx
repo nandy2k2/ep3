@@ -25,15 +25,18 @@ import {
   NotificationsActive,
   Security,
   Business,
-  Weekend
+  Weekend,
+  ArrowBack
 } from '@mui/icons-material';
 import { TimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
 
 const AttendanceSettings = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [settings, setSettings] = useState({
     officeStartTime: dayjs('2024-01-01 09:00'),
@@ -161,6 +164,9 @@ const AttendanceSettings = () => {
           <Box display="flex" alignItems="center" gap={2}>
             <Settings sx={{ fontSize: 40 }} />
             <Box>
+              <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+                Back
+              </Button>
               <Typography variant="h4" fontWeight="bold">
                 Attendance Settings
               </Typography>

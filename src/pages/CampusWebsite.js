@@ -1343,6 +1343,7 @@ function CampusWebsite(props) {
     { label: 'Faculty login', url: '/Login' },
     { label: 'Student login', url: '/loginstud' },
     { label: 'Company login', url: '/logincompany' },
+    { label: 'Alumni login', url: '/alumni/login' },
     // { label: 'Stack Overflow', url: 'https://stackoverflow.com' },
   ];
 

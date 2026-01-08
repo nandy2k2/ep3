@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -10,26 +10,36 @@ import {
   Select,
   MenuItem,
   CircularProgress,
-  Alert
-} from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
-import { FileDownload, Search } from '@mui/icons-material';
-import ep1 from '../api/ep1';
-import global1 from './global1';
-import * as XLSX from 'xlsx';
+  Alert,
+} from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import { FileDownload, Search } from "@mui/icons-material";
+import ep1 from "../api/ep1";
+import global1 from "./global1";
+import * as XLSX from "xlsx";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const Mjournal2ReportPage = () => {
-  const [reportType, setReportType] = useState('');
-  const [year, setYear] = useState('');
-  const [account, setAccount] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const navigate = useNavigate();
+  const [reportType, setReportType] = useState("");
+  const [year, setYear] = useState("");
+  const [account, setAccount] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [reportData, setReportData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [accounts, setAccounts] = useState([]);
 
-  const years = ['2025-26', '2024-25', '2023-24', '2022-23', '2021-22', '2020-21'];
+  const years = [
+    "2025-26",
+    "2024-25",
+    "2023-24",
+    "2022-23",
+    "2021-22",
+    "2020-21",
+  ];
 
   useEffect(() => {
     fetchAccounts();
@@ -37,18 +47,20 @@ const Mjournal2ReportPage = () => {
 
   const fetchAccounts = async () => {
     try {
-      const response = await ep1.get(`/api/v2/dsgetaccountsbycolid?colid=${global1.colid}`);
+      const response = await ep1.get(
+        `/api/v2/dsgetaccountsbycolid?colid=${global1.colid}`
+      );
       if (response.data.success) {
         setAccounts(response.data.data);
       }
     } catch (error) {
-      console.error('Error fetching accounts:', error);
+      console.error("Error fetching accounts:", error);
     }
   };
 
   const handleGenerateReport = async () => {
     setLoading(true);
-    setError('');
+    setError("");
     try {
       const requestData = {
         type: reportType,
@@ -56,24 +68,26 @@ const Mjournal2ReportPage = () => {
         account: account,
         startDate: startDate,
         endDate: endDate,
-        colid: global1.colid
+        colid: global1.colid,
       };
 
-      const response = await ep1.post('/api/v2/dsmjournal2report', requestData);
+      const response = await ep1.post("/api/v2/dsmjournal2report", requestData);
       if (response.data.success) {
         const formattedData = response.data.data.map((item, index) => ({
           ...item,
           id: item._id,
           srNo: index + 1,
-          activitydate: item.activitydate ? new Date(item.activitydate).toLocaleDateString() : ''
+          activitydate: item.activitydate
+            ? new Date(item.activitydate).toLocaleDateString()
+            : "",
         }));
         setReportData(formattedData);
         if (formattedData.length === 0) {
-          setError('No data found for the selected criteria');
+          setError("No data found for the selected criteria");
         }
       }
     } catch (error) {
-      setError(error.response?.data?.message || 'Error generating report');
+      setError(error.response?.data?.message || "Error generating report");
     } finally {
       setLoading(false);
     }
@@ -81,45 +95,45 @@ const Mjournal2ReportPage = () => {
 
   const handleExportToExcel = () => {
     if (reportData.length === 0) {
-      setError('No data to export');
+      setError("No data to export");
       return;
     }
 
-    const excelData = reportData.map(item => ({
-      'Sr. No.': item.srNo,
-      'Name': item.name,
-      'User': item.user,
-      'College ID': item.colid,
-      'Year': item.year,
-      'Account Group': item.accgroup,
-      'Account': item.account,
-      'Account Type': item.acctype,
-      'Transaction': item.transaction,
-      'Transaction Ref': item.transactionref,
-      'Sub Ledger': item.subledger,
-      'COGS': item.cogs,
-      'Activity Date': item.activitydate,
-      'Amount': item.amount,
-      'Debit': item.debit,
-      'Credit': item.credit,
-      'Type': item.type,
-      'Student': item.student,
-      'Registration No': item.regno,
-      'Employee ID': item.empid,
-      'Status': item.status1,
-      'Comments': item.comments
+    const excelData = reportData.map((item) => ({
+      "Sr. No.": item.srNo,
+      Name: item.name,
+      User: item.user,
+      "College ID": item.colid,
+      Year: item.year,
+      "Account Group": item.accgroup,
+      Account: item.account,
+      "Account Type": item.acctype,
+      Transaction: item.transaction,
+      "Transaction Ref": item.transactionref,
+      "Sub Ledger": item.subledger,
+      COGS: item.cogs,
+      "Activity Date": item.activitydate,
+      Amount: item.amount,
+      Debit: item.debit,
+      Credit: item.credit,
+      Type: item.type,
+      Student: item.student,
+      "Registration No": item.regno,
+      "Employee ID": item.empid,
+      Status: item.status1,
+      Comments: item.comments,
     }));
 
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.json_to_sheet(excelData);
-    XLSX.utils.book_append_sheet(wb, ws, 'Report');
+    XLSX.utils.book_append_sheet(wb, ws, "Report");
 
-    let filename = 'mjournal2_report';
-    if (reportType === '1') {
+    let filename = "mjournal2_report";
+    if (reportType === "1") {
       filename = `report_${year}_${account}`;
-    } else if (reportType === '2') {
+    } else if (reportType === "2") {
       filename = `report_${year}`;
-    } else if (reportType === '3') {
+    } else if (reportType === "3") {
       filename = `report_${startDate}_to_${endDate}_${account}`;
     }
 
@@ -127,35 +141,43 @@ const Mjournal2ReportPage = () => {
   };
 
   const resetForm = () => {
-    setReportType('');
-    setYear('');
-    setAccount('');
-    setStartDate('');
-    setEndDate('');
+    setReportType("");
+    setYear("");
+    setAccount("");
+    setStartDate("");
+    setEndDate("");
     setReportData([]);
-    setError('');
+    setError("");
   };
 
   const columns = [
-    { field: 'srNo', headerName: 'Sr. No.', width: 80 },
-    { field: 'year', headerName: 'Year', width: 100 },
-    { field: 'accgroup', headerName: 'Group', width: 120 },
-    { field: 'account', headerName: 'Account', width: 150 },
-    { field: 'transaction', headerName: 'Transaction', width: 150 },
-    { field: 'activitydate', headerName: 'Date', width: 120 },
-    { field: 'amount', headerName: 'Amount', width: 100 },
-    { field: 'debit', headerName: 'Debit', width: 100 },
-    { field: 'credit', headerName: 'Credit', width: 100 },
-    { field: 'type', headerName: 'Type', width: 80 },
-    { field: 'student', headerName: 'Student', width: 120 },
-    { field: 'regno', headerName: 'Reg No', width: 120 }
+    { field: "srNo", headerName: "Sr. No.", width: 80 },
+    { field: "year", headerName: "Year", width: 100 },
+    { field: "accgroup", headerName: "Group", width: 120 },
+    { field: "account", headerName: "Account", width: 150 },
+    { field: "transaction", headerName: "Transaction", width: 150 },
+    { field: "activitydate", headerName: "Date", width: 120 },
+    { field: "amount", headerName: "Amount", width: 100 },
+    { field: "debit", headerName: "Debit", width: 100 },
+    { field: "credit", headerName: "Credit", width: 100 },
+    { field: "type", headerName: "Type", width: 80 },
+    { field: "student", headerName: "Student", width: 120 },
+    { field: "regno", headerName: "Reg No", width: 120 },
   ];
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        Journal Entry Reports (MJournal2)
-      </Typography>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+        <Button
+          startIcon={<ArrowBack />}
+          onClick={() => navigate("/dashdashfacnew")}
+        >
+          Back
+        </Button>
+        <Typography variant="h4" gutterBottom>
+          Journal Entry Reports (MJournal2)
+        </Typography>
+      </Box>
 
       <Paper sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" gutterBottom>
@@ -175,7 +197,7 @@ const Mjournal2ReportPage = () => {
           </Select>
         </FormControl>
 
-        {(reportType === '1' || reportType === '2') && (
+        {(reportType === "1" || reportType === "2") && (
           <FormControl fullWidth sx={{ mb: 2 }}>
             <InputLabel>Year</InputLabel>
             <Select
@@ -192,7 +214,7 @@ const Mjournal2ReportPage = () => {
           </FormControl>
         )}
 
-        {(reportType === '1' || reportType === '3') && (
+        {(reportType === "1" || reportType === "3") && (
           <FormControl fullWidth sx={{ mb: 2 }}>
             <InputLabel>Account</InputLabel>
             <Select
@@ -209,7 +231,7 @@ const Mjournal2ReportPage = () => {
           </FormControl>
         )}
 
-        {reportType === '3' && (
+        {reportType === "3" && (
           <>
             <TextField
               fullWidth
@@ -232,10 +254,16 @@ const Mjournal2ReportPage = () => {
           </>
         )}
 
-        <Box sx={{ display: 'flex', gap: 2 }}>
+        <Box sx={{ display: "flex", gap: 2 }}>
           <Button
             variant="contained"
-            startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <Search />}
+            startIcon={
+              loading ? (
+                <CircularProgress size={20} color="inherit" />
+              ) : (
+                <Search />
+              )
+            }
             onClick={handleGenerateReport}
             disabled={!reportType || loading}
           >
@@ -267,7 +295,7 @@ const Mjournal2ReportPage = () => {
           <Typography variant="h6" gutterBottom>
             Report Results ({reportData.length} records)
           </Typography>
-          <Box sx={{ height: 600, width: '100%' }}>
+          <Box sx={{ height: 600, width: "100%" }}>
             <DataGrid
               rows={reportData}
               columns={columns}

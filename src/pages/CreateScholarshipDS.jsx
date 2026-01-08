@@ -17,12 +17,16 @@ import {
   Alert,
   IconButton,
   Stack,
+  Box,
 } from "@mui/material";
-import { Edit, Delete } from "@mui/icons-material";
+import { Edit, Delete, ArrowBack  } from "@mui/icons-material";
 import global1 from "./global1";
 import ep1 from "../api/ep1";
+import { useNavigate } from "react-router-dom";
+
 
 const CreateScholarshipDS = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({
     scholarshipname: "",
@@ -122,6 +126,14 @@ const CreateScholarshipDS = () => {
 
   return (
     <Container maxWidth="100%" sx={{ pt: 6 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                      <Button
+                                        startIcon={<ArrowBack />}
+                                        onClick={() => navigate("/dashdashfacnew")}
+                                      >
+                                        Back
+                                      </Button>
+                                    </Box>
       <Paper elevation={4} sx={{ p: 4, borderRadius: 3, mb: 4 }}>
         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
           <Typography variant="h4" color="primary">Scholarship List</Typography>

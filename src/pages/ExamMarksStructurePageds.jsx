@@ -21,6 +21,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { useNavigate } from "react-router-dom";
+import { ArrowBack } from "@mui/icons-material";
 
 function ExamMarksStructurePageds() {
   const [formData, setFormData] = useState({
@@ -45,6 +47,8 @@ function ExamMarksStructurePageds() {
   const [structures, setStructures] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState(null);
+
+  const navigate = useNavigate();
 
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const years = Array.from({ length: 15 }, (_, i) => 2020 + i);
@@ -129,9 +133,19 @@ function ExamMarksStructurePageds() {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+
+      {/* Header */}
+            <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+              <Button
+                startIcon={<ArrowBack />}
+                onClick={() => navigate("/dashboardreevalds")}
+              >
+                Back
+              </Button>
+               <Typography variant="h4" gutterBottom>
         Exam Marks Structure
       </Typography>
+            </Box>
 
       <Card sx={{ mb: 3 }}>
         <CardContent>

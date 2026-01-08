@@ -21,8 +21,11 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material';
 
 const ManageGrievanceCategoriesds = () => {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -124,6 +127,14 @@ const ManageGrievanceCategoriesds = () => {
 
   return (
     <Box sx={{ p: 3 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                          <Button
+                            startIcon={<ArrowBack />}
+                            onClick={() => navigate("/dashdashfacnew")}
+                          >
+                            Back
+                          </Button>
+                        </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
           Manage Grievance Categories

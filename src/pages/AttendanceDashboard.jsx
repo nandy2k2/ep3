@@ -37,13 +37,16 @@ import {
   Info,
   Refresh,
   Timeline,
-  MonetizationOn
+  MonetizationOn,
+  ArrowBack
 } from '@mui/icons-material';
 import dayjs from 'dayjs';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
 
 const AttendanceDashboard = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [currentIP, setCurrentIP] = useState('');
   const [ipCheckStatus, setIpCheckStatus] = useState(null);
@@ -268,6 +271,9 @@ const AttendanceDashboard = () => {
               <Schedule sx={{ fontSize: '2.5rem' }} />
             </Avatar>
             <Box>
+              <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+                Back
+              </Button>
               <Typography variant="h3" fontWeight="bold" gutterBottom>
                 Attendance Dashboard
               </Typography>

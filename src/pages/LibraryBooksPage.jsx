@@ -18,7 +18,7 @@ import {
   Button,
   Pagination,
 } from "@mui/material";
-import { Edit, Delete } from "@mui/icons-material";
+import { Edit, Delete, ArrowBack } from "@mui/icons-material";
 import { useParams, useNavigate } from "react-router-dom";
 import global1 from "./global1";
 // import ep1 from "../ap1/ep1";
@@ -314,6 +314,9 @@ const LibraryBooksPage = () => {
   }, [studentQuery]);
   return (
     <Box>
+      <Button>
+        <ArrowBack onClick={() => navigate("/admin/libraries")} />
+      </Button>
       <Typography
         variant="h4"
         align="center"

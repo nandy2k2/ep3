@@ -48,13 +48,16 @@ import {
   VpnLock,
   Person,
   Email,
-  Search
+  Search,
+  ArrowBack
 } from '@mui/icons-material';
 import dayjs from 'dayjs';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
 
 const IPManagement = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [allowedIPs, setAllowedIPs] = useState([]);
   const [currentUserIP, setCurrentUserIP] = useState('');
@@ -306,6 +309,9 @@ const IPManagement = () => {
         <Box display="flex" alignItems="center" gap={2}>
           <Security sx={{ fontSize: 40 }} />
           <Box>
+            <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+              Back
+            </Button>
             <Typography variant="h4" fontWeight="bold">
               IP Address Management (Admin)
             </Typography>

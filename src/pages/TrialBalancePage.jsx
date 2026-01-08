@@ -31,7 +31,8 @@ import {
   Balance,
   AccountBalance as AccountBalanceIcon,
   TrendingUp,
-  TrendingDown
+  TrendingDown,
+  ArrowBack
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import ep1 from '../api/ep1';
@@ -208,6 +209,14 @@ const TrialBalancePage = () => {
 
   return (
     <Box sx={{ p: 3, maxWidth: '100%', margin: '0 auto' }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                          <Button
+                            startIcon={<ArrowBack />}
+                            onClick={() => navigate("/dashdashfacnew")}
+                          >
+                            Back
+                          </Button>
+                        </Box>
       {/* Header Section */}
       <Box sx={{ mb: 4, textAlign: 'center' }}>
         <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>

@@ -35,6 +35,7 @@ import {
   Close as CloseIcon,
   CalendarToday,
   Pending,
+  ArrowBack
 } from "@mui/icons-material";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -43,8 +44,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { useNavigate } from "react-router-dom";
 
 export default function LeavesPageds1() {
+  const navigate = useNavigate();
   const colid = global1.colid;
   const userEmail = global1.user;
   const [tab, setTab] = useState(0);
@@ -534,6 +537,9 @@ const pendingColumns = [
           {/* Header */}
           <Card sx={headerCardStyles}>
             <CardContent sx={{ color: 'white' }}>
+              <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+                Back
+              </Button>
               <Typography variant="h4" sx={{ fontWeight: 600 }}>
                 Leave Management
               </Typography>

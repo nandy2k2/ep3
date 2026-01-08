@@ -35,7 +35,8 @@ import {
   CheckCircle,
   Cancel,
   AccessTime,
-  CalendarToday
+  CalendarToday,
+  ArrowBack
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -43,8 +44,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
 
 const AttendanceRecords = () => {
+  const navigate = useNavigate();
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(false);
   const [fromDate, setFromDate] = useState(dayjs().startOf('month'));
@@ -167,6 +170,9 @@ const AttendanceRecords = () => {
       <Box sx={{ p: 3, maxWidth: 1400, mx: 'auto' }}>
         {/* Header */}
         <Paper elevation={2} sx={{ p: 3, mb: 3, background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)', color: 'white' }}>
+          <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+            Back
+          </Button>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
             Attendance Records
           </Typography>

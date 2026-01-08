@@ -22,7 +22,7 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { Edit as EditIcon, Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
+import { Edit as EditIcon, Delete as DeleteIcon, Add as AddIcon, ArrowBack } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import ep1 from '../api/ep1'; // axios instance pointing to /api/v2
 import global1 from './global1';
@@ -89,6 +89,9 @@ export default function RoutePage() {
 
   return (
     <Box p={3}>
+      <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2 }}>
+        Back
+      </Button>
       <Typography variant="h4" mb={2}>
         Manage Routes
       </Typography>

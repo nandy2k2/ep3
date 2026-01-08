@@ -25,6 +25,7 @@ import {
 import ep1 from "../api/ep1";
 import global1 from "./global1";
 import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from "@mui/icons-material";
 
 function ExaminerReevaluationEvaluationPageds() {
   const [applications, setApplications] = useState([]);
@@ -111,9 +112,18 @@ function ExaminerReevaluationEvaluationPageds() {
 
   return (
     <Box p={3}>
-      <Typography variant="h4" gutterBottom>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                                        <Button
+                                                          startIcon={<ArrowBack />}
+                                                          onClick={() => navigate("/dashboardreevalds")}
+                                                        >
+                                                          Back
+                                                        </Button>
+                                                        <Typography variant="h4" gutterBottom>
         reevaluation evaluation (examiner)
       </Typography>
+                                                      </Box>
+      
       {error && (
         <Alert severity="error" sx={{ mb: 2 }}>
           {error}

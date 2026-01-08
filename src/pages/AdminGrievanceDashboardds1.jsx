@@ -23,8 +23,11 @@ import {
 } from '@mui/material';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material';
 
 const AdminGrievanceDashboardds1 = () => {
+  const navigate = useNavigate();
   const [grievances, setGrievances] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -170,6 +173,14 @@ const AdminGrievanceDashboardds1 = () => {
 
   return (
     <Box sx={{ p: 3 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                                  <Button
+                                                    startIcon={<ArrowBack />}
+                                                    onClick={() => navigate("/dashdashfacnew")}
+                                                  >
+                                                    Back
+                                                  </Button>
+                                                </Box>
       <Typography variant="h4" gutterBottom sx={{ mb: 3, fontWeight: 'bold' }}>
         Grievance Dashboard
       </Typography>

@@ -49,13 +49,16 @@ import {
   TrendingUp,
   Business,
   AddCircle,
-  RemoveCircle
+  RemoveCircle,
+  ArrowBack
 } from '@mui/icons-material';
 import dayjs from 'dayjs';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
 
 const SalaryManagement = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   
   // Table states
@@ -105,6 +108,12 @@ const SalaryManagement = () => {
   const [calculatingFor, setCalculatingFor] = useState(null);
   
   const [alert, setAlert] = useState({ open: false, message: '', severity: 'info' });
+
+  const [bulkGenerateDialog, setBulkGenerateDialog] = useState(false);
+  const [bulkProgress, setBulkProgress] = useState({ current: 0, total: 0 });
+  const [bulkGenerating, setBulkGenerating] = useState(false);
+  const [bulkResults, setBulkResults] = useState({ success: [], failed: [] });
+
 
   useEffect(() => {
     if (global1.colid) {
@@ -459,6 +468,105 @@ const SalaryManagement = () => {
     page * rowsPerPage + rowsPerPage
   );
 
+  const handleBulkGenerateSalarySlips = useCallback(async () => {
+  if (!selectedMonth) {
+    setAlert({
+      open: true,
+      message: 'Please select a month first',
+      severity: 'error'
+    });
+    return;
+  }
+
+  const [year, month] = selectedMonth.split('-');
+  
+  if (filteredConfigurations.length === 0) {
+    setAlert({
+      open: true,
+      message: 'No employees found to generate salary slips',
+      severity: 'warning'
+    });
+    return;
+  }
+
+  // Confirm before processing
+  if (!window.confirm(
+    `Generate salary slips for ${filteredConfigurations.length} employee(s) for ${dayjs(selectedMonth).format('MMMM YYYY')}?`
+  )) {
+    return;
+  }
+
+  setBulkGenerating(true);
+  setBulkProgress({ current: 0, total: filteredConfigurations.length });
+  setBulkResults({ success: [], failed: [] });
+  setBulkGenerateDialog(true);
+
+  const successList = [];
+  const failedList = [];
+
+  // Process each employee sequentially
+  for (let i = 0; i < filteredConfigurations.length; i++) {
+    const employee = filteredConfigurations[i];
+    
+    try {
+      setBulkProgress({ current: i + 1, total: filteredConfigurations.length });
+
+      const response = await ep1.post('/api/v2/generateSalarySlip', {
+        name: global1.name,
+        user: global1.user,
+        empname: employee.empname,
+        empemail: employee.empemail,
+        colid: global1.colid,
+        month: month,
+        year: year,
+        workingDays: 22, // You can make this dynamic
+        presentDays: 22   // You can make this dynamic
+      });
+
+      if (response.data.success) {
+        successList.push({
+          name: employee.empname,
+          email: employee.empemail
+        });
+      } else {
+        failedList.push({
+          name: employee.empname,
+          email: employee.empemail,
+          reason: response.data.message || 'Unknown error'
+        });
+      }
+    } catch (error) {
+      failedList.push({
+        name: employee.empname,
+        email: employee.empemail,
+        reason: error.response?.data?.message || error.message || 'API Error'
+      });
+    }
+
+    // Small delay to avoid overwhelming the server
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+
+  setBulkResults({ success: successList, failed: failedList });
+  setBulkGenerating(false);
+
+  // Show summary alert
+  if (failedList.length === 0) {
+    setAlert({
+      open: true,
+      message: `Successfully generated ${successList.length} salary slip(s)!`,
+      severity: 'success'
+    });
+  } else {
+    setAlert({
+      open: true,
+      message: `Generated ${successList.length} slip(s). ${failedList.length} failed.`,
+      severity: 'warning'
+    });
+  }
+}, [filteredConfigurations, selectedMonth]);
+
+
   return (
     <Box sx={{ p: 3, maxWidth: 1400, mx: 'auto' }}>
       {/* Header */}
@@ -466,6 +574,9 @@ const SalaryManagement = () => {
         <Box display="flex" alignItems="center" gap={2}>
           <MonetizationOn sx={{ fontSize: 40 }} />
           <Box>
+            <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+              Back
+            </Button>
             <Typography variant="h4" fontWeight="bold">
               Salary Management (Admin)
             </Typography>
@@ -496,6 +607,7 @@ const SalaryManagement = () => {
               <AccountBalance />
               Salary Configurations ({filteredConfigurations.length})
             </Typography>
+            <Box display="flex" gap={2}>
             <Button
               variant="contained"
               startIcon={<Add />}
@@ -504,6 +616,19 @@ const SalaryManagement = () => {
             >
               Add New Configuration
             </Button>
+
+            <Button 
+    variant="contained" 
+    startIcon={<Receipt />} 
+    onClick={handleBulkGenerateSalarySlips}
+    disabled={bulkGenerating || filteredConfigurations.length === 0}
+    sx={{ 
+      background: 'linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)'
+    }}
+  >
+    {bulkGenerating ? 'Generating...' : 'Generate Bulk Slips'}
+  </Button>
+  </Box>
           </Box>
 
           {/* Search and Month Selector */}
@@ -919,6 +1044,91 @@ const SalaryManagement = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Bulk Generation Progress Dialog */}
+<Dialog 
+  open={bulkGenerateDialog} 
+  onClose={() => !bulkGenerating && setBulkGenerateDialog(false)}
+  maxWidth="md"
+  fullWidth
+>
+  <DialogTitle>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Receipt />
+      Bulk Salary Slip Generation
+    </Box>
+  </DialogTitle>
+  
+  <DialogContent>
+    {bulkGenerating ? (
+      <Box sx={{ py: 3 }}>
+        <Typography variant="body1" gutterBottom>
+          Generating salary slips... Please wait
+        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2 }}>
+          <CircularProgress />
+          <Typography variant="body2" color="text.secondary">
+            Processing {bulkProgress.current} of {bulkProgress.total}
+          </Typography>
+        </Box>
+      </Box>
+    ) : (
+      <Box sx={{ py: 2 }}>
+        <Typography variant="h6" gutterBottom color="success.main">
+          ✓ Generation Complete
+        </Typography>
+        
+        {bulkResults.success.length > 0 && (
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="subtitle1" gutterBottom>
+              Successfully Generated ({bulkResults.success.length})
+            </Typography>
+            <List dense>
+              {bulkResults.success.map((emp, idx) => (
+                <ListItem key={idx}>
+                  <ListItemText 
+                    primary={emp.name}
+                    secondary={emp.email}
+                  />
+                  <Chip label="Success" color="success" size="small" />
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        )}
+        
+        {bulkResults.failed.length > 0 && (
+          <Box>
+            <Typography variant="subtitle1" gutterBottom color="error">
+              Failed ({bulkResults.failed.length})
+            </Typography>
+            <List dense>
+              {bulkResults.failed.map((emp, idx) => (
+                <ListItem key={idx}>
+                  <ListItemText 
+                    primary={emp.name}
+                    secondary={`${emp.email} - ${emp.reason}`}
+                  />
+                  <Chip label="Failed" color="error" size="small" />
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        )}
+      </Box>
+    )}
+  </DialogContent>
+  
+  <DialogActions>
+    <Button 
+      onClick={() => setBulkGenerateDialog(false)}
+      disabled={bulkGenerating}
+    >
+      Close
+    </Button>
+  </DialogActions>
+</Dialog>
+
     </Box>
   );
 };

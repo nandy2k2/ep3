@@ -28,6 +28,7 @@ import { Delete, Add, Assessment, RemoveCircle, AddCircle, Upload } from '@mui/i
 import { useNavigate } from 'react-router-dom';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { ArrowBack } from "@mui/icons-material";
 
 const Mjournal2Page = () => {
   const navigate = useNavigate();
@@ -331,9 +332,18 @@ const Mjournal2Page = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                      <Button
+                                        startIcon={<ArrowBack />}
+                                        onClick={() => navigate("/dashdashfacnew")}
+                                      >
+                                        Back
+                                      </Button>
+                                      <Typography variant="h4" gutterBottom>
         Journal Entries Management (MJournal2)
       </Typography>
+                                    </Box>
+      
 
       <Box sx={{ mb: 2 }}>
         <Button

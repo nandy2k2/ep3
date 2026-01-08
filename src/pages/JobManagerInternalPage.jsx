@@ -19,7 +19,7 @@ import {
   Alert,
   Fab,
 } from "@mui/material";
-import { Edit, Delete, Group } from "@mui/icons-material";
+import { Edit, Delete, Group, ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
@@ -126,6 +126,9 @@ const JobManagerInternalPage = () => {
   return (
     <React.Fragment>
       <Container maxWidth="100%" sx={{ mt: 4, mb: 4 }}>
+        <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")}>
+          Back
+        </Button>
         <Box
           display="flex"
           justifyContent="space-between"

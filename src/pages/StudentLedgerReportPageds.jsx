@@ -28,6 +28,7 @@ import {
   TrendingUp,
   TrendingDown,
   AccountBalance,
+  ArrowBack,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import ep1 from '../api/ep1';
@@ -117,6 +118,14 @@ const StudentLedgerReportPageds = () => {
 
   return (
     <Box sx={{ p: 3, bgcolor: '#f5f5f5', minHeight: '100vh' }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                                                      <Button
+                                                                        startIcon={<ArrowBack />}
+                                                                        onClick={() => navigate("/dashdashfacnew")}
+                                                                      >
+                                                                        Back
+                                                                      </Button>
+                                                                    </Box>
       {/* Header Section */}
       <Box sx={{ mb: 3 }}>
         <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>

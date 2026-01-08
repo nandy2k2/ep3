@@ -23,7 +23,7 @@ import {
   Alert,
   Container,
 } from "@mui/material";
-import { Add, Edit, Delete } from "@mui/icons-material";
+import { Add, Edit, Delete, ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import global1 from "./global1";
 
@@ -133,6 +133,9 @@ const HostelBuildingPage = () => {
     <React.Fragment>
       <Container maxWidth="100%" sx={{ mt: 4, mb: 4 }}>
         <Box p={4} maxWidth="900px" mx="auto">
+          <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashboardpagehostel")}>
+            Back
+          </Button>
           <Typography variant="h4" align="center" gutterBottom>
             Hostel Buildings
           </Typography>

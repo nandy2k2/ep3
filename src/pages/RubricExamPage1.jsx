@@ -19,6 +19,7 @@ import { Add, Edit, Delete } from "@mui/icons-material";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
 import { useNavigate } from "react-router-dom";
+import { ArrowBack } from "@mui/icons-material";
 
 const filterFields = [
   { label: "Program Code", name: "programcode" },
@@ -228,9 +229,17 @@ const RubricExamPage1 = () => {
     <Container maxWidth="lg">
       {/* Filter Section */}
       <Paper elevation={3} sx={{ p: { xs: 2, md: 4 }, mt: 4 }}>
+        <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                                                <Button
+                                                                  startIcon={<ArrowBack />}
+                                                                  onClick={() => navigate("/dashdashfacnew")}
+                                                                >
+                                                                  Back
+                                                                </Button>
         <Typography variant="h6" fontWeight={700} mb={3}>
           Filter Rubric Data
         </Typography>
+                                                              </Box>
         <Grid container spacing={2}>
           {filterFields.map((field) => (
             <Grid item xs={12} sm={6} md={2} key={field.name}>

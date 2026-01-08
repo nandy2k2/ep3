@@ -11,8 +11,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { DataGrid } from "@mui/x-data-grid";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const TransactionrefdsPage = () => {
+  const navigate = useNavigate();
   const [transactionref, setTransactionref] = useState("");
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -63,9 +66,17 @@ const TransactionrefdsPage = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                    <Button
+                      startIcon={<ArrowBack />}
+                      onClick={() => navigate("/dashdashfacnew")}
+                    >
+                      Back
+                    </Button>
+                    <Typography variant="h4" gutterBottom>
         Transaction Debit/Credit Report
       </Typography>
+                  </Box>
       <Paper sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6">Search by Transaction Reference</Typography>
         <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>

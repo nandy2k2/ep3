@@ -29,12 +29,15 @@ import {
   SupervisorAccount,
   Edit as EditIcon,
   Delete as DeleteIcon,
+  ArrowBack
 } from "@mui/icons-material";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { useNavigate } from "react-router-dom";
 
 export default function SetupPage() {
+  const navigate = useNavigate();
   const colid = global1.colid;
   const [tab, setTab] = useState(0);
   const [snack, setSnack] = useState({ open: false, msg: "", severity: "success" });
@@ -629,6 +632,9 @@ export default function SetupPage() {
         {/* Header */}
         <Card sx={headerCardStyles}>
           <CardContent sx={{ color: 'white' }}>
+            <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+              Back
+            </Button>
             <Typography variant="h4" sx={{ fontWeight: 600 }}>
               Leave Management Setup
             </Typography>

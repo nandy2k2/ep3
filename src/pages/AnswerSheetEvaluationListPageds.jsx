@@ -18,6 +18,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
+import { ArrowBack } from "@mui/icons-material";
 
 function AnswerSheetEvaluationListPageds() {
   const [answerSheets, setAnswerSheets] = useState([]);
@@ -53,6 +54,15 @@ function AnswerSheetEvaluationListPageds() {
 
   return (
     <Box sx={{ p: 3 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                          <Button
+                            startIcon={<ArrowBack />}
+                            onClick={() => navigate("/dashboardreevalds")}
+                          >
+                            Back
+                          </Button>
+                           
+                        </Box>
       <Card>
         <CardContent>
           <Typography variant="h5" gutterBottom>

@@ -24,8 +24,11 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material';
 
 const CreateGrievanceFormds = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -160,6 +163,14 @@ const CreateGrievanceFormds = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+                                                              <Button
+                                                                startIcon={<ArrowBack />}
+                                                                onClick={() => navigate("/dashdashfacnew")}
+                                                              >
+                                                                Back
+                                                              </Button>
+                                                            </Box>
       {/* Header with Button */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography variant="h4" sx={{ fontWeight: 'bold' }}>

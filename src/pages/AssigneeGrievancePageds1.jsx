@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Table,
@@ -19,18 +19,21 @@ import {
   Chip,
   CircularProgress,
   Alert,
-} from '@mui/material';
-import ep1 from '../api/ep1';
-import global1 from './global1';
+} from "@mui/material";
+import ep1 from "../api/ep1";
+import global1 from "./global1";
+import { useNavigate } from "react-router-dom";
+import { ArrowBack } from "@mui/icons-material";
 
 const AssigneeGrievancePageds1 = () => {
+  const navigate = useNavigate();
   const [grievances, setGrievances] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedGrievance, setSelectedGrievance] = useState(null);
-  const [progress, setProgress] = useState('');
-  const [status, setStatus] = useState('');
+  const [progress, setProgress] = useState("");
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     fetchAssignedGrievances();
@@ -39,7 +42,7 @@ const AssigneeGrievancePageds1 = () => {
   const fetchAssignedGrievances = async () => {
     setLoading(true);
     try {
-      const response = await ep1.get('/api/v2/getassignedgrievanceds1', {
+      const response = await ep1.get("/api/v2/getassignedgrievanceds1", {
         params: {
           assignedTo: global1.user,
           colid: global1.colid,
@@ -49,7 +52,7 @@ const AssigneeGrievancePageds1 = () => {
         setGrievances(response.data.data);
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch grievances');
+      setError(err.response?.data?.message || "Failed to fetch grievances");
     } finally {
       setLoading(false);
     }
@@ -57,7 +60,7 @@ const AssigneeGrievancePageds1 = () => {
 
   const handleOpenDialog = (grievance) => {
     setSelectedGrievance(grievance);
-    setProgress(grievance.progress || 'Pending');
+    setProgress(grievance.progress || "Pending");
     setStatus(grievance.status.toString());
     setOpenDialog(true);
   };
@@ -65,13 +68,13 @@ const AssigneeGrievancePageds1 = () => {
   const handleCloseDialog = () => {
     setOpenDialog(false);
     setSelectedGrievance(null);
-    setProgress('');
-    setStatus('');
+    setProgress("");
+    setStatus("");
   };
 
   const handleUpdateProgress = async () => {
     try {
-      const response = await ep1.post('/api/v2/updategrievanceprogressds1', {
+      const response = await ep1.post("/api/v2/updategrievanceprogressds1", {
         grievanceId: selectedGrievance._id,
         progress,
         status: parseInt(status),
@@ -82,27 +85,39 @@ const AssigneeGrievancePageds1 = () => {
         handleCloseDialog();
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to update progress');
+      setError(err.response?.data?.message || "Failed to update progress");
     }
   };
 
   const getStatusColor = (status) => {
-    if (status === 0) return 'warning';
-    if (status === 1) return 'info';
-    if (status === 2) return 'success';
+    if (status === 0) return "warning";
+    if (status === 1) return "info";
+    if (status === 2) return "success";
   };
 
   const getStatusLabel = (status) => {
-    if (status === 0) return 'New';
-    if (status === 1) return 'In Progress';
-    if (status === 2) return 'Resolved';
+    if (status === 0) return "New";
+    if (status === 1) return "In Progress";
+    if (status === 2) return "Resolved";
   };
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom sx={{ mb: 3, fontWeight: 'bold' }}>
-        My Assigned Grievances
-      </Typography>
+      <Box sx={{ mb: 3, display: "flex", alignItems: "center", gap: 2 }}>
+        <Button
+          startIcon={<ArrowBack />}
+          onClick={() => navigate("/dashdashfacnew")}
+        >
+          Back
+        </Button>
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ mb: 3, fontWeight: "bold" }}
+        >
+          My Assigned Grievances
+        </Typography>
+      </Box>
 
       {error && (
         <Alert severity="error" sx={{ mb: 2 }}>
@@ -111,13 +126,13 @@ const AssigneeGrievancePageds1 = () => {
       )}
 
       {loading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', py: 5 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", py: 5 }}>
           <CircularProgress />
         </Box>
       ) : (
         <TableContainer component={Paper}>
           <Table>
-            <TableHead sx={{ backgroundColor: '#f5f5f5' }}>
+            <TableHead sx={{ backgroundColor: "#f5f5f5" }}>
               <TableRow>
                 <TableCell>Employee</TableCell>
                 <TableCell>Title</TableCell>
@@ -144,10 +159,16 @@ const AssigneeGrievancePageds1 = () => {
                     <TableCell>{grievance.category}</TableCell>
                     <TableCell>{grievance.priority}</TableCell>
                     <TableCell>
-                      <Chip label={getStatusLabel(grievance.status)} color={getStatusColor(grievance.status)} size="small" />
+                      <Chip
+                        label={getStatusLabel(grievance.status)}
+                        color={getStatusColor(grievance.status)}
+                        size="small"
+                      />
                     </TableCell>
                     <TableCell>{grievance.progress}</TableCell>
-                    <TableCell>{new Date(grievance.createdDate).toLocaleDateString()}</TableCell>
+                    <TableCell>
+                      {new Date(grievance.createdDate).toLocaleDateString()}
+                    </TableCell>
                     <TableCell>
                       <Button
                         size="small"
@@ -165,14 +186,25 @@ const AssigneeGrievancePageds1 = () => {
         </TableContainer>
       )}
 
-      <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        maxWidth="sm"
+        fullWidth
+      >
         <DialogTitle>Update Grievance Progress</DialogTitle>
         <DialogContent sx={{ pt: 2 }}>
           {selectedGrievance && (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <Typography><strong>Employee:</strong> {selectedGrievance.name}</Typography>
-              <Typography><strong>Title:</strong> {selectedGrievance.title}</Typography>
-              <Typography><strong>Description:</strong> {selectedGrievance.description}</Typography>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <Typography>
+                <strong>Employee:</strong> {selectedGrievance.name}
+              </Typography>
+              <Typography>
+                <strong>Title:</strong> {selectedGrievance.title}
+              </Typography>
+              <Typography>
+                <strong>Description:</strong> {selectedGrievance.description}
+              </Typography>
 
               <TextField
                 label="Progress Update"

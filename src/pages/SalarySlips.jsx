@@ -45,14 +45,17 @@ import {
   Email,
   Badge,
   Search,
-  FilterList
+  FilterList,
+  ArrowBack
 } from '@mui/icons-material';
 import { jsPDF } from 'jspdf';
 import dayjs from 'dayjs';
 import ep1 from '../api/ep1';
 import global1 from './global1';
+import { useNavigate } from 'react-router-dom';
 
 const SalarySlips = () => {
+  const navigate = useNavigate();
   const [slips, setSlips] = useState([]);
   const [filteredSlips, setFilteredSlips] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -478,6 +481,9 @@ const SalarySlips = () => {
         <Box display="flex" alignItems="center" gap={2}>
           <Receipt sx={{ fontSize: 40 }} />
           <Box>
+            <Button startIcon={<ArrowBack />} onClick={() => navigate("/dashdashfacnew")} sx={{ mb: 2, color: 'white' }}>
+              Back
+            </Button>
             <Typography variant="h4" fontWeight="bold">
               Salary Slips Management
             </Typography>

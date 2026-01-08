@@ -17,7 +17,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import { Edit, Delete } from "@mui/icons-material";
+import { Edit, Delete, ArrowBack } from "@mui/icons-material";
 import global1 from "./global1";
 import ep1 from "../api/ep1";
 import { useNavigate } from "react-router-dom";
@@ -32,8 +32,7 @@ const AdminLibrariesPage = () => {
     try {
       const res = await ep1.get(`/api/v2/getalllibrary/${global1.colid}`);
       setLibraries(res.data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -44,8 +43,7 @@ const AdminLibrariesPage = () => {
     try {
       await ep1.get(`/api/v2/deletelibrary/${id}`);
       fetchLibraries();
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleEdit = (library) => {
@@ -58,12 +56,14 @@ const AdminLibrariesPage = () => {
   };
 
   const handleEditSubmit = async () => {
-    try {      
-      await ep1.post(`/api/v2/updatelibrary?id=${selectedLibrary._id}`, selectedLibrary);
+    try {
+      await ep1.post(
+        `/api/v2/updatelibrary?id=${selectedLibrary._id}`,
+        selectedLibrary
+      );
       setEditDialogOpen(false);
       fetchLibraries();
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleRowClick = (id) => {
@@ -72,11 +72,24 @@ const AdminLibrariesPage = () => {
 
   return (
     <Box sx={{ backgroundColor: "#f0f4f8", minHeight: "100vh", py: 4, px: 2 }}>
-      <Typography variant="h4" gutterBottom sx={{ textAlign: "center", fontWeight: "bold", color: "#1976d2" }}>
+      <Button
+        startIcon={<ArrowBack />}
+        onClick={() => navigate("/dashdashfacnew")}
+      >
+        Back
+      </Button>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{ textAlign: "center", fontWeight: "bold", color: "#1976d2" }}
+      >
         Admin Library Management
       </Typography>
 
-      <TableContainer component={Paper} sx={{ maxWidth: 1000, mx: "auto", mt: 4 }}>
+      <TableContainer
+        component={Paper}
+        sx={{ maxWidth: 1000, mx: "auto", mt: 4 }}
+      >
         <Table>
           <TableHead sx={{ backgroundColor: "#1976d2" }}>
             <TableRow>
@@ -84,7 +97,9 @@ const AdminLibrariesPage = () => {
               <TableCell sx={{ color: "#fff" }}>Name</TableCell>
               <TableCell sx={{ color: "#fff" }}>Incharge</TableCell>
               <TableCell sx={{ color: "#fff" }}>Contact</TableCell>
-              <TableCell sx={{ color: "#fff" }} align="right">Actions</TableCell>
+              <TableCell sx={{ color: "#fff" }} align="right">
+                Actions
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -107,7 +122,10 @@ const AdminLibrariesPage = () => {
                   <IconButton color="primary" onClick={() => handleEdit(lib)}>
                     <Edit />
                   </IconButton>
-                  <IconButton color="error" onClick={() => handleDelete(lib._id)}>
+                  <IconButton
+                    color="error"
+                    onClick={() => handleDelete(lib._id)}
+                  >
                     <Delete />
                   </IconButton>
                 </TableCell>
@@ -118,7 +136,12 @@ const AdminLibrariesPage = () => {
       </TableContainer>
 
       {/* Edit Dialog */}
-      <Dialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)} fullWidth maxWidth="sm">
+      <Dialog
+        open={editDialogOpen}
+        onClose={() => setEditDialogOpen(false)}
+        fullWidth
+        maxWidth="sm"
+      >
         <DialogTitle>Edit Library</DialogTitle>
         <DialogContent dividers>
           <TextField
