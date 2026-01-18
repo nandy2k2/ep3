@@ -27,6 +27,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import io from 'socket.io-client';
+
+
+
+import { API_BASE_URL } from '../api/socketurl'; // Import the constant
+
+
+
 
 function ViewPage() {
     const [rows, setRows] = useState([]);
@@ -46,6 +54,19 @@ function ViewPage() {
      const [file, setFile] = useState();
     const [dialogopen, setDialogopen] = React.useState(false);
     const [itemstocheck, setItemstocheck] = useState();
+
+     const [socket, setSocket] = useState(null);
+      const [loading, setLoading] = useState(false);
+      const [connectionStatus, setConnectionStatus] = useState("connecting");
+      const [message, setMessage] = useState('');
+
+    //      const newSocket = io("http://localhost:3000", {
+    //   transports: ["websocket"],
+    //   forceNew: true,
+    //   reconnection: true,
+    // });
+
+    // setSocket(newSocket);
 
     const [selectedImage, setSelectedImage] = useState(null);
   const handleImageUpload = (event) => {
@@ -394,6 +415,34 @@ return '';
       fetchViewPage();
       getgraphdata();
       getgraphdatasecond();
+
+    //   const newSocket = io("http://localhost:3000", {
+    //   transports: ["websocket"],
+    //   forceNew: true,
+    //   reconnection: true,
+    // });
+
+    const newSocket = io(API_BASE_URL, {
+      transports: ["websocket"],
+      forceNew: true,
+      reconnection: true,
+    });
+
+    setSocket(newSocket);
+
+    // newSocket.emit('addProduct', {
+    //   room: 'test1',
+    //   price: 100,
+    // });
+
+    newSocket.on("mjournal2", (msgdata) => {
+      //setConnectionStatus("disconnected");
+      setMessage(msgdata.message);
+      //alert(msgdata.message);
+      fetchViewPage();
+    });
+
+
     }, []);
   
     const handleExport = () => {
@@ -630,6 +679,11 @@ empid:empid,
     return (
       <React.Fragment>
         <Container maxWidth="100%" sx={{ mt: 4, mb: 4 }}>
+
+         <p>
+                {message}
+              </p>
+              
         <Box display="flex" marginBottom={4} marginTop={2}>
            
            <Button

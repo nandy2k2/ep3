@@ -12,6 +12,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
+import io from 'socket.io-client';
+import { API_BASE_URL } from '../api/socketurl'; // Import the constant
+
 function AddUserModal({ open, handleClose, handleInputChange, handleAddUser, newUser, fetchViewPage }) {
     const yearref=useRef();
 const accgroupref=useRef();
@@ -37,6 +40,12 @@ const empidref=useRef();
     const token=global1.token;
 
     const regno=global1.regno;
+
+     const [socket, setSocket] = useState(null);
+          const [loading, setLoading] = useState(false);
+          const [connectionStatus, setConnectionStatus] = useState("connecting");
+          const [message, setMessage] = useState('');
+    
 
     const {
         transcript,
@@ -167,6 +176,27 @@ status1:'Submitted',
     //console.log(response.data.data);
     //alert(response.data.status);
     //history.replace('/viewnaddonc');
+
+
+        //      const newSocket = io("http://localhost:3000", {
+        //   transports: ["websocket"],
+        //   forceNew: true,
+        //   reconnection: true,
+        // });
+
+
+             const newSocket = io(API_BASE_URL, {
+          transports: ["websocket"],
+          forceNew: true,
+          reconnection: true,
+        });
+    
+        setSocket(newSocket);
+
+     newSocket.emit('mjournal2', {
+      room: 'test1',
+      price: 100,
+    });
 
     fetchViewPage();
 

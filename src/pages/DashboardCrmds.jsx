@@ -104,7 +104,7 @@ const Dashboardds = () => {
       <AppBar position="static" sx={{ background: "linear-gradient(90deg, #1565c0 0%, #0d47a1 100%)", boxShadow: "0 4px 20px 0 rgba(0,0,0,0.1)" }}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 600 }}>
-            Career College CRM - Dashboard
+            CRM - Dashboard
           </Typography>
           <Typography variant="body1" sx={{ mr: 2, fontWeight: 500 }}>
             Welcome, {global1.name}

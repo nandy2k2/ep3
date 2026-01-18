@@ -63,6 +63,8 @@ Departmentref.current.value=transcript;
 
 
   const searchapi = async () => {
+
+    //alert('checking');
        
 
 //     const coursetitle=coursetitleref.current.value;
@@ -80,11 +82,15 @@ Departmentref.current.value=transcript;
 // const studentscompleted=studentscompletedref.current.value;
 // const dateadded=dateaddedref.current.value;
 
+
+
 const name1=nameref.current.value;
 const email=emailref.current.value;
 const Phone=Phoneref.current.value;
 const Password=Passwordref.current.value;
 const Department=Departmentref.current.value;
+
+//alert(user + '-' + token + '-' + colid + '-' + name1 + '-' + email + '-' + Phone + '-' + Password +'-' + Department);
 
  const response1 = await ep1.get('/api/v1/loginapif', {
             params: {
@@ -99,13 +105,9 @@ const Department=Departmentref.current.value;
           return;
         }
 
+       // alert(Department);
 
-//alert(coursetitle + '-' + dateadded);
-
-    //alert(department);
-    //setLoading(true);
-    //setIsuploading(true);
-    const response = await ep1.get('/api/v2/createnewfaculty', {
+        const response = await ep1.get('/api/v2/createnewfaculty', {
         params: {
             user: user,
             token: token,
@@ -114,7 +116,7 @@ const Department=Departmentref.current.value;
 email:email,
 phone:Phone,
 password:Password,
-department:Department,
+department:'Department',
 
 status1:'Submitted',
             comments:''
@@ -128,7 +130,27 @@ status1:'Submitted',
     //history.replace('/viewnaddonc');
 
     fetchViewPage();
+       
 
+try {
+
+   
+
+
+} catch(err) {
+  alert(err);
+
+}
+
+
+
+
+//alert(coursetitle + '-' + dateadded);
+
+    //alert(department);
+    //setLoading(true);
+    //setIsuploading(true);
+  
     handleClose();
    
 };

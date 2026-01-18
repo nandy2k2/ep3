@@ -138,7 +138,7 @@ status1:'Submitted',
     //alert(response.data.status);
     //history.replace('/viewnaddonc');
 
-    fetchViewPage();
+    //fetchViewPage();
 
     handleClose();
    

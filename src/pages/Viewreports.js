@@ -19,6 +19,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+import io from 'socket.io-client';
+
+//const socket = socketIO.connect('http://localhost:3000');
+
 // import { Link } from "react-router";
 
 
@@ -36,6 +40,11 @@ function ViewPage() {
       coursecode: '', coursetitle: '', year: '', coursetype: '', duration: '', offeredtimes: '', imagelink: '',studentsenrolled:'',
       price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '', dateadded: ''
     });
+
+    const [socket, setSocket] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState("connecting");
+  const [message, setMessage] = useState('');
 
     const fromdateref=useRef();
     const todateref=useRef();
@@ -57,6 +66,18 @@ function ViewPage() {
     const programcode=global1.facprogramcode;
     const semester=global1.facsemester;
     const section=global1.facsection;
+
+    const handleSubmit = (e) => {
+    //e.preventDefault();
+    alert('Connecting');
+    console.log(socket);
+    // console.log({ name, price, owner: localStorage.getItem('userName') });
+    socket.emit('addProduct', {
+      room: 'test1',
+      price: 100,
+    });
+    //navigate('/products');
+  };
 
     const handleDeleteClick = async (id) => {
         alert(id);
@@ -210,6 +231,26 @@ valueGetter: (params) => {
     //   fetchViewPage();
     //   getgraphdata();
     //   getgraphdatasecond();
+
+    //const newSocket = io("https://epaathsala.azurewebsites.net", {
+    const newSocket = io("http://localhost:3000", {
+      transports: ["websocket"],
+      forceNew: true,
+      reconnection: true,
+    });
+
+    setSocket(newSocket);
+
+    newSocket.emit('addProduct', {
+      room: 'test1',
+      price: 100,
+    });
+
+    newSocket.on("getmessage", (msgdata) => {
+      //setConnectionStatus("disconnected");
+      setMessage(msgdata.message);
+    });
+
     }, []);
   
     const handleExport = () => {
@@ -467,9 +508,26 @@ sx={{ width: '100%'}}
             <Link to="/dashmwreport2">
             <button sx={{marginRight: 10}}>Faculty wise workload
                 </button></Link>
+
+                <Button
+                             variant="contained"
+                             color="primary"
+                             style={{ padding: '5px 10px', fontSize: '12px', marginRight: '4px', height: '30px', width: '80px' }}
+                             onClick={() => handleSubmit()}
+                           >
+                             Connect!
+                           </Button>
+
+              
+            
             </Grid>
 
               <br />
+              <p>
+                {message}
+              </p>
+
+
         {/* <Box display="flex" marginBottom={4} marginTop={2}>
            
          

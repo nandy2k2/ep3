@@ -20,8 +20,6 @@ import {
   InputAdornment,
   Card,
   CardContent,
-  Autocomplete,
-  CircularProgress,
 } from "@mui/material";
 import {
   Add as AddIcon,
@@ -37,32 +35,11 @@ import {
   Delete as DeleteIcon,
   Note as NoteIcon,
 } from "@mui/icons-material";
-import {
-  DataGrid,
-  GridToolbarContainer,
-  GridToolbarColumnsButton,
-  GridToolbarFilterButton,
-  GridToolbarExport,
-  GridToolbarDensitySelector,
-  GridToolbarQuickFilter,
-} from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import ep1 from "../api/ep1";
 import global1 from "./global1";
-
-const CustomToolbar = () => {
-  return (
-    <GridToolbarContainer>
-      <GridToolbarColumnsButton />
-      <GridToolbarFilterButton />
-      <GridToolbarDensitySelector />
-      {(global1.role === 'Admin' || global1.role === 'All' || global1.role === 'CRM') && <GridToolbarExport />}
-      <Box sx={{ flexGrow: 1 }} />
-      <GridToolbarQuickFilter debounceMs={500} />
-    </GridToolbarContainer>
-  );
-};
 
 const Leadsds = () => {
   const navigate = useNavigate();
@@ -93,41 +70,8 @@ const Leadsds = () => {
     source: "",
     city: "",
     state: "",
-    assignedto: "",
     custom_fields: [],
   });
-
-  // State for manual counselor assignment
-  const [counselorOptions, setCounselorOptions] = useState([]);
-  const [counselorLoading, setCounselorLoading] = useState(false);
-
-  const navetodashboard = () => {
-    if (global1.role === "Admin" || global1.role === "All" || global1.role === "CRM") {
-      navigate("/dashboardcrmds");
-    }else {
-      navigate("/dashdashfacnew");
-    }
-  }
-
-  // Search Counselors
-  const handleSearchCounselors = async (query) => {
-    if (!query) {
-      setCounselorOptions([]);
-      return;
-    }
-    setCounselorLoading(true);
-    try {
-      const res = await ep1.get("/api/v2/searchusersds", {
-        params: { colid: global1.colid, query },
-      });
-      if (res.data.success) {
-        setCounselorOptions(res.data.data);
-      }
-    } catch (err) {
-      console.error("Error searching counselors:", err);
-    }
-    setCounselorLoading(false);
-  };
 
   const [editFormData, setEditFormData] = useState({
     name: "",
@@ -219,13 +163,10 @@ const Leadsds = () => {
       category: "",
       course_interested: "",
       source: "",
-      source: "",
       city: "",
       state: "",
-      assignedto: "",
       custom_fields: [],
     });
-    setCounselorOptions([]); // Reset options
     setOpenDialog(true);
   };
 
@@ -708,7 +649,7 @@ const Leadsds = () => {
       <Box sx={{ mb: 4, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <IconButton
-            onClick={() => navetodashboard()}
+            onClick={() => navigate("/dashboardcrmds")}
             sx={{
               bgcolor: "white",
               border: "1px solid #e2e8f0",
@@ -853,7 +794,13 @@ const Leadsds = () => {
             console.error("Row update error:", error);
             showSnackbar("Failed to update row", "error");
           }}
-          slots={{ toolbar: CustomToolbar }}
+          slots={{ toolbar: GridToolbar }}
+          slotProps={{
+            toolbar: {
+              showQuickFilter: true,
+              quickFilterProps: { debounceMs: 500 },
+            },
+          }}
           sx={{
             border: "none",
             "& .MuiDataGrid-columnHeaders": {
@@ -977,36 +924,6 @@ const Leadsds = () => {
                 label="State"
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <Autocomplete
-                options={counselorOptions}
-                loading={counselorLoading}
-                getOptionLabel={(option) => `${option.name} (${option.email})`}
-                onInputChange={(event, newInputValue) => {
-                  handleSearchCounselors(newInputValue);
-                }}
-                onChange={(event, newValue) => {
-                  setFormData({ ...formData, assignedto: newValue ? newValue.email : "" });
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Assign Counselor (Optional)"
-                    fullWidth
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <React.Fragment>
-                          {counselorLoading ? <CircularProgress color="inherit" size={20} /> : null}
-                          {params.InputProps.endAdornment}
-                        </React.Fragment>
-                      ),
-                    }}
-                  />
-                )}
               />
             </Grid>
 
