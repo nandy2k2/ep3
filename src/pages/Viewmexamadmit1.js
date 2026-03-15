@@ -943,7 +943,7 @@ level:level,
             <Button onClick={approveadmitall1}
              variant="contained"
              color="secondary"
-             style={{ padding: '5px 10px', fontSize: '12px', height: '30px', width: '120px', marginLeft: 6 }}
+             style={{ padding: '5px 10px', fontSize: '12px', height: '30px', width: '160px', marginLeft: 6 }}
            >
              Approve student
            </Button>

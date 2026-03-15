@@ -196,17 +196,61 @@ return '';
  },
 
   
-          { field: 'actions', headerName: 'Actions', width: 100, renderCell: (params) => {
+          { field: 'actions', headerName: 'Actions', width: 300, renderCell: (params) => {
             return (
-              <Button
+              <table>
+                <tr>
+                  <td>
+                     <Button
+      onClick={(e) => onButtonClickma(e, params.row)}
+      variant="contained"
+    >
+   Populate
+    </Button>
+                  </td>
+                  <td width="10px"></td>
+                  <td>
+ <Button
                 onClick={(e) => onButtonClick(e, params.row)}
                 variant="contained"
               >
                 Delete
               </Button>
+                  </td>
+                </tr>
+              </table>
+             
             );
           } }
       ];
+
+
+      const onButtonClickma = async(e, row) => {
+        e.stopPropagation();
+        global1.lmsyear=row.year;
+        global1.faccoursename=row.coursename;
+        global1.faccoursecode=row.coursecode;
+        global1.lmsfaculty=row.user;
+         const response = await ep1.get('/api/v2/enrollexam', {
+        params: {
+          token: token,
+          colid: colid,
+          user: user,
+          name: name,
+          programcode: row.programcode,
+          program: row.program,
+          course:row.course,
+          coursecode:row.coursecode,
+          year:row.year,
+          semester:row.type,
+          exam:row.examcode,
+          examcode:row.examcode,
+          type:"NA",
+          level:'NA'
+        }
+      });
+       alert(response.data.status);
+      };
 
 
     const coursetitleref = useRef();

@@ -43,6 +43,14 @@ import { menuitemsall } from './menuall';
 import { menuitemspurchase } from './menupurchase';
 import { menuitemscounselor } from './menucounselor';
 import { menuitemscrm } from './menucrm';
+import { menupurchasepu } from "./menupurchasepu";
+import { menuhoi } from './menuhoi';
+import { menustore } from './menustore';
+import { menuao } from './menuao';
+import { menuoe } from './menuoe';
+import { menucma } from './menucma';
+import { menupe } from './menupe';
+import { menuitemscounselor1 } from './menucounselor1';
 
 const getlink=()=>{
   return '/eventlistwithcolid/' + global1.colid;
@@ -153,7 +161,59 @@ export function mainListItems({ open }) {
         {/* <menuitems /> */}
       </div>
     )
-  }
+  }  else if (role1 == 'Purchasepu') {
+      return (
+        <div>
+          {menupurchasepu()}
+          {/* <menuitems /> */}
+        </div>
+      )
+    } else if (role1 == 'HOI') {
+      return (
+        <div>
+          {menuhoi()}
+          {/* <menuitems /> */}
+        </div>
+      )
+    } else if (role1 == 'Store') {
+      return (
+        <div>
+          {menustore()}
+          {/* <menuitems /> */}
+        </div>
+      )
+    } else if (role1 == 'AO') {
+      return (
+        <div>
+          {menuao()}
+        </div>
+      )
+    } else if (role1 == 'OE') {
+      return (
+        <div>
+          {menuoe()}
+        </div>
+      )
+    } else if (role1 == 'CMA') {
+      return (
+        <div>
+          {menucma()}
+        </div>
+      )
+    } else if (role1 == 'PE') {
+          return (
+            <div>
+              {menupe()}
+            </div>
+    
+          )
+        } else if (role == 'Counselor1') {
+          return (
+            <div>
+              {menuitemscounselor1()}
+            </div>
+          )
+        }
 
 }
 

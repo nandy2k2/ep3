@@ -1249,6 +1249,186 @@ import ReportList from "./components/Reportsmeritds/ReportListdsmeritds";
 
 import StudentMasterListds from "./pages/StudentMasterListds";
 
+import Dashmconvdates from './pages/Dashmconvdates';
+import Dashmconvdatesadmin from './pages/Dashmconvdatesadmin';
+import Dashmconvdocs from './pages/Dashmconvdocs';
+import Dashmconvdocsadmin from './pages/Dashmconvdocsadmin';
+import Dashmconvfees from './pages/Dashmconvfees';
+import Dashmconvfeesadmin from './pages/Dashmconvfeesadmin';
+import Dashmconvgh from './pages/Dashmconvgh';
+import Dashmconvghadmin from './pages/Dashmconvghadmin';
+import Dashmconvtransport from './pages/Dashmconvtransport';
+import Dashmconvtransportadmin from './pages/Dashmconvtransportadmin';
+import Dashmconvguests from './pages/Dashmconvguests';
+import Dashmconvguestsadmin from './pages/Dashmconvguestsadmin';
+import Dashmconvattendees from './pages/Dashmconvattendees';
+import Dashmconvattendeesadmin from './pages/Dashmconvattendeesadmin';
+
+import Dashmvendords from './pages/Dashmvendords';
+import Dashmvendordsadmin from './pages/Dashmvendordsadmin';
+import Dashmvendoritemds from './pages/Dashmvendoritemds';
+import Dashmvendoritemdsadmin from './pages/Dashmvendoritemdsadmin';
+import Dashmrequisationds from './pages/Dashmrequisationds';
+import Dashmrequisationdsadmin from './pages/Dashmrequisationdsadmin';
+import Dashmitemmasterds from './pages/Dashmitemmasterds';
+import Dashmitemmasterdsadmin from './pages/Dashmitemmasterdsadmin';
+import Dashmstoreitemds from './pages/Dashmstoreitemds';
+import Dashmstoreitemdsadmin from './pages/Dashmstoreitemdsadmin';
+import Dashmstorerequisationds from './pages/Dashmstorerequisationds';
+import Dashmstorerequisationdsadmin from './pages/Dashmstorerequisationdsadmin';
+import Dashmstorepoorderds from './pages/Dashmstorepoorderds';
+import Dashmstorepoorderdsadmin from './pages/Dashmstorepoorderdsadmin';
+import Dashmstorepoitemsds from './pages/Dashmstorepoitemsds';
+import Dashmstorepoitemsdsadmin from './pages/Dashmstorepoitemsdsadmin';
+import Dashmstockregisterds from './pages/Dashmstockregisterds';
+import Dashmstockregisterdsadmin from './pages/Dashmstockregisterdsadmin';
+
+
+// Purchasing Module Imports - NEW
+import FacultyCreateRequestds from './pages/FacultyCreateRequestds';
+import FacultyRequestStatusds from './pages/FacultyRequestStatusds';
+import StoreManagerDashboardds from './pages/StoreManagerDashboardds';
+import PurchaseOrderDashboardds from './pages/PurchaseOrderDashboardds';
+import DeliveryDashboardds from './pages/DeliveryDashboardds';
+import DashboardPurchaseds from './pages/DashboardPurchaseds';
+import PurchasingMasterDatads from './pages/PurchasingMasterDatads';
+
+import Leadsdsadmin from './pages/Leaddsadmin';
+import BulkLeadActionsds from './pages/BulkLeadActionsds';
+
+import ApprovalConfigurationds from './pages/ApprovalConfigurationds';
+import FacultyRequestApprovalds from './pages/FacultyRequestApprovalds';
+
+
+import PurchaseCellInventoryds from './pages/PurchaseCellInventoryds';
+
+
+import Institutionsds from './pages/Institutionsds';
+
+import NewDashmuser from './pages/NewDashmuser';
+import NewDashmcompany from './pages/NewDashmcompany';
+import NewDashmroles from './pages/NewDashmroles';
+import NewDashmadmission from './pages/NewDashmadmission';
+import NewDashmappmodel2 from './pages/NewDashmappmodel2';
+import NewDashmappmodel2cat from './pages/NewDashmappmodel2cat';
+import NewApplicationReviewPage from './pages/NewApplicationReviewPage';
+import NewDashmfeesadmin from './pages/NewDashmfeesadmin';
+import NewDashmledgerstudadmin from './pages/NewDashmledgerstudadmin';
+import NewDashmmfeescoladmin from './pages/NewDashmmfeescoladmin';
+import NewInstitutionsds from './pages/NewInstitutionsds';
+import NewDashmmprogramsadmin from './pages/NewDashmmprogramsadmin';
+import NewDashmmcourseslistadmin from './pages/NewDashmmcourseslistadmin';
+import NewDashmmstudents1admin from './pages/NewDashmmstudents1admin';
+import NewDashmexamscheduleadmin from './pages/NewDashmexamscheduleadmin';
+import NewDashmexamtimetableadmin from './pages/NewDashmexamtimetableadmin';
+import NewDashmexamroomadmin from './pages/NewDashmexamroomadmin';
+import NewDashmexamadmitadmin from './pages/NewDashmexamadmitadmin';
+import NewDashmexammarksalladmin from './pages/NewDashmexammarksalladmin';
+import NewDashmstudalloc1admin from './pages/NewDashmstudalloc1admin';
+import NewDashmmguidesadmin from './pages/NewDashmmguidesadmin';
+import NewDashmmctalentregadmin from './pages/NewDashmmctalentregadmin';
+import NewDashmlmsvideosadmin from './pages/NewDashmlmsvideosadmin';
+import NewDashboardPageHostel from './pages/NewDashboardPageHostel';
+import NewHostelBuildingPage from './pages/NewHostelBuildingPage';
+import NewHostelRoomPage from './pages/NewHostelRoomPage';
+import NewLeadsds from './pages/NewLeadsds';
+import NewDashboardCrmds from './pages/NewDashboardCrmds';
+import NewDashboardPurchaseds from './pages/NewDashboardPurchaseds';
+import NewPurchaseCellInventoryds from './pages/NewPurchaseCellInventoryds';
+import NewVendormanagementds from './pages/NewVendormanagementds';
+import NewPurchaseOrderDashboardds from './pages/NewPurchaseOrderDashboardds';
+import NewDeliveryDashboardds from './pages/NewDeliveryDashboardds';
+import NewAttendanceDashboard from './pages/NewAttendanceDashboard';
+import NewJobApplicationPage from './pages/NewJobApplicationPage';
+import NewSalaryManagement from './pages/NewSalaryManagement';
+import NewLeavesPage from './pages/NewLeavesPage';
+import NewDashmUseradmin from './pages/NewDashmUseradmin';
+import NewDashmmacadcaladmin from './pages/NewDashmmacadcaladmin';
+import NewDashmmassignmentsadmin from './pages/NewDashmmassignmentsadmin';
+import NewDashmmanouncementsadmin from './pages/NewDashmmanouncementsadmin';
+import NewDashmmcoursecoadmin from './pages/NewDashmmcoursecoadmin';
+import NewDashmmcoursematerialadmin from './pages/NewDashmmcoursematerialadmin';
+import NewDashmclassnewadmin from './pages/NewDashmclassnewadmin';
+import NewDashmattendancenewadmin from './pages/NewDashmattendancenewadmin';
+import NewDashmattyearadmin from './pages/NewDashmattyearadmin';
+import NewDashmmindmaplistadmin from './pages/NewDashmmindmaplistadmin';
+import NewDashmmindmapnodesadmin from './pages/NewDashmmindmapnodesadmin';
+import NewDashmmindmapedgesadmin from './pages/NewDashmmindmapedgesadmin';
+import NewDashmtimeslotsn1admin from './pages/NewDashmtimeslotsn1admin';
+import NewDashmworkloadn1admin from './pages/NewDashmworkloadn1admin';
+import NewDashmfacwcaladmin from './pages/NewDashmfacwcaladmin';
+import NewDashmmfaccoursesadmin from './pages/NewDashmmfaccoursesadmin';
+import NewDashmmfaccoursesattadmin from './pages/NewDashmmfaccoursesattadmin';
+import NewDashmmattcalcadmin from './pages/NewDashmmattcalcadmin';
+import NewDashmmcolevelsadmin from './pages/NewDashmmcolevelsadmin';
+import AdminNavbar from './components/AdminNavbar';
+import DashMainAdmin from './pages/DashMainAdmin';
+
+
+import NewAttendanceReportds from './pages/NewAttendanceReportds';
+import ItemCategoryds from './pages/ItemCategoryds';
+import ItemUnitds from './pages/ItemUnitds';
+import NewComunicationds from './pages/NewComunicationds';
+import NewFileMasterds from './pages/newfilemasterds';
+import NewFileMovementds from './pages/newfilemovementds';
+import Dashstudprofileallds from './pages/Dashstudprofileallds';
+import StudentProfile1ds from './pages/StudentProfile1ds';
+import NewAttendanceTimeReportds from './pages/NewAttendanceTimeReportds';
+
+
+import NewRoleListds from './pages/NewRoleListds';
+import NewPurchaseUserAddds from './pages/NewPurchaseUserAddds';
+import VendorComparisonSheetds from './pages/VendorComparisonSheetds';
+
+
+import CashApprovalds from './pages/CashApprovalds';
+import ApproveCashApprovalds from './pages/ApproveCashApprovalds';
+
+import Pipelinestageag from './pages/pipelinestageag';
+import Outcomeag from './pages/outcomeag';
+
+import RoleLayout from './components/RoleLayout';
+
+import Viewmexamtimetables from './pages/Viewmexamtimetables';
+
+import FeeSummaryReport from './pages/FeeSummaryReport';
+
+import ProgramFeeReport from './pages/ProgramFeeReport';
+import StudentLedgerReport from './pages/StudentLedgerReport';
+
+import RevenueDashboard from './pages/RevenueDashboard';
+
+import FeeCReport from './pages/FeeCReport';
+
+import Oicrmrep2 from './pages/Oicrmrep2';
+import Crmreports2 from './pages/Crmreports2';
+
+import Dailyfeesreport1 from './pages/Dailyfeesreport1';
+
+import Dashmfeespayl from './pages/Dashmfeespayl';
+
+import CrmdsReportsPage from './pages/crmdsReportsPage.jsx';
+import CrmdsOverdueLeadsPage from './pages/crmdsOverdueLeadsPage.jsx';
+import CrmdsCounsellorWiseLeadsReport from './pages/crmdsCounsellorWiseLeadsReport.jsx';
+import CrmdsPipelineStageWiseReport from './pages/crmdsPipelineStageWiseReport.jsx';
+import CrmdsSourceWiseLeadsReport from './pages/crmdsSourceWiseLeadsReport.jsx';
+import CrmdsDateWiseNewLeads from './pages/crmdsDateWiseNewLeads.jsx';
+
+import Dashmcrmstage from './pages/Dashmcrmstage';
+
+import Viewcrmstagepivot from './pages/Viewcrmstagepivot';
+import Viewcrmstagepivot2 from './pages/Viewcrmstagepivot2';
+
+import Crompipedrill from './pages/Crompipedrill';
+
+import Keiaddquestion from './pages/Keiaddquestion';
+import Keiteacherformsall from './pages/Keiteacherformsall';
+import Keiteacherperformancs from './pages/Keiteacherperformancs';
+
+
+
+
+
 
 
 
@@ -1284,6 +1464,7 @@ import StudentMasterListds from "./pages/StudentMasterListds";
 function App() {
   return (
     <Router>
+         <AdminNavbar />
       <Routes>
         {/* <Route path="/" element={<Login />} /> */}
         <Route path="/" element={<CampusWebsite />} />
@@ -1304,6 +1485,200 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+        <Route path="/keiteacherperformancs" element={<Keiteacherperformancs />} />
+        <Route path="/keiteacherformsall" element={<Keiteacherformsall />} />
+        <Route path="/keiaddquestion" element={<Keiaddquestion />} />
+
+        <Route path="/crompipedrill" element={<Crompipedrill />} />
+
+        <Route path="/viewcrmstagepivot2" element={<Viewcrmstagepivot2 />} />
+        <Route path="/viewcrmstagepivot" element={<Viewcrmstagepivot />} />
+        <Route path="/dashmcrmstage" element={<Dashmcrmstage />} />
+
+         <Route path="/crmupcommingfollowup" element={<CrmdsReportsPage />} />
+                                        <Route path="/crmds-overdue-leads" element={<CrmdsOverdueLeadsPage />} />
+                                        <Route path="/crmds-counsellor-wise-leads" element={<CrmdsCounsellorWiseLeadsReport />} />
+                                        <Route path="/crmds-pipeline-stage-wise" element={<CrmdsPipelineStageWiseReport />} />
+                                        <Route path="/crmds-source-wise-leads" element={<CrmdsSourceWiseLeadsReport />} />
+                                        <Route path="/crmdatewisenewleads" element={<CrmdsDateWiseNewLeads />} />
+
+        <Route path="/dashmfeespayl" element={<Dashmfeespayl />} />
+        <Route path="/dailyfeesreport1" element={<Dailyfeesreport1 />} />
+
+        <Route path="/crmreports2" element={<Crmreports2 />} />
+        {/* <Route path="/oicrmfleadreports" element={<oicrmfLeadReports />} /> */}
+        <Route path="/oicrmrep2" element={<Oicrmrep2 />} />
+
+        <Route path="/feecreport" element={<FeeCReport />} />
+
+        <Route path="/revenuedashboard" element={<RevenueDashboard />} />
+
+        <Route path="/programfeereport" element={<ProgramFeeReport />} />
+        <Route path="/studentledgerreport" element={<StudentLedgerReport />} />
+
+        <Route path="/feesummaryreport" element={<FeeSummaryReport />} />
+
+
+        <Route path="/viewmexamtimetables" element={<Viewmexamtimetables />} />
+
+        <Route path="/role/cash-approval" element={<RoleLayout><CashApprovalds /></RoleLayout>} />
+                                                <Route exact path="/approvecashapprovalds/:id" element={<RoleLayout><ApproveCashApprovalds /></RoleLayout>} />
+        
+                                                <Route path="/pipelinestageag" element={<Pipelinestageag />} />
+                                                <Route path="/outcomeag" element={<Outcomeag />} />
+
+        <Route path="/admin/role-list" element={<NewRoleListds />} />
+<Route path="/admin/purchase-user-add" element={<NewPurchaseUserAddds />} />
+<Route path="/admin/vendor-comparison" element={<VendorComparisonSheetds />} />
+
+        <Route path="/newattendancereportds" element={<NewAttendanceReportds />} />
+                                        <Route path="/newcomunicationds" element={<NewComunicationds />} />
+                                        <Route path="/filemasterds" element={<NewFileMasterds />} />
+                                        <Route path="/filemovementds" element={<NewFileMovementds />} />
+                                        <Route path="/dashstudprofileallds" element={<Dashstudprofileallds />} />
+                                        <Route path="/studentprofile1ds" element={<StudentProfile1ds />} />
+                                        <Route path="/attendancetimereportds" element={<NewAttendanceTimeReportds />} />
+
+                                         <Route path="/ItemCategoryds" element={<ItemCategoryds />} />
+                                        <Route path="/ItemUnitds" element={<ItemUnitds />} />
+
+
+                                        {/* NEW ADMIN ROUTES (Sticky Navbar Layout) */}
+                                        <Route path="/admin/user-list" element={<NewDashmuser />} />
+                                        <Route path="/admin/company-list" element={<NewDashmcompany />} />
+        
+                                        <Route path="/admin/role-list" element={<NewDashmroles />} />
+        
+                                        {/* Admission Routes */}
+                                        <Route path="/admin/admission-form" element={<NewDashmadmission />} />
+                                        <Route path="/admin/merit-list-all" element={<NewDashmappmodel2 />} />
+                                        <Route path="/admin/merit-list-cat" element={<NewDashmappmodel2cat />} />
+                                        <Route path="/admin/confirm-admission" element={<NewApplicationReviewPage />} />
+        
+                                        {/* Fees Routes */}
+                                        <Route path="/admin/fee-config" element={<NewDashmfeesadmin />} />
+                                        <Route path="/admin/student-ledger" element={<NewDashmledgerstudadmin />} />
+                                        <Route path="/admin/fees-collection" element={<NewDashmmfeescoladmin />} />
+        
+        
+                                        {/* Institutions Route */}
+                                        <Route path="/admin/institutions" element={<NewInstitutionsds />} />
+        
+                                        {/* Examination Routes */}
+                                        <Route path="/admin/program-list" element={<NewDashmmprogramsadmin />} />
+                                        <Route path="/admin/course-list" element={<NewDashmmcourseslistadmin />} />
+                                        <Route path="/admin/student-list" element={<NewDashmmstudents1admin />} />
+                                        <Route path="/admin/exam-schedule" element={<NewDashmexamscheduleadmin />} />
+                                        <Route path="/admin/exam-timetable" element={<NewDashmexamtimetableadmin />} />
+                                        <Route path="/admin/exam-room-allotment" element={<NewDashmexamroomadmin />} />
+                                        <Route path="/admin/exam-registration" element={<NewDashmexamadmitadmin />} />
+                                        <Route path="/admin/exam-marks" element={<NewDashmexammarksalladmin />} />
+                                        <Route path="/admin/student-alloc-eval" element={<NewDashmstudalloc1admin />} />
+                                        <Route path="/admin/solved-questions" element={<NewDashmmguidesadmin />} />
+        
+                                        <Route path="/admin/talent-exam-reg" element={<NewDashmmctalentregadmin />} />
+        
+                                        {/* LMS Routes */}
+                                        <Route path="/admin/lms-academic-calendar" element={<NewDashmmacadcaladmin />} />
+                                        <Route path="/admin/lms-assignments" element={<NewDashmmassignmentsadmin />} />
+                                        <Route path="/admin/lms-announcements" element={<NewDashmmanouncementsadmin />} />
+                                        <Route path="/admin/lms-course-outcome" element={<NewDashmmcoursecoadmin />} />
+                                        <Route path="/admin/lms-course-materials" element={<NewDashmmcoursematerialadmin />} />
+                                        <Route path="/admin/lms-class-schedule" element={<NewDashmclassnewadmin />} />
+                                        <Route path="/admin/lms-videos" element={<NewDashmlmsvideosadmin />} />
+                                        <Route path="/admin/lms-attendance" element={<NewDashmattendancenewadmin />} />
+                                        <Route path="/admin/lms-attainment-method-1" element={<NewDashmattyearadmin />} />
+                                        <Route path="/admin/lms-mindmap-list" element={<NewDashmmindmaplistadmin />} />
+                                        <Route path="/admin/lms-mindmap-nodes" element={<NewDashmmindmapnodesadmin />} />
+                                        <Route path="/admin/lms-mindmap-edges" element={<NewDashmmindmapedgesadmin />} />
+                                        <Route path="/admin/lms-time-slot" element={<NewDashmtimeslotsn1admin />} />
+                                        <Route path="/admin/lms-workload" element={<NewDashmworkloadn1admin />} />
+                                        <Route path="/admin/lms-faculty-workload-calendar" element={<NewDashmfacwcaladmin />} />
+                                        <Route path="/admin/lms-courselist-co" element={<NewDashmmfaccoursesadmin />} />
+                                        <Route path="/admin/lms-co-attainment" element={<NewDashmmfaccoursesattadmin />} />
+                                        <Route path="/admin/lms-co-attainment-calc" element={<NewDashmmattcalcadmin />} />
+                                        <Route path="/admin/lms-threshold-attainment" element={<NewDashmmcolevelsadmin />} />
+        
+                                        {/* Hostel Routes */}
+                                        <Route path="/admin/hostel-dashboard" element={<NewDashboardPageHostel />} />
+                                        <Route path="/admin/hostel-buildings" element={<NewHostelBuildingPage />} />
+                                        <Route path="/admin/hostel-rooms" element={<NewHostelRoomPage />} />
+        
+                                        {/* CRM Routes */}
+                                        <Route path="/admin/crm-leads" element={<NewLeadsds />} />
+                                        <Route path="/admin/crm-dashboard" element={<NewDashboardCrmds />} />
+        
+                                        {/* Purchase Routes */}
+                                        <Route path="/admin/purchase-dashboard" element={<NewDashboardPurchaseds />} />
+                                        <Route path="/admin/purchase-inventory" element={<NewPurchaseCellInventoryds />} />
+                                        <Route path="/admin/purchase-vendors" element={<NewVendormanagementds />} />
+                                        <Route path="/admin/purchase-orders" element={<NewPurchaseOrderDashboardds />} />
+                                        <Route path="/admin/purchase-delivery" element={<NewDeliveryDashboardds />} />
+        
+                                        {/* HR Routes */}
+                                        <Route path="/admin/hr-employee-list" element={<NewDashmUseradmin />} />
+                                        <Route path="/admin/hr-attendance" element={<NewAttendanceDashboard />} />
+                                        <Route path="/admin/hr-job-applications" element={<NewJobApplicationPage />} />
+                                        <Route path="/admin/hr-payroll" element={<NewSalaryManagement />} />
+                                        <Route path="/admin/hr-leaves" element={<NewLeavesPage />} />
+                                        <Route path="/admin-new" element={<DashMainAdmin />} />
+
+        <Route path="/institutionsds" element={<Institutionsds />} />
+
+        <Route path="/PurchaseCellInventoryds" element={<PurchaseCellInventoryds />} />
+
+
+        <Route path="/FacultyRequestApprovalds" element={<FacultyRequestApprovalds />} />
+        <Route path="/ApprovalConfigurationds" element={<ApprovalConfigurationds />} />
+
+        <Route path="/leadsdsadmin" element={<Leadsdsadmin />} />
+<Route path="/bulkleadsds" element={<BulkLeadActionsds />} />
+
+        {/* Purchasing Module Routes - NEW */}
+                                <Route path="/faculty-create-request" element={<FacultyCreateRequestds />} />
+                                <Route path="/faculty-request-status" element={<FacultyRequestStatusds />} />
+                                <Route path="/store-manager-dashboard" element={<StoreManagerDashboardds />} />
+                                <Route path="/purchase-order-dashboard" element={<PurchaseOrderDashboardds />} />
+                                <Route path="/delivery-dashboard" element={<DeliveryDashboardds />} />
+                                <Route path="/dashboard-purchasing" element={<DashboardPurchaseds />} />
+                                <Route path="/purchasing-master-data" element={<PurchasingMasterDatads />} />
+
+        <Route path="/dashmvendords" element={<Dashmvendords />} />
+<Route path="/dashmvendordsadmin" element={<Dashmvendordsadmin />} />
+<Route path="/dashmvendoritemds" element={<Dashmvendoritemds />} />
+<Route path="/dashmvendoritemdsadmin" element={<Dashmvendoritemdsadmin />} />
+<Route path="/dashmrequisationds" element={<Dashmrequisationds />} />
+<Route path="/dashmrequisationdsadmin" element={<Dashmrequisationdsadmin />} />
+<Route path="/dashmitemmasterds" element={<Dashmitemmasterds />} />
+<Route path="/dashmitemmasterdsadmin" element={<Dashmitemmasterdsadmin />} />
+<Route path="/dashmstoreitemds" element={<Dashmstoreitemds />} />
+<Route path="/dashmstoreitemdsadmin" element={<Dashmstoreitemdsadmin />} />
+<Route path="/dashmstorerequisationds" element={<Dashmstorerequisationds />} />
+<Route path="/dashmstorerequisationdsadmin" element={<Dashmstorerequisationdsadmin />} />
+<Route path="/dashmstorepoorderds" element={<Dashmstorepoorderds />} />
+<Route path="/dashmstorepoorderdsadmin" element={<Dashmstorepoorderdsadmin />} />
+<Route path="/dashmstorepoitemsds" element={<Dashmstorepoitemsds />} />
+<Route path="/dashmstorepoitemsdsadmin" element={<Dashmstorepoitemsdsadmin />} />
+<Route path="/dashmstockregisterds" element={<Dashmstockregisterds />} />
+<Route path="/dashmstockregisterdsadmin" element={<Dashmstockregisterdsadmin />} />
+
+
+        <Route path="/dashmconvdates" element={<Dashmconvdates />} />
+<Route path="/dashmconvdatesadmin" element={<Dashmconvdatesadmin />} />
+<Route path="/dashmconvdocs" element={<Dashmconvdocs />} />
+<Route path="/dashmconvdocsadmin" element={<Dashmconvdocsadmin />} />
+<Route path="/dashmconvfees" element={<Dashmconvfees />} />
+<Route path="/dashmconvfeesadmin" element={<Dashmconvfeesadmin />} />
+<Route path="/dashmconvgh" element={<Dashmconvgh />} />
+<Route path="/dashmconvghadmin" element={<Dashmconvghadmin />} />
+<Route path="/dashmconvtransport" element={<Dashmconvtransport />} />
+<Route path="/dashmconvtransportadmin" element={<Dashmconvtransportadmin />} />
+<Route path="/dashmconvguests" element={<Dashmconvguests />} />
+<Route path="/dashmconvguestsadmin" element={<Dashmconvguestsadmin />} />
+<Route path="/dashmconvattendees" element={<Dashmconvattendees />} />
+<Route path="/dashmconvattendeesadmin" element={<Dashmconvattendeesadmin />} />
+
 
          <Route path="/studentmasterlistds" element={<StudentMasterListds />} />
 

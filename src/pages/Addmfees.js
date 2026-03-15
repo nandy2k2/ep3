@@ -22,6 +22,9 @@ const feecategoryref=useRef();
 const classdateref=useRef();
 const amountref=useRef();
 const statusref=useRef();
+const studtyperef=useRef();
+const domicileref=useRef();
+const feetyperef=useRef();
 
 
     const colid=global1.colid;
@@ -98,6 +101,9 @@ const feecategory=feecategoryref.current.value;
 const classdate=classdateref.current.value;
 const amount=amountref.current.value;
 const status=statusref.current.value;
+const studtype=studtyperef.current.value;
+const domicile=domicileref.current.value;
+const feetype=feetyperef.current.value;
 
 
 //alert(coursetitle + '-' + dateadded);
@@ -120,6 +126,9 @@ feecategory:feecategory,
 classdate:classdate,
 amount:amount,
 status:status,
+studtype:studtype,
+domicile:domicile,
+feetype:feetype,
 
 status1:'Submitted',
             comments:''
@@ -191,6 +200,16 @@ sx={{ width: '100%'}}
 
 <p>Fee category</p>
 <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={feecategoryref} /><br /><br />
+
+<p>Student type</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={studtyperef} /><br /><br />
+
+<p>Domicile</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={domicileref} /><br /><br />
+
+<p>Fee type</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={feetyperef} /><br /><br />
+
 
 <LocalizationProvider dateAdapter={AdapterDayjs}><DatePicker label="Due date" inputRef={classdateref} sx={{ width: "100%"}} /></LocalizationProvider><br /><br />
 

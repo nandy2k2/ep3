@@ -22,6 +22,7 @@ import ApiIcon from '@mui/icons-material/Api';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import SourceIcon from '@mui/icons-material/Source';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import { List, Typography } from '@mui/material';
 import global1 from './global1';
 
@@ -70,7 +71,7 @@ export function menuitemscrm() {
     <div style={{ overflowY: 'scroll', height: 600, width: 300, fontSize: 10 }}>
 
       {/* Dashboard Section */}
-      <ListItem button component={RouterLink} to="/dashdashfacnew">
+      <ListItem button component={RouterLink} to="/crmh-dashboard">
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
@@ -84,18 +85,12 @@ export function menuitemscrm() {
           {open && <Typography sx={{ fontSize: 14 }}>CRM</Typography>}
         </AccordionSummary>
         <AccordionDetails>
-          <ListItem button component={RouterLink} to="/Dashmcrmh1">
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="CRM Dashboard" />}
-          </ListItem>
 
           <ListItem button component={RouterLink} to="/dashboardcrmds">
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
-            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="CRM Dashboard New" />}
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="CRM Dashboard" />}
           </ListItem>
 
           <ListItem button component={RouterLink} to="/leadsds">
@@ -118,6 +113,74 @@ export function menuitemscrm() {
             </ListItemIcon>
             {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Sources" />}
           </ListItem>
+          <ListItem button component={RouterLink} to="/oicrmrep2">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="CRM reports 1" />}
+          </ListItem>
+
+          <ListItem button component={RouterLink} to="/crmupcommingfollowup">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Upcomming Followups" />}
+          </ListItem>
+          <ListItem button component={RouterLink} to="/crmds-overdue-leads">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Overdue Leads" />}
+          </ListItem>
+          <ListItem button component={RouterLink} to="/crmds-counsellor-wise-leads">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Counsellor Wise Leads" />}
+          </ListItem>
+          <ListItem button component={RouterLink} to="/crmds-pipeline-stage-wise">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Pipeline Stage Wise" />}
+          </ListItem>
+          <ListItem button component={RouterLink} to="/crmds-source-wise-leads">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Source Wise Leads" />}
+          </ListItem>
+          <ListItem button component={RouterLink} to="/dashmcrmstage">
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Counselor stage wise" />}
+          </ListItem>
+          <ListItem button component={RouterLink} to="/crmdatewisenewleads">
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Date Wise New Leads" />}
+          </ListItem>
+          {/* <ListItem button component={RouterLink} to="/viewcrmstagepivot">
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Counsellot stage pivot" />}
+          </ListItem> */}
+          <ListItem button component={RouterLink} to="/viewcrmstagepivot2">
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Counsellot stage pivot 2" />}
+          </ListItem>
+          <ListItem button component={RouterLink} to="/crompipedrill">
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="pipeline stage drilldown" />}
+          </ListItem>
+
         </AccordionDetails>
       </Accordion>
 
@@ -226,6 +289,47 @@ export function menuitemscrm() {
             </ListItemIcon>
             {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Approve Tasks" />}
           </ListItem>
+
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{ fontSize: 14 }}>Settings</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+
+
+          <ListItem button component={RouterLink} to="/dashmquotanew">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="AI Credits" />}
+          </ListItem>
+
+          <ListItem button component={RouterLink} to="/dashawsconfig">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="AWS config" />}
+          </ListItem>
+
+          <ListItem button component={RouterLink} to="/dashmpassword">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Change password" />}
+          </ListItem>
+
+          <ListItem button component={RouterLink} to="/signinpay">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Subscription" />}
+          </ListItem>
+
+
 
         </AccordionDetails>
       </Accordion>

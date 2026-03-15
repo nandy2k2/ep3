@@ -42,6 +42,18 @@ const Dashboardds = () => {
       route: "/leadsds",
     },
     {
+      title: "Leads Management Admin",
+      description: "View and manage all leads",
+      icon: <LeadsIcon sx={{ fontSize: 48, color: "#016306" }} />,
+      route: "/leadsdsadmin",
+    },
+    {
+      title: "Leads Bulk Action",
+      description: "View and manage all leads",
+      icon: <LeadsIcon sx={{ fontSize: 48, color: "#0a2b8dff" }} />,
+      route: "/bulkleadsds",
+    },
+    {
       title: "Program Master",
       description: "Manage courses and programs",
       icon: <ProgramIcon sx={{ fontSize: 48, color: "#ed6c02" }} />,
@@ -87,24 +99,38 @@ const Dashboardds = () => {
       title: "Source Management",
       description: "Manage lead sources for tracking",
       icon: <SourceIcon sx={{ fontSize: 48, color: "#00897b" }} />,
+      icon: <SourceIcon sx={{ fontSize: 48, color: "#00897b" }} />,
       route: "/sourceds",
+    },
+    {
+      title: "Pipeline Stage Config",
+      description: "Manage CRM pipeline stages",
+      icon: <SettingsIcon sx={{ fontSize: 48, color: "#4f46e5" }} />,
+      route: "/pipelinestageag",
+    },
+    {
+      title: "Outcome Config",
+      description: "Manage CRM outcomes",
+      icon: <SettingsIcon sx={{ fontSize: 48, color: "#F59E0B" }} />,
+      route: "/outcomeag",
     },
   ];
 
   const handleLogout = () => {
-      if(global1.role === "Admin") {
-        navigate("/dashmncas11admin")
-      }else {
-        navigate("/dashdashfacnew");
-      }
-      
-    };
+    if (global1.role === "Admin") {
+      navigate("/dashmncas11admin")
+    } else {
+      navigate("/dashdashfacnew");
+    }
+
+  };
+
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "#f4f6f8" }}>
       <AppBar position="static" sx={{ background: "linear-gradient(90deg, #1565c0 0%, #0d47a1 100%)", boxShadow: "0 4px 20px 0 rgba(0,0,0,0.1)" }}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 600 }}>
-            CRM - Dashboard
+            Career College CRM - Dashboard
           </Typography>
           <Typography variant="body1" sx={{ mr: 2, fontWeight: 500 }}>
             Welcome, {global1.name}
@@ -118,7 +144,7 @@ const Dashboardds = () => {
               "&:hover": { bgcolor: "rgba(255,255,255,0.1)" }
             }}
           >
-            Back
+            Home
           </Button>
         </Toolbar>
       </AppBar>

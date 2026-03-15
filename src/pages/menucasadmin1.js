@@ -767,6 +767,59 @@ export function mainListItems({ open }) {
         </AccordionDetails>
       </Accordion>
 
+        <Accordion>
+                <AccordionSummary aria-controls="panel2-content" id="panel2-header">
+                  <SettingsIcon sx={{ marginRight: 1 }} />
+                  {open && <Typography sx={{fontSize: 14}}>Convocation</Typography>}
+                </AccordionSummary>
+                <AccordionDetails>
+                   <ListItem button component={RouterLink} to="/dashmconvdatesadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Convocation master" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmconvdocsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Convocation douments" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmconvfeesadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Convocation fees" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmconvghadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Guest house allotment" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmconvtransportadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Transport requirements" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmconvguestsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Convocation guests" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmconvattendeesadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Year" />}
+</ListItem>
+
+
+                </AccordionDetails>
+                </Accordion>
+
 
 
   <Accordion>
@@ -1219,6 +1272,74 @@ export function mainListItems({ open }) {
 
         </AccordionDetails>
       </Accordion>
+
+       <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Store and Purchase</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/dashmvendordsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor master" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmvendoritemdsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor items list" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmrequisationdsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Faculty requisition" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmitemmasterdsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Item master" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmstoreitemdsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Store Inventory" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmstorerequisationdsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Store requisition" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmstorepoorderdsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Store PO" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmstorepoitemsdsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="PO Items" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmstockregisterdsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Stock register" />}
+</ListItem>
+
+
+
+
+        </AccordionDetails>
+        </Accordion>
 
 
       <Accordion>

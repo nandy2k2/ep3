@@ -197,9 +197,12 @@ const Signup = () => {
              
                 // navigate('/dashmmfaccourses')
                 navigate('/dashdashfacnew');
-            } else if (response.data.role=='Admin') {
+                } else if (response.data.role=='Adminold') {
                 
                 navigate('/dashmncas11admin')
+            } else if (response.data.role=='Admin') {
+                
+                navigate('/admin-new');
             } else if (response.data.role=='Super') {
                 //history.replace('/dashmydetails');
                 // return <Navigate to="/viewcourse1" />;

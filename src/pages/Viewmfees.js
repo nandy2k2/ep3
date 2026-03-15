@@ -177,6 +177,48 @@ return '';
 }
 }
  },
+ {
+field:'studtype',
+headerName:'Student type',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+ {
+field:'domicile',
+headerName:'Domicile',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+ {
+field:'feetype',
+headerName:'Fee type',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
 {
 field:'classdate',
 headerName:'Due date',
@@ -359,6 +401,9 @@ const feecategory=user.feecategory;
 const classdate=new Date(user.classdate);
 const amount=user.amount;
 const status=user.status;
+const studtype=user.studtype;
+const domicile=user.domicile;
+const feetype=user.feetype;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
@@ -379,6 +424,9 @@ feecategory:feecategory,
 classdate:classdate,
 amount:amount,
 status:status,
+studtype:studtype,
+feetype:feetype,
+domicile:domicile,
 
             status1:'Submitted',
             comments:''
