@@ -4,9 +4,7 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmclassenr1';
-import AddUserModalBulk from './Addmclassenr1bulk';
-import AddUserModalBulkall from './Addmclassenr1bulkall';
+import AddUserModal from './AddmkeiquestionModel';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -21,8 +19,6 @@ function ViewPage() {
     const [results, setResults] = useState([]);
     const [second, setSecond] = useState([]);
     const [openAdd, setOpenAdd] = useState(false);
-    const [openAddBulk, setOpenAddBulk] = useState(false);
-    const [openAddBulkall, setOpenAddBulkall] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [openExport, setOpenExport] = useState(false);
@@ -55,7 +51,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deleteclassenr1byfac', {
+        const response = await ep1.get('/api/v2/deletekeiquestionModelbyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -69,108 +65,24 @@ function ViewPage() {
 
     const columns = [
         // { field: '_id', headerName: 'ID' },
+        {
+            field: 'user',
+            headerName: 'Added by',
+            type: 'text',
+            width: 200,
+            editable: false,
+        },
+        {
+            field: 'name',
+            headerName: 'Name',
+            type: 'text',
+            width: 200,
+            editable: false,
+        },
     
      {
 field:'year',
-headerName:'Academic year',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'program',
-headerName:'Program',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'programcode',
-headerName:'Program code',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'course',
-headerName:'Course',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'coursecode',
-headerName:'Course code',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'student',
-headerName:'Student',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'regno',
-headerName:'Reg no',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'learning',
-headerName:'Learning level',
+headerName:'Year',
 type:'dropdown',
 width:200,
 editable:true,
@@ -183,22 +95,8 @@ return '';
 }
  },
 {
-field:'gender',
-headerName:'Gender',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'classgroup',
-headerName:'Class group',
+field:'role',
+headerName:'Role',
 type:'text',
 width:200,
 editable:true,
@@ -211,9 +109,9 @@ return '';
 }
  },
 {
-field:'coursetype',
-headerName:'Course type',
-type:'dropdown',
+field:'category',
+headerName:'Category',
+type:'text',
 width:200,
 editable:true,
 valueFormatter: (params) => {
@@ -225,23 +123,9 @@ return '';
 }
  },
 {
-field:'semester',
-headerName:'Semester',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'active',
-headerName:'Is active',
-type:'dropdown',
+field:'expectation',
+headerName:'Expectation',
+type:'text',
 width:200,
 editable:true,
 valueFormatter: (params) => {
@@ -253,7 +137,7 @@ return '';
 }
  },
 
-  
+    
           { field: 'actions', headerName: 'Actions', width: 100, renderCell: (params) => {
             return (
               <Button
@@ -268,55 +152,45 @@ return '';
 
 
     const coursetitleref = useRef();
-
-    const coursename=global1.faccoursename;
-    const coursecode=global1.faccoursecode;
-    const lmsyear=global1.lmsyear;
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getclassenr1byfac', {
+      const response = await ep1.get('/api/v2/keiquestionModeldocs', {
         params: {
           token: token,
           colid: colid,
-          user: user,
-          coursecode: coursecode,
-          year:lmsyear
+          user: user
         }
       });
       setRows(response.data.data.classes);
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getclassenr1countbyfac', {
-        params: {
-          token: token,
-          colid: colid,
-          user: user,
-          coursecode: coursecode,
-          year:lmsyear
-        }
-      });
-      setResults(response.data.data.classes);
-    };
-
-    const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getclassenr1secondbyfac', {
-        params: {
-          token: token,
-          colid: colid,
-          user: user,
-          coursecode: coursecode,
-          year:lmsyear
-        }
-      });
-      setSecond(response.data.data.classes);
-    };
-
-    const refreshpage=async()=> {
-      fetchViewPage();
-      getgraphdata();
-      getgraphdatasecond();
-    }
+        const response = await ep1.get('/api/v2/getkeiquestionModelcount', {
+          params: {
+            token: token,
+            colid: colid,
+            user: user
+          }
+        });
+        setResults(response.data.data.classes);
+      };
+  
+      const getgraphdatasecond = async () => {
+        const response = await ep1.get('/api/v2/getkeiquestionModelsecond', {
+          params: {
+            token: token,
+            colid: colid,
+            user: user
+          }
+        });
+        setSecond(response.data.data.classes);
+      };
+  
+      const refreshpage=async()=> {
+        fetchViewPage();
+        getgraphdata();
+        getgraphdatasecond();
+      }
   
     useEffect(() => {
       fetchViewPage();
@@ -337,14 +211,6 @@ return '';
     const handleOpenAdd = () => {
       setOpenAdd(true);
     };
-
-    const handleOpenAddBulk = () => {
-        setOpenAddBulk(true);
-      };
-
-       const handleOpenAddBulkall = () => {
-        setOpenAddBulkall(true);
-      };
   
     const handleCloseAdd = () => {
       setOpenAdd(false);
@@ -353,22 +219,6 @@ return '';
         price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
       });
     };
-
-    const handleCloseAddBulk = () => {
-        setOpenAddBulk(false);
-        setNewUser({
-          coursecode: '', coursetitle: '', year: '', coursetype: '', duration: '', offeredtimes: '', imagelink: '',
-          price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
-        });
-      };
-
-       const handleCloseAddBulkall = () => {
-        setOpenAddBulkall(false);
-        setNewUser({
-          coursecode: '', coursetitle: '', year: '', coursetype: '', duration: '', offeredtimes: '', imagelink: '',
-          price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
-        });
-      };
   
     const handleOpenEdit = (user) => {
       global1.coursetitle = user.coursetitle;
@@ -389,23 +239,14 @@ return '';
     
             //const title=titleref.current.value;
             const year=user.year;
-const program=user.program;
-const programcode=user.programcode;
-const course=user.course;
-const coursecode=user.coursecode;
-const student=user.student;
-const regno=user.regno;
-const learning=user.learning;
-const gender=user.gender;
-const classgroup=user.classgroup;
-const coursetype=user.coursetype;
-const semester=user.semester;
-const active=user.active;
+const role=user.role;
+const category=user.category;
+const expectation=user.expectation;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updateclassenr1byfac', {
+            const response =await ep1.get('/api/v2/updatekeiquestionModelbyfac', {
             params: {
             id: user._id,
             user: user.user,
@@ -413,18 +254,9 @@ const active=user.active;
             name: user.name,
             colid: colid,
             year:year,
-program:program,
-programcode:programcode,
-course:course,
-coursecode:coursecode,
-student:student,
-regno:regno,
-learning:learning,
-gender:gender,
-classgroup:classgroup,
-coursetype:coursetype,
-semester:semester,
-active:active,
+role:role,
+category:category,
+expectation:expectation,
 
             status1:'Submitted',
             comments:''
@@ -503,22 +335,6 @@ active:active,
            </Button>
            <Button
              variant="contained"
-             color="success"
-             style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '80px' }}
-             onClick={handleOpenAddBulk}
-           >
-             Bulk
-           </Button>
-            <Button
-             variant="contained"
-             color="success"
-             style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '80px' }}
-             onClick={handleOpenAddBulkall}
-           >
-             Bulk all
-           </Button>
-           <Button
-             variant="contained"
              color="primary"
              style={{ padding: '5px 10px', fontSize: '12px', marginRight: '4px', height: '30px', width: '80px' }}
              onClick={() => setOpenExport(true)}
@@ -534,12 +350,16 @@ active:active,
              Refresh
            </Button>
          </Box>
+
+
+
+
           <Grid container spacing={3}>
 
           <Grid item xs={6}>
           
           <div style={{textAlign: 'center'}}>
-          Learning level summary
+          Year
           </div>
           <br />
         <BarChart
@@ -576,7 +396,7 @@ active:active,
 <Grid item xs={6}>
 
 <div style={{textAlign: 'center'}}>
-          Gender summary
+          Category
           </div>
  <br />
  <PieChart
@@ -597,13 +417,10 @@ height={250}
 </Grid>
 
 
-
             <Grid item xs={12}>
               <Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}>
               {/* <h1>Table Component</h1> */}
-             
-
-
+               
                 <DataGrid getRowId={(row) => row._id} 
                 
         rows={rows}
@@ -626,22 +443,6 @@ height={250}
                 <AddUserModal
                   open={openAdd}
                   handleClose={handleCloseAdd}
-                  handleInputChange={handleInputChange}
-                  handleAddUser={handleAddUser}
-                  newUser={newUser}
-                />
-
-                <AddUserModalBulk
-                  open={openAddBulk}
-                  handleClose={handleCloseAddBulk}
-                  handleInputChange={handleInputChange}
-                  handleAddUser={handleAddUser}
-                  newUser={newUser}
-                />
-
-                <AddUserModalBulkall
-                  open={openAddBulkall}
-                  handleClose={handleCloseAddBulkall}
                   handleInputChange={handleInputChange}
                   handleAddUser={handleAddUser}
                   newUser={newUser}

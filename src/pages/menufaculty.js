@@ -401,6 +401,66 @@ export function menuitems () {
         </AccordionDetails>
         </Accordion>
 
+         <Accordion>
+                <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+                  <BusinessIcon sx={{ marginRight: 1 }} />
+                  {open && <Typography sx={{ fontSize: 14 }}>Appraisal</Typography>}
+                </AccordionSummary>
+                <AccordionDetails>
+        
+                   {/* <ListItem button component={RouterLink} to="/dashmkeiyear">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Appraisal year" />}
+                  </ListItem>
+        
+                    <ListItem button component={RouterLink} to="/keiaddquestion">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Questions" />}
+                  </ListItem>
+        
+                   <ListItem button component={RouterLink} to="/dashmkeiquestionModel">
+        <ListItemIcon>
+        <PersonIcon />
+        </ListItemIcon>
+        {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="KEI Questions" />}
+        </ListItem> */}
+        
+        <ListItem button component={RouterLink} to="/dashmkeiyearmy">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Appraisal form" />}
+                  </ListItem>
+        
+        
+                   {/* <ListItem button component={RouterLink} to="/keiteacherformsall">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Appraisal form" />}
+                  </ListItem> */}
+        
+                   {/* <ListItem button component={RouterLink} to="/keiteacherperformancs">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Appraisal report" />}
+                  </ListItem>
+        
+                   <ListItem button component={RouterLink} to="/keifacultyreport">
+                    <ListItemIcon>
+                      <PersonIcon />
+                    </ListItemIcon>
+                    {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Faculty Appraisal" />}
+                  </ListItem> */}
+        
+                </AccordionDetails>
+                </Accordion>
+
         <Accordion>
                 <AccordionSummary aria-controls="panel3-content" id="panel3-header">
                   <BusinessIcon sx={{ marginRight: 1 }} />

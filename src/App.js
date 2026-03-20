@@ -1423,7 +1423,22 @@ import Crompipedrill from './pages/Crompipedrill';
 
 import Keiaddquestion from './pages/Keiaddquestion';
 import Keiteacherformsall from './pages/Keiteacherformsall';
+import Keiteacherformsall1 from './pages/Keiteacherformsall1';
 import Keiteacherperformancs from './pages/Keiteacherperformancs';
+
+import Pucadmissionform from './pages/Pucadmissionform';
+
+import DashmkeiquestionModel from './pages/DashmkeiquestionModel';
+import DashmkeiquestionModeladmin from './pages/DashmkeiquestionModeladmin';
+
+import Keifacultyreport from './pages/Keifacultyreport';
+
+import Dashmkeiyear from './pages/Dashmkeiyear';
+import Dashmkeiyearadmin from './pages/Dashmkeiyearadmin';
+
+import Dashmkeiyearmy from './pages/Dashmkeiyearmy';
+
+
 
 
 
@@ -1485,6 +1500,21 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+        <Route path="/dashmkeiyearmy" element={<Dashmkeiyearmy />} />
+        <Route path="/dashmkeiyear" element={<Dashmkeiyear />} />
+        <Route path="/dashmkeiyearadmin" element={<Dashmkeiyearadmin />} />
+
+        <Route path="/keiteacherformsall1" element={<Keiteacherformsall1 />} />
+
+
+        <Route path="/keifacultyreport" element={<Keifacultyreport />} />
+
+        <Route path="/dashmkeiquestionModel" element={<DashmkeiquestionModel />} />
+        <Route path="/dashmkeiquestionModeladmin" element={<DashmkeiquestionModeladmin />} />
+
+
+        <Route path="/pucadmissionform" element={<Pucadmissionform />} />
 
         <Route path="/keiteacherperformancs" element={<Keiteacherperformancs />} />
         <Route path="/keiteacherformsall" element={<Keiteacherformsall />} />

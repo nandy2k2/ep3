@@ -7,6 +7,8 @@ import global1 from "./global1";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+
+
 import {
 Container,
 Typography,
@@ -31,7 +33,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const KeiTeacherForm = ()=>{
 
+  
+
     const navigate = useNavigate();
+    const appraisalyear=global1.appraisalyear;
 
 const [questions,setQuestions] = useState([]);
 const [grouped,setGrouped] = useState({});
@@ -55,7 +60,7 @@ loadQuestions();
 const loadQuestions = async()=>{
 
 const res = await ep1.get(
-`/kei/questions?colid=${colid}`
+`/kei/questions1?colid=${colid}&year=${appraisalyear}&role=${global1.role}`
 );
 
 const data = res.data.map(q=>({
@@ -131,7 +136,11 @@ setScore(Math.round((yesCount/total)*100));
 
 const saveData=async()=>{
 
+  //alert(global1.appraisalyear);
+  
 const payload = questions.map(q=>({
+
+  
 
 questionId:q._id,
 question:q.expectation,
@@ -140,7 +149,8 @@ response:q.response,
 score:q.response==="Yes"?1:0,
 name,
 user,
-colid
+colid,
+year:global1.appraisalyear
 
 }));
 
@@ -150,6 +160,7 @@ payload
 );
 
 alert("Saved Successfully");
+navigate('/dashdashfacnew');
 
 };
 

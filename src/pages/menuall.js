@@ -861,12 +861,34 @@ export function menuitemsall() {
         </AccordionSummary>
         <AccordionDetails>
 
+           <ListItem button component={RouterLink} to="/dashmkeiyear">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Appraisal year" />}
+          </ListItem>
+
             <ListItem button component={RouterLink} to="/keiaddquestion">
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
             {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Questions" />}
           </ListItem>
+
+           <ListItem button component={RouterLink} to="/dashmkeiquestionModel">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="KEI Questions" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/dashmkeiyearmy">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="My Appraisal year" />}
+          </ListItem>
+
 
            <ListItem button component={RouterLink} to="/keiteacherformsall">
             <ListItemIcon>
@@ -880,6 +902,13 @@ export function menuitemsall() {
               <PersonIcon />
             </ListItemIcon>
             {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Appraisal report" />}
+          </ListItem>
+
+           <ListItem button component={RouterLink} to="/keifacultyreport">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Faculty Appraisal" />}
           </ListItem>
 
         </AccordionDetails>
@@ -2046,6 +2075,13 @@ export function menuitemsall() {
               <PersonIcon />
             </ListItemIcon>
             {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Merit List by Category" />}
+          </ListItem>
+
+           <ListItem button component={RouterLink} to="/pucadmissionform">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="PU admission" />}
           </ListItem>
 
           <ListItem button component={RouterLink} to="/applicationreviewpage">
