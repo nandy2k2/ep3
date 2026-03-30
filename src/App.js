@@ -1438,6 +1438,14 @@ import Dashmkeiyearadmin from './pages/Dashmkeiyearadmin';
 
 import Dashmkeiyearmy from './pages/Dashmkeiyearmy';
 
+import Dashmunivampus from './pages/Dashmunivampus';
+import Dashmunivampusadmin from './pages/Dashmunivampusadmin';
+import Dashmunivfac from './pages/Dashmunivfac';
+import Dashmunivfacadmin from './pages/Dashmunivfacadmin';
+import Dashmunivdep from './pages/Dashmunivdep';
+import Dashmunivdepadmin from './pages/Dashmunivdepadmin';
+
+
 
 
 
@@ -1500,6 +1508,14 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+        <Route path="/dashmunivampus" element={<Dashmunivampus />} />
+        <Route path="/dashmunivampusadmin" element={<Dashmunivampusadmin />} />
+        <Route path="/dashmunivfac" element={<Dashmunivfac />} />
+        <Route path="/dashmunivfacadmin" element={<Dashmunivfacadmin />} />
+        <Route path="/dashmunivdep" element={<Dashmunivdep />} />
+        <Route path="/dashmunivdepadmin" element={<Dashmunivdepadmin />} />
+
 
         <Route path="/dashmkeiyearmy" element={<Dashmkeiyearmy />} />
         <Route path="/dashmkeiyear" element={<Dashmkeiyear />} />

@@ -122,31 +122,39 @@ function ViewPage() {
 
         // });
 
+        
+
         const paymode=paymoderef.current.value;
             const payref=payrefref.current.value;
-            const concession=parseInt(concessionref.current.value);
+            var concession=parseInt(concessionref.current.value);
             const doclink=doclinkref.current.value;
-            const paid=parseInt(paidref.current.value);
+            var paid=parseInt(paidref.current.value);
 
-
+            if(paid==0) {
+              // paid=amount - concession;
+              alert('Please eter paid amount');
+              return;
+            }
             
 
 
             var amount=parseInt(row.amount);
-            if(concession>amount) {
-              alert('Concession cannot be greater than fees');
+            var ebalance=parseInt(row.balance);
+            var econcession=parseInt(row.concession);
+            var epaid=parseInt(row.paid);
+            alert(ebalance + ',' + econcession + ',' + epaid);
+            if(concession>ebalance) {
+              alert('Concession cannot be greater than remaining fees');
               return;
             }
             var total1=paid + concession;
-            if(total1>amount) {
-              alert('Concession + Paid cannot be greater than fees');
+            if(total1>ebalance) {
+              alert('Concession + Paid cannot be greater than remaining fees');
               return;
             }
-            if(paid==0) {
-              paid=amount - concession;
-            }
+           
             var newamount=amount-concession;
-            var balance=amount-concession-paid;
+            var balance=ebalance-concession-paid;
             var cash=0;
             var neft=0;
             var pg=0;
@@ -192,14 +200,24 @@ function ViewPage() {
                 }
             });
 
+            //alert(user._id + ',' + user.id);
+
+            var statusfinal='Paid';
+            if(balance > 0) {
+              statusfinal='Active';
+            }
+
+            var newconcession=econcession + concession;
+            var newpaid=epaid + paid;
+
             
 
           const response1 =await ep1.get('/api/v2/updateledgerstud', {
                       params: {
-                      id: user._id,
-                      user: user.user,
+                      id: row._id,
+                      user: row.user,
                       token:token,
-                      name: user.name,
+                      name: row.name,
                       colid: colid,
           //             academicyear:row.academicyear,
           // student:row.student,
@@ -210,20 +228,25 @@ function ViewPage() {
           // feecategory:row.feecategory,
           // classdate:row.classdate,
           // amount:row.amount,
-          paid:row.amount,
-          concession:concession,
+          paid:newpaid,
+          concession:newconcession,
           balance: balance,
           paymode:paymode,
           paydetails:payref,
+          cash: cash,
+          upi: upi,
+          cheque:cheque,
+          neft:neft,
+          pg:pg,
           installment:'NA',
-          status:'Paid',
+          status:statusfinal,
           
                       status1:'Submitted',
                       comments:''
                       
                       }
                       });
-        alert(response.data.status);
+        alert(response1.data.status);
         const a = await fetchViewPage();
     };
 
@@ -331,6 +354,48 @@ valueFormatter: params => dayjs(params?.value).format('DD/MM/YYYY'),
 {
 field:'amount',
 headerName:'Amount',
+type:'number',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+ {
+field:'paid',
+headerName:'Paid',
+type:'number',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+ {
+field:'concession',
+headerName:'Concession',
+type:'number',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+ {
+field:'balance',
+headerName:'Balance',
 type:'number',
 width:200,
 editable:true,
@@ -747,13 +812,13 @@ status:status,
 
                          <TextField id="outlined-basic"  type="text" sx={{ width: "100%", marginLeft: 3}} label="Payment reference"  variant="outlined" inputRef={payrefref} />
 
-                         <TextField id="outlined-basic"  type="text" sx={{ width: "100%", marginLeft: 3}} label="Paid (0 for full)" value="0"  variant="outlined" inputRef={paidref} />
+                         <TextField id="outlined-basic"  type="text" sx={{ width: "100%", marginLeft: 3}} label="Paid (0 for full)"  variant="outlined" inputRef={paidref} />
 
                          </Box>
                          <br /><br />
                           <Box display="flex" spacing={4}>
 
-                         <TextField id="outlined-basic"  type="number" sx={{ width: "100%", marginLeft: 3}} label="Concession amount" value="0"  variant="outlined" inputRef={concessionref} />
+                         <TextField id="outlined-basic"  type="number" sx={{ width: "100%", marginLeft: 3}} label="Concession amount"  variant="outlined" inputRef={concessionref} />
 
                          <TextField id="outlined-basic"  type="text" sx={{ width: "100%", marginLeft: 3}} label="Document link"  variant="outlined" inputRef={doclinkref} />
 

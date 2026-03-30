@@ -2559,6 +2559,26 @@ export function menuitemsall() {
         </AccordionSummary>
         <AccordionDetails>
 
+           <ListItem button component={RouterLink} to="/dashmunivampus">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Campus" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmunivfac">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Institution Schools and Faculties" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmunivdep">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Institution departments" />}
+</ListItem>
+
+
           <ListItem button component={RouterLink} to="/dashmmprograms">
             <ListItemIcon>
               <PersonIcon />

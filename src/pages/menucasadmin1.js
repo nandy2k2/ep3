@@ -353,6 +353,26 @@ export function mainListItems({ open }) {
         </AccordionSummary>
         <AccordionDetails>
 
+           <ListItem button component={RouterLink} to="/dashmunivampusadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Campus" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmunivfacadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Institution Schools and Faculties" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmunivdepadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Institution departments" />}
+</ListItem>
+
+
 
         <ListItem button component={RouterLink} to="/dashmmprogramsadmin">
 <ListItemIcon>
