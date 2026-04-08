@@ -335,6 +335,21 @@ return '';
 }
 }
  },
+
+{
+field:'feecounter',
+headerName:'Fee counter',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
 {
 field:'installment',
 headerName:'Installment',
@@ -538,6 +553,9 @@ const installment=user.installment;
 const balance=user.balance;
 const concession=user.concession;
 const paid=user.paid;
+const feebook=user.feebook;
+const cashbook=user.cashbook;
+const feecounter=user.feecounter;
 const status=user.status;
 
             //alert(coursetitle + ' - ' + studentscompleted);
@@ -565,6 +583,9 @@ balance:balance,
 paymode:paymode,
 paydetails:paydetails,
 installment:installment,
+feebook:feebook,
+cashbook:cashbook,
+feecounter:feecounter,
 status:status,
 
             status1:'Submitted',

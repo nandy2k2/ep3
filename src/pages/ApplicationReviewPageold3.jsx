@@ -42,12 +42,6 @@ const ApplicationReviewPage = () => {
     semester: "",
     feecategory: "",
   });
-  const [filterOptions, setFilterOptions] = useState({
-    programcodes: [],
-    academicyears: [],
-    semesters: [],
-    feecategories: []
-  });
   const [feeAmount, setFeeAmount] = useState(null);
   const [feeData, setFeeData] = useState(null);
   const [snackbar, setSnackbar] = useState({
@@ -73,19 +67,6 @@ const ApplicationReviewPage = () => {
     }
   };
 
-  const fetchFilterOptions = async () => {
-    try {
-      const { data } = await ep1.get("/api/v2/getfeesfiltervalues", {
-        params: { colid: global1.colid }
-      });
-      if (data.success) {
-        setFilterOptions(data.data);
-      }
-    } catch (err) {
-      console.error("Error fetching filter options:", err);
-    }
-  };
-
   const fetchFeeAmount = async () => {
     try {
       const res = await ep1.get("/api/v2/filterfees", { params: filters });
@@ -98,7 +79,6 @@ const ApplicationReviewPage = () => {
 
   useEffect(() => {
     fetchApplications();
-    fetchFilterOptions();
   }, [filters.colid]);
 
   /* Registration number helpers */
@@ -126,8 +106,7 @@ const ApplicationReviewPage = () => {
     }
     // Approved – open dialog
     setCurrentApp(app);
-    let programcodereg = app.programOptingFor ? app.programOptingFor : filters.programcode;
-    setCustomRegno(generateRegno(programcodereg, filters.academicyear));
+    setCustomRegno(generateRegno(app.programOptingFor, filters.academicyear));
     setShowRegnoDialog(true);
   };
 
@@ -167,28 +146,18 @@ const ApplicationReviewPage = () => {
         password: app.password,
         role: "Student",
         regno,
-        programcode: app.programOptingFor || filters.programcode,
+        programcode: app.programOptingFor,
         admissionyear: filters.academicyear,
         semester: filters.semester,
         section: "A",
-        gender: app.gender || "",
-        department: app.programOptingFor || filters.programcode,
+        gender: "",
+        department: app.programOptingFor,
         colid: Number(global1.colid),
         status: 1,
-        lastlogin: "2040-03-05T16:48:19+05:30",
-        dob: app.dob || app.dateOfBirth || "",
-        fathername: app.fatherName || app.fathername || app.parentName || "",
-        mothername: app.motherName || app.mothername || "",
-        category: app.category || app.caste || "",
-        address: app.address || (typeof app.permanentAddress === 'string' ? app.permanentAddress : app.permanentAddress?.addressLine1) || "",
-        quota: app.quota || app.reservedCategory || "",
-        religion: app.religion || "",
-        nationality: app.nationality || "",
       };
 
       const userRes = await ep1.post("/api/v2/createuser", userPayload);
-      const studentId = userRes?.data?.data?._id;
-      if (!studentId) throw new Error("User creation failed: " + (userRes?.data?.message || "Unknown error"));
+      if (!userRes?.data?.data) throw new Error("User creation failed");
 
       /* Create ledger entry */
       const fee = feeData;
@@ -214,7 +183,7 @@ const ApplicationReviewPage = () => {
         classdate: new Date(),
         status: "unpaid",
         programcode: app.programOptingFor,
-        admissionyear: (filters.academicyear || "").split("-")[0] || new Date().getFullYear().toString(),
+        admissionyear: new Date().getFullYear(),
       };
 
       await ep1.post("/api/v2/createledgerstud", ledgerPayload);
@@ -237,18 +206,12 @@ const ApplicationReviewPage = () => {
         {/* Filter row */}
         <Grid container spacing={2} justifyContent="center" mb={3}>
           <Grid item xs={12} sm={2}>
-            <FormControl fullWidth>
-              <InputLabel>Program Code</InputLabel>
-              <Select
-                value={filters.programcode}
-                onChange={(e) => handleFilterChange("programcode", e.target.value)}
-                label="Program Code"
-              >
-                {filterOptions.programcodes.map((code) => (
-                  <MenuItem key={code} value={code}>{code}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <TextField
+              label="Program Code"
+              value={filters.programcode}
+              onChange={(e) => handleFilterChange("programcode", e.target.value)}
+              fullWidth
+            />
           </Grid>
           <Grid item xs={12} sm={2}>
             <FormControl fullWidth>
@@ -258,39 +221,26 @@ const ApplicationReviewPage = () => {
                 onChange={(e) => handleFilterChange("academicyear", e.target.value)}
                 label="Academic Year"
               >
-                {filterOptions.academicyears.map((year) => (
-                  <MenuItem key={year} value={year}>{year}</MenuItem>
-                ))}
+                <MenuItem value="2025-26">2025-26</MenuItem>
+                <MenuItem value="2026-27">2026-27</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={2}>
-            <FormControl fullWidth>
-              <InputLabel>Semester</InputLabel>
-              <Select
-                value={filters.semester}
-                onChange={(e) => handleFilterChange("semester", e.target.value)}
-                label="Semester"
-              >
-                {filterOptions.semesters.map((sem) => (
-                  <MenuItem key={sem} value={sem}>{sem}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <TextField
+              label="Semester"
+              value={filters.semester}
+              onChange={(e) => handleFilterChange("semester", e.target.value)}
+              fullWidth
+            />
           </Grid>
           <Grid item xs={12} sm={2}>
-            <FormControl fullWidth>
-              <InputLabel>Fee Category</InputLabel>
-              <Select
-                value={filters.feecategory}
-                onChange={(e) => handleFilterChange("feecategory", e.target.value)}
-                label="Fee Category"
-              >
-                {filterOptions.feecategories.map((cat) => (
-                  <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <TextField
+              label="Fee Category"
+              value={filters.feecategory}
+              onChange={(e) => handleFilterChange("feecategory", e.target.value)}
+              fullWidth
+            />
           </Grid>
           <Grid item xs={12} sm={2}>
             <Button variant="contained" onClick={fetchFeeAmount} fullWidth>
@@ -332,8 +282,8 @@ const ApplicationReviewPage = () => {
                         app.status === "Approved"
                           ? "success"
                           : app.status === "Rejected"
-                            ? "error"
-                            : "warning"
+                          ? "error"
+                          : "warning"
                       }
                       size="small"
                     />
@@ -346,7 +296,7 @@ const ApplicationReviewPage = () => {
                         size="small"
                       >
                         <MenuItem value="Pending">Pending</MenuItem>
-                        {feeAmount !== null ? <MenuItem value="Approved">Approve</MenuItem> : null}
+                        {feeAmount ? <MenuItem value="Approved">Approve</MenuItem> : null}
                         <MenuItem value="Rejected">Reject</MenuItem>
                       </Select>
                     ) : (

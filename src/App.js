@@ -1447,6 +1447,15 @@ import Dashmunivdepadmin from './pages/Dashmunivdepadmin';
 
 
 
+import BudgetTypeds from './pages/BudgetTypeds';
+import BudgetApproverds from './pages/BudgetApproverds';
+import BudgetDashboardds from './pages/BudgetDashboardds';
+import BudgetApprovalds from './pages/BudgetApprovalds';
+
+import Dashchattestadmin from './pages/Dashchattestadmin';
+
+
+
 
 
 
@@ -1508,6 +1517,14 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+        <Route path="/dashchattestadmin" element={<Dashchattestadmin />} />
+
+           {/* Budget Module Routes */}
+                                        <Route path="/BudgetTypeds" element={<BudgetTypeds />} />
+                                        <Route path="/BudgetApproverds" element={<BudgetApproverds />} />
+                                        <Route path="/BudgetDashboardds" element={<BudgetDashboardds />} />
+                                        <Route path="/BudgetApprovalds" element={<BudgetApprovalds />} />
 
         <Route path="/dashmunivampus" element={<Dashmunivampus />} />
         <Route path="/dashmunivampusadmin" element={<Dashmunivampusadmin />} />
