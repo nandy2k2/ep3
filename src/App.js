@@ -1454,6 +1454,47 @@ import BudgetApprovalds from './pages/BudgetApprovalds';
 
 import Dashchattestadmin from './pages/Dashchattestadmin';
 
+import Dashmfeebook from './pages/Dashmfeebook';
+import Dashmfeebookadmin from './pages/Dashmfeebookadmin';
+import Dashmcashbook from './pages/Dashmcashbook';
+import Dashmcashbookadmin from './pages/Dashmcashbookadmin';
+import Dashmwebcourses from './pages/Dashmwebcourses';
+import Dashmwebcoursesadmin from './pages/Dashmwebcoursesadmin';
+import Dashmwebevents from './pages/Dashmwebevents';
+import Dashmwebeventsadmin from './pages/Dashmwebeventsadmin';
+
+import Dashmhrstructure from './pages/Dashmhrstructure';
+import Dashmhrstructureadmin from './pages/Dashmhrstructureadmin';
+import Dashmhrstructuresal from './pages/Dashmhrstructuresal';
+import Dashmhrstructuresaladmin from './pages/Dashmhrstructuresaladmin';
+import Dashmhrsalstructure from './pages/Dashmhrsalstructure';
+import Dashmhrsalstructureadmin from './pages/Dashmhrsalstructureadmin';
+import Dashmhrsalary from './pages/Dashmhrsalary';
+import Dashmhrsalaryadmin from './pages/Dashmhrsalaryadmin';
+import Dashmhrempledger from './pages/Dashmhrempledger';
+import Dashmhrempledgeradmin from './pages/Dashmhrempledgeradmin';
+
+import Salarypivot from './pages/Salarypivot';
+import Salarypivot1 from './pages/Salarypivot1';
+
+import Salarygenerator from './pages/Salarygenerator';
+import Salassign from './pages/Salassign';
+
+import Examapply from './pages/Examapply';
+import Examapply1 from './pages/Examapply1';
+
+import Dashmexamnewrubrics1 from './pages/Dashmexamnewrubrics1';
+import Dashmexamnewrubrics1admin from './pages/Dashmexamnewrubrics1admin';
+
+import Dashmexamext1 from './pages/Dashmexamext1';
+import Dashmexamext1admin from './pages/Dashmexamext1admin';
+import Dashmexamtotal1 from './pages/Dashmexamtotal1';
+import Dashmexamtotal1admin from './pages/Dashmexamtotal1admin';
+
+
+
+
+
 
 
 
@@ -1517,6 +1558,46 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+        <Route path="/dashmexamext1" element={<Dashmexamext1 />} />
+        <Route path="/dashmexamext1admin" element={<Dashmexamext1admin />} />
+        <Route path="/dashmexamtotal1" element={<Dashmexamtotal1 />} />
+        <Route path="/dashmexamtotal1admin" element={<Dashmexamtotal1admin />} />
+
+
+        <Route path="/dashmexamnewrubrics1" element={<Dashmexamnewrubrics1 />} />
+        <Route path="/dashmexamnewrubrics1admin" element={<Dashmexamnewrubrics1admin />} />
+
+
+        <Route path="/examapply1" element={<Examapply1 />} />
+        <Route path="/examapply" element={<Examapply />} />
+        <Route path="/salassign" element={<Salassign />} />
+
+        <Route path="/salarygenerator" element={<Salarygenerator />} />
+        <Route path="/salarypivot1" element={<Salarypivot1 />} />
+        <Route path="/salarypivot" element={<Salarypivot />} />
+
+        <Route path="/dashmhrstructure" element={<Dashmhrstructure />} />
+        <Route path="/dashmhrstructureadmin" element={<Dashmhrstructureadmin />} />
+        <Route path="/dashmhrstructuresal" element={<Dashmhrstructuresal />} />
+        <Route path="/dashmhrstructuresaladmin" element={<Dashmhrstructuresaladmin />} />
+        <Route path="/dashmhrsalstructure" element={<Dashmhrsalstructure />} />
+        <Route path="/dashmhrsalstructureadmin" element={<Dashmhrsalstructureadmin />} />
+        <Route path="/dashmhrsalary" element={<Dashmhrsalary />} />
+        <Route path="/dashmhrsalaryadmin" element={<Dashmhrsalaryadmin />} />
+        <Route path="/dashmhrempledger" element={<Dashmhrempledger />} />
+        <Route path="/dashmhrempledgeradmin" element={<Dashmhrempledgeradmin />} />
+
+
+        <Route path="/dashmfeebook" element={<Dashmfeebook />} />
+        <Route path="/dashmfeebookadmin" element={<Dashmfeebookadmin />} />
+        <Route path="/dashmcashbook" element={<Dashmcashbook />} />
+        <Route path="/dashmcashbookadmin" element={<Dashmcashbookadmin />} />
+        <Route path="/dashmwebcourses" element={<Dashmwebcourses />} />
+        <Route path="/dashmwebcoursesadmin" element={<Dashmwebcoursesadmin />} />
+        <Route path="/dashmwebevents" element={<Dashmwebevents />} />
+        <Route path="/dashmwebeventsadmin" element={<Dashmwebeventsadmin />} />
+
 
         <Route path="/dashchattestadmin" element={<Dashchattestadmin />} />
 

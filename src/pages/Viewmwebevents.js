@@ -4,8 +4,8 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmledgerstud';
-import AddUserModalBulk from './Addmledgerstudbulk';
+import AddUserModal from './Addmwebevents';
+import AddUserModalBulk from './Addmwebeventsbulk';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -78,7 +78,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deleteledgerstudbyfac', {
+        const response = await ep1.get('/api/v2/deletewebeventsbyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -90,30 +90,12 @@ function ViewPage() {
         const a = await fetchViewPage();
     };
 
-     const onButtonClickpay = async(e, row) => {
-      alert('Payment isnot enabled');
-     }
-
     const columns = [
         // { field: '_id', headerName: 'ID' },
     
      {
-field:'academicyear',
-headerName:'Academic year',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'student',
-headerName:'Student',
+field:'title',
+headerName:'Title',
 type:'text',
 width:200,
 editable:true,
@@ -126,8 +108,8 @@ return '';
 }
  },
 {
-field:'regno',
-headerName:'Reg no',
+field:'description',
+headerName:'Desription',
 type:'text',
 width:200,
 editable:true,
@@ -140,8 +122,8 @@ return '';
 }
  },
 {
-field:'feegroup',
-headerName:'Fee group',
+field:'eventdate',
+headerName:'Event date',
 type:'text',
 width:200,
 editable:true,
@@ -154,8 +136,8 @@ return '';
 }
  },
 {
-field:'semester',
-headerName:'Semester',
+field:'eventtime',
+headerName:'Event time',
 type:'text',
 width:200,
 editable:true,
@@ -168,8 +150,8 @@ return '';
 }
  },
 {
-field:'feeitem',
-headerName:'Fee item',
+field:'location',
+headerName:'Location',
 type:'text',
 width:200,
 editable:true,
@@ -182,22 +164,8 @@ return '';
 }
  },
 {
-field:'feecategory',
-headerName:'Fee category',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'programcode',
-headerName:'Program code',
+field:'eventday',
+headerName:'Event day',
 type:'text',
 width:200,
 editable:true,
@@ -210,92 +178,8 @@ return '';
 }
  },
 {
-field:'classdate',
-headerName:'Due date',
-type:'date',
-width:200,
-editable:true,
-valueGetter: (params) => {
-if (!params.value) {
-return new Date();
-}
-return new Date(params.value);
- },
-valueFormatter: params => dayjs(params?.value).format('DD/MM/YYYY'),
- },
- {
-field:'paiddate',
-headerName:'Paid date',
-type:'date',
-width:200,
-editable:true,
-valueGetter: (params) => {
-if (!params.value) {
-return new Date();
-}
-return new Date(params.value);
- },
-valueFormatter: params => dayjs(params?.value).format('DD/MM/YYYY'),
- },
-{
-field:'amount',
-headerName:'Amount',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'paid',
-headerName:'Paid',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'concession',
-headerName:'Concession',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'balance',
-headerName:'Balance',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'paymode',
-headerName:'Pay mode',
+field:'eventmonth',
+headerName:'Event month',
 type:'text',
 width:200,
 editable:true,
@@ -308,93 +192,8 @@ return '';
 }
  },
 {
-field:'paydetails',
-headerName:'Pay details',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'feebook',
-headerName:'Fee book',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'cashbook',
-headerName:'Cash book',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-
-{
-field:'feecounter',
-headerName:'Fee counter',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'installment',
-headerName:'Installment',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'type',
-headerName:'Type',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'status',
-headerName:'Status',
+field:'link',
+headerName:'Link',
 type:'text',
 width:200,
 editable:true,
@@ -419,12 +218,6 @@ return '';
               >
                 Delete
               </Button>
-               {/* <Button
-                onClick={(e) => onButtonClickpay(e, params.row)}
-                variant="contained"
-              >
-                Pay
-              </Button> */}
                   </td>
                   <td width="10px"></td>
                   <td>
@@ -447,25 +240,18 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/ledgerstuddocs', {
+      const response = await ep1.get('/api/v2/getwebeventsbyfac', {
         params: {
           token: token,
           colid: colid,
           user: user
         }
       });
-      // const response = await ep1.get('/api/v2/getledgerstudbyfac', {
-      //   params: {
-      //     token: token,
-      //     colid: colid,
-      //     user: user
-      //   }
-      // });
       setRows(response.data.data.classes);
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getledgerstudcountbyfac', {
+      const response = await ep1.get('/api/v2/getwebeventscountbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -476,7 +262,7 @@ return '';
     };
 
     const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getledgerstudsecondbyfac', {
+      const response = await ep1.get('/api/v2/getwebeventssecondbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -488,14 +274,14 @@ return '';
 
     const refreshpage=async()=> {
       fetchViewPage();
-      // getgraphdata();
-      // getgraphdatasecond();
+      getgraphdata();
+      getgraphdatasecond();
     }
   
     useEffect(() => {
       fetchViewPage();
-      // getgraphdata();
-      // getgraphdatasecond();
+      getgraphdata();
+      getgraphdatasecond();
     }, []);
   
     const handleExport = () => {
@@ -548,59 +334,35 @@ return '';
    
 
     const handleOpenEdit1 =async (user) => {
-
-      //alert(user.balance + ',' + user.concession + ',' + user.paid);
     
             //const title=titleref.current.value;
-            const academicyear=user.academicyear;
-const student=user.student;
-const regno=user.regno;
-const feegroup=user.feegroup;
-const semester=user.semester;
-const feeeitem=user.feeitem;
-const feecategory=user.feecategory;
-const classdate=new Date(user.classdate);
-const amount=user.amount;
-const paymode=user.paymode;
-const paydetails=user.paydetails;
-const installment=user.installment;
-const balance=user.balance;
-const concession=user.concession;
-const paid=user.paid;
-const feebook=user.feebook;
-const cashbook=user.cashbook;
-const feecounter=user.feecounter;
-const status=user.status;
+            const title=user.title;
+const description=user.description;
+const eventdate=user.eventdate;
+const eventtime=user.eventtime;
+const location=user.location;
+const eventday=user.eventday;
+const eventmonth=user.eventmonth;
+const link=user.link;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updateledgerstudbyfac', {
+            const response =await ep1.get('/api/v2/updatewebeventsbyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            academicyear:academicyear,
-student:student,
-regno:regno,
-feegroup:feegroup,
-semester:semester,
-feeeitem:feeeitem,
-feecategory:feecategory,
-classdate:classdate,
-amount:amount,
-paid:paid,
-concession:concession,
-balance:balance,
-paymode:paymode,
-paydetails:paydetails,
-installment:installment,
-feebook:feebook,
-cashbook:cashbook,
-feecounter:feecounter,
-status:status,
+            title:title,
+description:description,
+eventdate:eventdate,
+eventtime:eventtime,
+location:location,
+eventday:eventday,
+eventmonth:eventmonth,
+link:link,
 
             status1:'Submitted',
             comments:''
@@ -777,7 +539,69 @@ status:status,
          </Box>
           <Grid container spacing={3}>
 
-         
+          <Grid item xs={6}>
+          
+          <div style={{textAlign: 'center'}}>
+          Event month
+          </div>
+          <br />
+        <BarChart
+    xAxis={[
+      {
+        id: 'barCategories',
+        data: second.map((labels) => {
+          return (
+            labels._id ? labels._id : ''         
+              );
+          }),
+        scaleType: 'band',
+        colorMap: {
+          type: 'piecewise',
+          thresholds: [new Date(2021, 1, 1), new Date(2023, 1, 1)],
+          colors: ['#F6C179', '#C27F1D', '#A6B0A3','#EDDBAC','#A6DAEE','#DEBFEB',,'#C85479','#F3646E','#AED3AD'],
+        }
+      },
+    ]}
+    series={[
+      {
+        data: second.map((labels1) => {
+          return (
+            parseInt(labels1.total_attendance)       
+              );
+          }),
+      },
+    ]}
+    width={500}
+    height={300}
+  />
+  
+</Grid>
+<Grid item xs={6}>
+
+<div style={{textAlign: 'center'}}>
+          Event day
+          </div>
+ <br />
+ <PieChart
+ colors={['#D1A3B4','#BBD1A3', '#A3C4D1','#EDDBAC','#A6DAEE','#DEBFEB',,'#C85479','#F3646E','#AED3AD']} 
+series={[
+  {
+    data: 
+      results.map((labels1,i) => {
+        return { id: i, value: parseInt(labels1.total_attendance)  , label: labels1._id? labels1._id : ''}
+        }),
+  },
+  
+]}
+width={400}
+height={250}
+/>
+
+</Grid>
+
+
+<br />
+
 <Dialog
         open={dialogopen}
         onClose={handleDialogclose}

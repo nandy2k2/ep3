@@ -4,8 +4,8 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmledgerstud';
-import AddUserModalBulk from './Addmledgerstudbulk';
+import AddUserModal from './Addmhrstructure';
+import AddUserModalBulk from './Addmhrstructurebulk';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -26,9 +26,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useNavigate } from 'react-router-dom';
 
 
 function ViewPage() {
+  const navigate = useNavigate();
     const [rows, setRows] = useState([]);
     const [results, setResults] = useState([]);
     const [second, setSecond] = useState([]);
@@ -78,7 +80,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deleteledgerstudbyfac', {
+        const response = await ep1.get('/api/v2/deletehrstructurebyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -90,30 +92,22 @@ function ViewPage() {
         const a = await fetchViewPage();
     };
 
-     const onButtonClickpay = async(e, row) => {
-      alert('Payment isnot enabled');
-     }
+     const onButtonClicken = async(e, row) => {
+        e.stopPropagation();
+        //do whatever you want with the row
+        //alert(row._id);
+        global1.structure=row.struture;
+        global1.structureid=row._id;
+        
+        navigate('/dashmhrstructuresal');
+    };
 
     const columns = [
         // { field: '_id', headerName: 'ID' },
     
      {
-field:'academicyear',
-headerName:'Academic year',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'student',
-headerName:'Student',
+field:'struture',
+headerName:'Structure',
 type:'text',
 width:200,
 editable:true,
@@ -126,8 +120,8 @@ return '';
 }
  },
 {
-field:'regno',
-headerName:'Reg no',
+field:'description',
+headerName:'Description',
 type:'text',
 width:200,
 editable:true,
@@ -140,8 +134,8 @@ return '';
 }
  },
 {
-field:'feegroup',
-headerName:'Fee group',
+field:'businessrole',
+headerName:'Business role',
 type:'text',
 width:200,
 editable:true,
@@ -154,8 +148,8 @@ return '';
 }
  },
 {
-field:'semester',
-headerName:'Semester',
+field:'paycommission',
+headerName:'Pay commission',
 type:'text',
 width:200,
 editable:true,
@@ -168,8 +162,8 @@ return '';
 }
  },
 {
-field:'feeitem',
-headerName:'Fee item',
+field:'designation',
+headerName:'Designation',
 type:'text',
 width:200,
 editable:true,
@@ -182,203 +176,6 @@ return '';
 }
  },
 {
-field:'feecategory',
-headerName:'Fee category',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'programcode',
-headerName:'Program code',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'classdate',
-headerName:'Due date',
-type:'date',
-width:200,
-editable:true,
-valueGetter: (params) => {
-if (!params.value) {
-return new Date();
-}
-return new Date(params.value);
- },
-valueFormatter: params => dayjs(params?.value).format('DD/MM/YYYY'),
- },
- {
-field:'paiddate',
-headerName:'Paid date',
-type:'date',
-width:200,
-editable:true,
-valueGetter: (params) => {
-if (!params.value) {
-return new Date();
-}
-return new Date(params.value);
- },
-valueFormatter: params => dayjs(params?.value).format('DD/MM/YYYY'),
- },
-{
-field:'amount',
-headerName:'Amount',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'paid',
-headerName:'Paid',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'concession',
-headerName:'Concession',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'balance',
-headerName:'Balance',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'paymode',
-headerName:'Pay mode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'paydetails',
-headerName:'Pay details',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'feebook',
-headerName:'Fee book',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'cashbook',
-headerName:'Cash book',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-
-{
-field:'feecounter',
-headerName:'Fee counter',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'installment',
-headerName:'Installment',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
 field:'type',
 headerName:'Type',
 type:'text',
@@ -393,8 +190,8 @@ return '';
 }
  },
 {
-field:'status',
-headerName:'Status',
+field:'level',
+headerName:'Level',
 type:'text',
 width:200,
 editable:true,
@@ -419,20 +216,14 @@ return '';
               >
                 Delete
               </Button>
-               {/* <Button
-                onClick={(e) => onButtonClickpay(e, params.row)}
-                variant="contained"
-              >
-                Pay
-              </Button> */}
                   </td>
                   <td width="10px"></td>
                   <td>
                   <Button
-                onClick={(e) => onButtonClickgo(e, params.row)}
+                onClick={(e) => onButtonClicken(e, params.row)}
                 variant="contained"
               >
-                Check document
+                Components
                 
               </Button>
                   </td>
@@ -447,25 +238,18 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/ledgerstuddocs', {
+      const response = await ep1.get('/api/v2/gethrstructurebyfac', {
         params: {
           token: token,
           colid: colid,
           user: user
         }
       });
-      // const response = await ep1.get('/api/v2/getledgerstudbyfac', {
-      //   params: {
-      //     token: token,
-      //     colid: colid,
-      //     user: user
-      //   }
-      // });
       setRows(response.data.data.classes);
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getledgerstudcountbyfac', {
+      const response = await ep1.get('/api/v2/gethrstructurecountbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -476,7 +260,7 @@ return '';
     };
 
     const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getledgerstudsecondbyfac', {
+      const response = await ep1.get('/api/v2/gethrstructuresecondbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -488,14 +272,14 @@ return '';
 
     const refreshpage=async()=> {
       fetchViewPage();
-      // getgraphdata();
-      // getgraphdatasecond();
+      getgraphdata();
+      getgraphdatasecond();
     }
   
     useEffect(() => {
       fetchViewPage();
-      // getgraphdata();
-      // getgraphdatasecond();
+      getgraphdata();
+      getgraphdatasecond();
     }, []);
   
     const handleExport = () => {
@@ -548,59 +332,33 @@ return '';
    
 
     const handleOpenEdit1 =async (user) => {
-
-      //alert(user.balance + ',' + user.concession + ',' + user.paid);
     
             //const title=titleref.current.value;
-            const academicyear=user.academicyear;
-const student=user.student;
-const regno=user.regno;
-const feegroup=user.feegroup;
-const semester=user.semester;
-const feeeitem=user.feeitem;
-const feecategory=user.feecategory;
-const classdate=new Date(user.classdate);
-const amount=user.amount;
-const paymode=user.paymode;
-const paydetails=user.paydetails;
-const installment=user.installment;
-const balance=user.balance;
-const concession=user.concession;
-const paid=user.paid;
-const feebook=user.feebook;
-const cashbook=user.cashbook;
-const feecounter=user.feecounter;
-const status=user.status;
+            const struture=user.struture;
+const description=user.description;
+const businessrole=user.businessrole;
+const paycommission=user.paycommission;
+const designation=user.designation;
+const type=user.type;
+const level=user.level;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updateledgerstudbyfac', {
+            const response =await ep1.get('/api/v2/updatehrstructurebyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            academicyear:academicyear,
-student:student,
-regno:regno,
-feegroup:feegroup,
-semester:semester,
-feeeitem:feeeitem,
-feecategory:feecategory,
-classdate:classdate,
-amount:amount,
-paid:paid,
-concession:concession,
-balance:balance,
-paymode:paymode,
-paydetails:paydetails,
-installment:installment,
-feebook:feebook,
-cashbook:cashbook,
-feecounter:feecounter,
-status:status,
+            struture:struture,
+description:description,
+businessrole:businessrole,
+paycommission:paycommission,
+designation:designation,
+type:type,
+level:level,
 
             status1:'Submitted',
             comments:''
@@ -777,7 +535,69 @@ status:status,
          </Box>
           <Grid container spacing={3}>
 
-         
+          <Grid item xs={6}>
+          
+          <div style={{textAlign: 'center'}}>
+          type
+          </div>
+          <br />
+        <BarChart
+    xAxis={[
+      {
+        id: 'barCategories',
+        data: second.map((labels) => {
+          return (
+            labels._id ? labels._id : ''         
+              );
+          }),
+        scaleType: 'band',
+        colorMap: {
+          type: 'piecewise',
+          thresholds: [new Date(2021, 1, 1), new Date(2023, 1, 1)],
+          colors: ['#F6C179', '#C27F1D', '#A6B0A3','#EDDBAC','#A6DAEE','#DEBFEB',,'#C85479','#F3646E','#AED3AD'],
+        }
+      },
+    ]}
+    series={[
+      {
+        data: second.map((labels1) => {
+          return (
+            parseInt(labels1.total_attendance)       
+              );
+          }),
+      },
+    ]}
+    width={500}
+    height={300}
+  />
+  
+</Grid>
+<Grid item xs={6}>
+
+<div style={{textAlign: 'center'}}>
+          level
+          </div>
+ <br />
+ <PieChart
+ colors={['#D1A3B4','#BBD1A3', '#A3C4D1','#EDDBAC','#A6DAEE','#DEBFEB',,'#C85479','#F3646E','#AED3AD']} 
+series={[
+  {
+    data: 
+      results.map((labels1,i) => {
+        return { id: i, value: parseInt(labels1.total_attendance)  , label: labels1._id? labels1._id : ''}
+        }),
+  },
+  
+]}
+width={400}
+height={250}
+/>
+
+</Grid>
+
+
+<br />
+
 <Dialog
         open={dialogopen}
         onClose={handleDialogclose}
