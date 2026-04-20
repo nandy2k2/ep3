@@ -13,10 +13,11 @@ import dayjs from 'dayjs';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function AddUserModal({ open, handleClose, handleInputChange, handleAddUser, newUser, fetchViewPage }) {
-    const stuctureidref=useRef();
-const structureref=useRef();
-const componentref=useRef();
-const amountref=useRef();
+    const yearref=useRef();
+const categoryref=useRef();
+const initialbudgetref=useRef();
+const utilizedref=useRef();
+const remainingref=useRef();
 const typeref=useRef();
 const levelref=useRef();
 
@@ -35,19 +36,19 @@ const levelref=useRef();
         browserSupportsSpeechRecognition
       } = useSpeechRecognition();
 
-      const setstuctureid=(id)=> {
+      const setyear=(id)=> {
 if(transcript) {
-stuctureidref.current.value=transcript;
+yearref.current.value=transcript;
  }
  }
-const setstructure=(id)=> {
+const setcategory=(id)=> {
 if(transcript) {
-structureref.current.value=transcript;
+categoryref.current.value=transcript;
  }
  }
-const setcomponent=(id)=> {
+const settype=(id)=> {
 if(transcript) {
-componentref.current.value=transcript;
+typeref.current.value=transcript;
  }
  }
 const setlevel=(id)=> {
@@ -76,14 +77,11 @@ levelref.current.value=transcript;
 // const studentscompleted=studentscompletedref.current.value;
 // const dateadded=dateaddedref.current.value;
 
-// const stuctureid=stuctureidref.current.value;
-// const structure=structureref.current.value;
-// const stuctureid=global1.structureid;
-// const structure=global1.structure;
-    const structure=global1.structure;
-    const structureid=global1.structureid;
-const component=componentref.current.value;
-const amount=amountref.current.value;
+const year=yearref.current.value;
+const category=categoryref.current.value;
+const initialbudget=initialbudgetref.current.value;
+const utilized=utilizedref.current.value;
+const remaining=remainingref.current.value;
 const type=typeref.current.value;
 const level=levelref.current.value;
 
@@ -93,16 +91,17 @@ const level=levelref.current.value;
     //alert(department);
     //setLoading(true);
     //setIsuploading(true);
-    const response = await ep1.get('/api/v2/createhrstructuresalbyfac', {
+    const response = await ep1.get('/api/v2/createcategorybudgetbyfac', {
         params: {
             user: user,
             token: token,
             colid: colid,
             name: name,
-           stuctureid:structureid,
-structure:structure,
-component:component,
-amount:amount,
+           year:year,
+category:category,
+initialbudget:initialbudget,
+utilized:utilized,
+remaining:remaining,
 type:type,
 level:level,
 
@@ -138,35 +137,31 @@ status1:'Submitted',
       <button onClick={resetTranscript}>Reset</button>
       <p>{transcript}</p>
 
-       <button onClick={setstuctureid}>Set Structure id</button>
- <button onClick={setstructure}>Set Structure</button>
- <button onClick={setcomponent}>Set Component</button>
+       <button onClick={setyear}>Set Year</button>
+ <button onClick={setcategory}>Set Category</button>
+ <button onClick={settype}>Set Type</button>
  <button onClick={setlevel}>Set Level</button>
 
 
       <br /><br />
 
-    {/* <p>Structure id</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={stuctureidref} /><br /><br />
+    <p>Year</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={yearref} /><br /><br />
 
-<p>Structure</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={structureref} /><br /><br /> */}
+<p>Category</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={categoryref} /><br /><br />
 
-<p>Component</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={componentref} /><br /><br />
+<p>Initial budget</p>
+<TextField id="outlined-basic"  type="number" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={initialbudgetref} /><br /><br />
 
-<p>Amount</p>
-<TextField id="outlined-basic"  type="number" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={amountref} /><br /><br />
+<p>Utilized</p>
+<TextField id="outlined-basic"  type="number" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={utilizedref} /><br /><br />
 
-<InputLabel id="type">Type</InputLabel><Select labelId="type"
-id="type"
-inputRef={typeref}
-sx={{ width: '100%'}}
->
-<MenuItem value="Credit">Credit</MenuItem>
-<MenuItem value="Deduction">Deduction</MenuItem>
-</Select>
-<br /><br />
+<p>Remaining</p>
+<TextField id="outlined-basic"  type="number" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={remainingref} /><br /><br />
+
+<p>Type</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={typeref} /><br /><br />
 
 <p>Level</p>
 <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={levelref} /><br /><br />

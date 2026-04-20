@@ -13,10 +13,12 @@ import dayjs from 'dayjs';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function AddUserModal({ open, handleClose, handleInputChange, handleAddUser, newUser, fetchViewPage }) {
-    const stuctureidref=useRef();
-const structureref=useRef();
-const componentref=useRef();
-const amountref=useRef();
+    const prref=useRef();
+const pridref=useRef();
+const facultyref=useRef();
+const facultyidref=useRef();
+const activitydateref=useRef();
+const activityref=useRef();
 const typeref=useRef();
 const levelref=useRef();
 
@@ -35,19 +37,34 @@ const levelref=useRef();
         browserSupportsSpeechRecognition
       } = useSpeechRecognition();
 
-      const setstuctureid=(id)=> {
+      const setpr=(id)=> {
 if(transcript) {
-stuctureidref.current.value=transcript;
+prref.current.value=transcript;
  }
  }
-const setstructure=(id)=> {
+const setprid=(id)=> {
 if(transcript) {
-structureref.current.value=transcript;
+pridref.current.value=transcript;
  }
  }
-const setcomponent=(id)=> {
+const setfaculty=(id)=> {
 if(transcript) {
-componentref.current.value=transcript;
+facultyref.current.value=transcript;
+ }
+ }
+const setfacultyid=(id)=> {
+if(transcript) {
+facultyidref.current.value=transcript;
+ }
+ }
+const setactivity=(id)=> {
+if(transcript) {
+activityref.current.value=transcript;
+ }
+ }
+const settype=(id)=> {
+if(transcript) {
+typeref.current.value=transcript;
  }
  }
 const setlevel=(id)=> {
@@ -76,14 +93,12 @@ levelref.current.value=transcript;
 // const studentscompleted=studentscompletedref.current.value;
 // const dateadded=dateaddedref.current.value;
 
-// const stuctureid=stuctureidref.current.value;
-// const structure=structureref.current.value;
-// const stuctureid=global1.structureid;
-// const structure=global1.structure;
-    const structure=global1.structure;
-    const structureid=global1.structureid;
-const component=componentref.current.value;
-const amount=amountref.current.value;
+const pr=prref.current.value;
+const prid=pridref.current.value;
+const faculty=facultyref.current.value;
+const facultyid=facultyidref.current.value;
+const activitydate=activitydateref.current.value;
+const activity=activityref.current.value;
 const type=typeref.current.value;
 const level=levelref.current.value;
 
@@ -93,16 +108,18 @@ const level=levelref.current.value;
     //alert(department);
     //setLoading(true);
     //setIsuploading(true);
-    const response = await ep1.get('/api/v2/createhrstructuresalbyfac', {
+    const response = await ep1.get('/api/v2/createprauditbyfac', {
         params: {
             user: user,
             token: token,
             colid: colid,
             name: name,
-           stuctureid:structureid,
-structure:structure,
-component:component,
-amount:amount,
+           pr:pr,
+prid:prid,
+faculty:faculty,
+facultyid:facultyid,
+activitydate:activitydate,
+activity:activity,
 type:type,
 level:level,
 
@@ -138,35 +155,36 @@ status1:'Submitted',
       <button onClick={resetTranscript}>Reset</button>
       <p>{transcript}</p>
 
-       <button onClick={setstuctureid}>Set Structure id</button>
- <button onClick={setstructure}>Set Structure</button>
- <button onClick={setcomponent}>Set Component</button>
+       <button onClick={setpr}>Set PR</button>
+ <button onClick={setprid}>Set PR ID</button>
+ <button onClick={setfaculty}>Set Faculty</button>
+ <button onClick={setfacultyid}>Set Faculty id</button>
+ <button onClick={setactivity}>Set Activity</button>
+ <button onClick={settype}>Set Type</button>
  <button onClick={setlevel}>Set Level</button>
 
 
       <br /><br />
 
-    {/* <p>Structure id</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={stuctureidref} /><br /><br />
+    <p>PR</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={prref} /><br /><br />
 
-<p>Structure</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={structureref} /><br /><br /> */}
+<p>PR ID</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={pridref} /><br /><br />
 
-<p>Component</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={componentref} /><br /><br />
+<p>Faculty</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={facultyref} /><br /><br />
 
-<p>Amount</p>
-<TextField id="outlined-basic"  type="number" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={amountref} /><br /><br />
+<p>Faculty id</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={facultyidref} /><br /><br />
 
-<InputLabel id="type">Type</InputLabel><Select labelId="type"
-id="type"
-inputRef={typeref}
-sx={{ width: '100%'}}
->
-<MenuItem value="Credit">Credit</MenuItem>
-<MenuItem value="Deduction">Deduction</MenuItem>
-</Select>
-<br /><br />
+<LocalizationProvider dateAdapter={AdapterDayjs}><DatePicker label="Activity date" inputRef={activitydateref} sx={{ width: "100%"}} /></LocalizationProvider><br /><br />
+
+<p>Activity</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={activityref} /><br /><br />
+
+<p>Type</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={typeref} /><br /><br />
 
 <p>Level</p>
 <TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={levelref} /><br /><br />

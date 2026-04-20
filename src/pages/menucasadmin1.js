@@ -578,6 +578,60 @@ export function mainListItems({ open }) {
         </AccordionDetails>
       </Accordion> */}
 
+       <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>PR and PO</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/dashmprtemplateadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="PR Templates" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmprtemplateapproversadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="PR approvers" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmprlistadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="PR List" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmpritemsadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="PR Items" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmitemlistadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Item list" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmcategorybudgetadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Category Budget" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmprauditadmin">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="PR Audit log" />}
+</ListItem>
+
+
+        </AccordionDetails>
+        </Accordion>
+
 
       <Accordion>
         <AccordionSummary aria-controls="panel3-content" id="panel3-header">

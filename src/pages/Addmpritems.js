@@ -13,10 +13,11 @@ import dayjs from 'dayjs';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function AddUserModal({ open, handleClose, handleInputChange, handleAddUser, newUser, fetchViewPage }) {
-    const stuctureidref=useRef();
-const structureref=useRef();
-const componentref=useRef();
-const amountref=useRef();
+    const prref=useRef();
+const pridref=useRef();
+const categoryref=useRef();
+const itemref=useRef();
+const approvalstatusref=useRef();
 const typeref=useRef();
 const levelref=useRef();
 
@@ -35,19 +36,34 @@ const levelref=useRef();
         browserSupportsSpeechRecognition
       } = useSpeechRecognition();
 
-      const setstuctureid=(id)=> {
+      const setpr=(id)=> {
 if(transcript) {
-stuctureidref.current.value=transcript;
+prref.current.value=transcript;
  }
  }
-const setstructure=(id)=> {
+const setprid=(id)=> {
 if(transcript) {
-structureref.current.value=transcript;
+pridref.current.value=transcript;
  }
  }
-const setcomponent=(id)=> {
+const setcategory=(id)=> {
 if(transcript) {
-componentref.current.value=transcript;
+categoryref.current.value=transcript;
+ }
+ }
+const setitem=(id)=> {
+if(transcript) {
+itemref.current.value=transcript;
+ }
+ }
+const setapprovalstatus=(id)=> {
+if(transcript) {
+approvalstatusref.current.value=transcript;
+ }
+ }
+const settype=(id)=> {
+if(transcript) {
+typeref.current.value=transcript;
  }
  }
 const setlevel=(id)=> {
@@ -76,16 +92,20 @@ levelref.current.value=transcript;
 // const studentscompleted=studentscompletedref.current.value;
 // const dateadded=dateaddedref.current.value;
 
-// const stuctureid=stuctureidref.current.value;
-// const structure=structureref.current.value;
-// const stuctureid=global1.structureid;
-// const structure=global1.structure;
-    const structure=global1.structure;
-    const structureid=global1.structureid;
-const component=componentref.current.value;
-const amount=amountref.current.value;
-const type=typeref.current.value;
-const level=levelref.current.value;
+// const pr=prref.current.value;
+// const prid=pridref.current.value;
+const category=categoryref.current.value;
+const item=itemref.current.value;
+// const approvalstatus=approvalstatusref.current.value;
+// const type=typeref.current.value;
+// const level=levelref.current.value;
+
+const pr=global1.mrnid;
+const prid=global1.mrnid;
+
+const approvalstatus='Pending';
+const type='typeref.current.value';
+const level=0;
 
 
 //alert(coursetitle + '-' + dateadded);
@@ -93,16 +113,17 @@ const level=levelref.current.value;
     //alert(department);
     //setLoading(true);
     //setIsuploading(true);
-    const response = await ep1.get('/api/v2/createhrstructuresalbyfac', {
+    const response = await ep1.get('/api/v2/createpritemsbyfac', {
         params: {
             user: user,
             token: token,
             colid: colid,
             name: name,
-           stuctureid:structureid,
-structure:structure,
-component:component,
-amount:amount,
+           pr:pr,
+prid:prid,
+category:category,
+item:item,
+approvalstatus:approvalstatus,
 type:type,
 level:level,
 
@@ -138,38 +159,37 @@ status1:'Submitted',
       <button onClick={resetTranscript}>Reset</button>
       <p>{transcript}</p>
 
-       <button onClick={setstuctureid}>Set Structure id</button>
- <button onClick={setstructure}>Set Structure</button>
- <button onClick={setcomponent}>Set Component</button>
+       <button onClick={setpr}>Set PR</button>
+ <button onClick={setprid}>Set PR Id</button>
+ <button onClick={setcategory}>Set Category</button>
+ <button onClick={setitem}>Set Item</button>
+ <button onClick={setapprovalstatus}>Set Approval status</button>
+ <button onClick={settype}>Set Type</button>
  <button onClick={setlevel}>Set Level</button>
 
 
       <br /><br />
 
-    {/* <p>Structure id</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={stuctureidref} /><br /><br />
+    {/* <p>PR</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={prref} /><br /><br />
 
-<p>Structure</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={structureref} /><br /><br /> */}
+<p>PR Id</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={pridref} /><br /><br /> */}
 
-<p>Component</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={componentref} /><br /><br />
+<p>Category</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={categoryref} /><br /><br />
 
-<p>Amount</p>
-<TextField id="outlined-basic"  type="number" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={amountref} /><br /><br />
+<p>Item</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={itemref} /><br /><br />
 
-<InputLabel id="type">Type</InputLabel><Select labelId="type"
-id="type"
-inputRef={typeref}
-sx={{ width: '100%'}}
->
-<MenuItem value="Credit">Credit</MenuItem>
-<MenuItem value="Deduction">Deduction</MenuItem>
-</Select>
-<br /><br />
+{/* <p>Approval status</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={approvalstatusref} /><br /><br /> */}
 
-<p>Level</p>
-<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={levelref} /><br /><br />
+<p>Type</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={typeref} /><br /><br />
+
+{/* <p>Level</p>
+<TextField id="outlined-basic"  type="text" sx={{ width: "100%"}} label=""  variant="outlined" inputRef={levelref} /><br /><br /> */}
 
 
       </DialogContent>

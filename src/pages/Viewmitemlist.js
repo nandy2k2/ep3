@@ -4,8 +4,8 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmexamtotal1';
-import AddUserModalBulk from './Addmexamtotal1bulk';
+import AddUserModal from './Addmitemlist';
+import AddUserModalBulk from './Addmitemlistbulk';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -78,7 +78,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deleteexamtotal1byfac', {
+        const response = await ep1.get('/api/v2/deleteitemlistbyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -94,22 +94,8 @@ function ViewPage() {
         // { field: '_id', headerName: 'ID' },
     
      {
-field:'year',
-headerName:'Academic year',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'examcode',
-headerName:'Exam code',
+field:'category',
+headerName:'Category',
 type:'text',
 width:200,
 editable:true,
@@ -122,177 +108,9 @@ return '';
 }
  },
 {
-field:'student',
-headerName:'Student',
+field:'item',
+headerName:'Item',
 type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'regno',
-headerName:'Reg no',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'program',
-headerName:'Program',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'programcode',
-headerName:'Programcode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'course',
-headerName:'Course',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'coursecode',
-headerName:'Coursecode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'semester',
-headerName:'Semester',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'credits',
-headerName:'Credits',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'intmarks',
-headerName:'Internal marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'extmarks',
-headerName:'External marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'totalmarks',
-headerName:'Total marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'grade',
-headerName:'Grade',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'result',
-headerName:'Result',
-type:'dropdown',
 width:200,
 editable:true,
 valueFormatter: (params) => {
@@ -305,7 +123,7 @@ return '';
  },
 {
 field:'type',
-headerName:'type',
+headerName:'Type',
 type:'text',
 width:200,
 editable:true,
@@ -366,7 +184,7 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1byfac', {
+      const response = await ep1.get('/api/v2/getitemlistbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -377,7 +195,7 @@ return '';
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1countbyfac', {
+      const response = await ep1.get('/api/v2/getitemlistcountbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -388,7 +206,7 @@ return '';
     };
 
     const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1secondbyfac', {
+      const response = await ep1.get('/api/v2/getitemlistsecondbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -462,45 +280,23 @@ return '';
     const handleOpenEdit1 =async (user) => {
     
             //const title=titleref.current.value;
-            const year=user.year;
-const examcode=user.examcode;
-const student=user.student;
-const regno=user.regno;
-const program=user.program;
-const programcode=user.programcode;
-const course=user.course;
-const coursecode=user.coursecode;
-const semester=user.semester;
-const credits=user.credits;
-const intmarks=user.intmarks;
-const extmarks=user.extmarks;
-const result=user.result;
+            const category=user.category;
+const item=user.item;
 const type=user.type;
 const level=user.level;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updateexamtotal1byfac', {
+            const response =await ep1.get('/api/v2/updateitemlistbyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            year:year,
-examcode:examcode,
-student:student,
-regno:regno,
-program:program,
-programcode:programcode,
-course:course,
-coursecode:coursecode,
-semester:semester,
-credits:credits,
-intmarks:intmarks,
-extmarks:extmarks,
-result:result,
+            category:category,
+item:item,
 type:type,
 level:level,
 

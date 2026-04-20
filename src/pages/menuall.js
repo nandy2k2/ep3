@@ -583,7 +583,12 @@ export function menuitemsall() {
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Total marks" />}
 </ListItem>
-
+<ListItem button component={RouterLink} to="/examtransfer">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Transfer marks" />}
+</ListItem>
 
 
           {/* <ListItem button component={RouterLink} to="/seatallocatorm5">
@@ -3594,6 +3599,12 @@ export function menuitemsall() {
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Employee Salary generator" />}
 </ListItem>
+<ListItem button component={RouterLink} to="/salassign1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Employee Salary generator 2" />}
+</ListItem>
  <ListItem button component={RouterLink} to="/dashmhrempledger">
 <ListItemIcon>
 <PersonIcon />
@@ -3611,6 +3622,24 @@ export function menuitemsall() {
 <PersonIcon />
 </ListItemIcon>
 {open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Monthwise salary sheet drill down" />}
+</ListItem>
+<ListItem button component={RouterLink} to="/saldeduction">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Salary deduction TDS" />}
+</ListItem>
+<ListItem button component={RouterLink} to="/saldeductiontdspf">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Salary deduction TDS and PF" />}
+</ListItem>
+<ListItem button component={RouterLink} to="/salarytransfer">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Populate salary" />}
 </ListItem>
 
 
@@ -3790,6 +3819,352 @@ export function menuitemsall() {
 
         </AccordionDetails>
       </Accordion>
+
+      <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{ fontSize: 14 }}>MRN PR and PO</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/dashmprtemplate">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Templates" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmprtemplateapprovers">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Approvers" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmprlist">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="MRN List" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmpritems">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="MRN Items" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmitemlist">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Item list" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmcategorybudget">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Category Budget" />}
+</ListItem>
+ <ListItem button component={RouterLink} to="/dashmpraudit">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="PR Audit log" />}
+</ListItem>
+<ListItem button component={RouterLink} to="/mrncreate">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="MRN create" />}
+</ListItem>
+<ListItem button component={RouterLink} to="/prapproverscreen">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="MRN approve" />}
+</ListItem>
+<ListItem button component={RouterLink} to="/mrnapprover1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="MRN approve 1" />}
+</ListItem>
+
+
+
+        </AccordionDetails>
+        </Accordion>
+
+         <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{fontSize: 14}}>Purchase and Store</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+        <ListItem button component={RouterLink} to="/storepage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Store" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/categorypage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Category" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/stockpage1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Stock" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/budgetpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Budget" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/indentpage1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Indent" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/indentapproval">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Indent Approval" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/indentapproval1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Indent Approval" />}
+</ListItem>
+
+
+<ListItem button component={RouterLink} to="/rfppage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="RFP" />}
+</ListItem>
+
+
+<ListItem button component={RouterLink} to="/rfpfromindent">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="RFP from indent" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/rfpviewpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="RFP list" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendormappage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="RFP Vendor Map" />}
+</ListItem>
+
+
+<ListItem button component={RouterLink} to="/vendorpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor submission" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendorcomparisonpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor comparison" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendornegotiation1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor negotiation" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendorfinalprice">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor final price" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendorfinalcomparison1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor final comparison" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/categoryofficerpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Category officer" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/createpopage1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Create PO" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/poapprovalpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Approve PO" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/poapprovalpage1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Approve PO 1" />}
+</ListItem>
+
+
+<ListItem button component={RouterLink} to="/deliveryschedulepage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Delivery schedule" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/qualitypage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Quality" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/grnpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="GRN Page" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/grnviewpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="GRN View Page" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/poreceivedsummary">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="PO Received Summary" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/inwardgatepass">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Inward Gate Pass" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/invoicecreatepage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Invoice create" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/invoicepaymentpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Invoice payment" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/financedashboard">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Finance dashboard" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/prepdashboard">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Budget analysis" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/financedashboardnew">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Finance heatmap" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/agingdashboardpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Aging Dashboard" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendorledgerpage1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor ledger" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/overduepage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Overdue page" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendordashboardpage">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor Finance Page" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendorcreatepage1">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor create" />}
+</ListItem>
+
+<ListItem button component={RouterLink} to="/vendor-login">
+<ListItemIcon>
+<PersonIcon />
+</ListItemIcon>
+{open && <ListItemText primaryTypographyProps={{fontSize: "14px"}} primary="Vendor login" />}
+</ListItem>
+
+          </AccordionDetails>
+          </Accordion>
 
 
       <Accordion>
@@ -4114,6 +4489,29 @@ export function menuitemsall() {
 
           </AccordionDetails>
           </Accordion>
+
+           <Accordion>
+        <AccordionSummary aria-controls="panel3-content" id="panel3-header">
+          <BusinessIcon sx={{ marginRight: 1 }} />
+          {open && <Typography sx={{ fontSize: 14 }}>Games</Typography>}
+        </AccordionSummary>
+        <AccordionDetails>
+
+           <ListItem button component={RouterLink} to="/gametoys">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Toys game" />}
+          </ListItem>
+          <ListItem button component={RouterLink} to="/gametoys1">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            {open && <ListItemText primaryTypographyProps={{ fontSize: "14px" }} primary="Toys game" />}
+          </ListItem>
+
+        </AccordionDetails>
+        </Accordion>
 
 
 

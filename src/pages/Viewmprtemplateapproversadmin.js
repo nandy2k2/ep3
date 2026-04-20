@@ -4,8 +4,7 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmexamtotal1';
-import AddUserModalBulk from './Addmexamtotal1bulk';
+import AddUserModal from './Addmprtemplateapprovers';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -14,26 +13,12 @@ import dayjs from 'dayjs';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
 
-import pdfToText from 'react-pdftotext';
-
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-
-import Tesseract from 'tesseract.js';
-
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-
 
 function ViewPage() {
     const [rows, setRows] = useState([]);
     const [results, setResults] = useState([]);
     const [second, setSecond] = useState([]);
     const [openAdd, setOpenAdd] = useState(false);
-    const [openAddBulk, setOpenAddBulk] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);
     const [openExport, setOpenExport] = useState(false);
@@ -43,22 +28,10 @@ function ViewPage() {
       price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '', dateadded: ''
     });
 
-     const [file, setFile] = useState();
-    const [dialogopen, setDialogopen] = React.useState(false);
-    const [itemstocheck, setItemstocheck] = useState();
-
-    const [selectedImage, setSelectedImage] = useState(null);
-  const handleImageUpload = (event) => {
-    const image = event.target.files[0];
-    setSelectedImage(URL.createObjectURL(image));
-  };
-
     const user=global1.user;
     const token=global1.token;
     const colid=global1.colid;
     const name=global1.name;
-
-    const [open, setOpen] = React.useState(false);
 
     const handleDeleteClick = async (id) => {
         alert(id);
@@ -78,7 +51,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deleteexamtotal1byfac', {
+        const response = await ep1.get('/api/v2/deleteprtemplateapproversbyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -92,24 +65,24 @@ function ViewPage() {
 
     const columns = [
         // { field: '_id', headerName: 'ID' },
+        {
+            field: 'user',
+            headerName: 'Added by',
+            type: 'text',
+            width: 200,
+            editable: false,
+        },
+        {
+            field: 'name',
+            headerName: 'Name',
+            type: 'text',
+            width: 200,
+            editable: false,
+        },
     
      {
-field:'year',
-headerName:'Academic year',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'examcode',
-headerName:'Exam code',
+field:'templateid',
+headerName:'Template id',
 type:'text',
 width:200,
 editable:true,
@@ -122,8 +95,8 @@ return '';
 }
  },
 {
-field:'student',
-headerName:'Student',
+field:'template',
+headerName:'Template',
 type:'text',
 width:200,
 editable:true,
@@ -136,8 +109,8 @@ return '';
 }
  },
 {
-field:'regno',
-headerName:'Reg no',
+field:'faculty',
+headerName:'Faculty',
 type:'text',
 width:200,
 editable:true,
@@ -150,162 +123,8 @@ return '';
 }
  },
 {
-field:'program',
-headerName:'Program',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'programcode',
-headerName:'Programcode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'course',
-headerName:'Course',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'coursecode',
-headerName:'Coursecode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'semester',
-headerName:'Semester',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'credits',
-headerName:'Credits',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'intmarks',
-headerName:'Internal marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'extmarks',
-headerName:'External marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'totalmarks',
-headerName:'Total marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'grade',
-headerName:'Grade',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'result',
-headerName:'Result',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'type',
-headerName:'type',
+field:'facultyid',
+headerName:'Faculty id',
 type:'text',
 width:200,
 editable:true,
@@ -320,6 +139,34 @@ return '';
 {
 field:'level',
 headerName:'Level',
+type:'number',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+{
+field:'category',
+headerName:'Category',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+{
+field:'type',
+headerName:'Type',
 type:'text',
 width:200,
 editable:true,
@@ -332,32 +179,15 @@ return '';
 }
  },
 
-  
-          { field: 'actions', headerName: 'Actions', width: 300, renderCell: (params) => {
+    
+          { field: 'actions', headerName: 'Actions', width: 100, renderCell: (params) => {
             return (
-             <table>
-                <tr>
-                  <td>
-                  <Button
+              <Button
                 onClick={(e) => onButtonClick(e, params.row)}
                 variant="contained"
               >
                 Delete
               </Button>
-                  </td>
-                  <td width="10px"></td>
-                  <td>
-                  <Button
-                onClick={(e) => onButtonClickgo(e, params.row)}
-                variant="contained"
-              >
-                Check document
-                
-              </Button>
-                  </td>
-                 
-                </tr>
-              </table>
             );
           } }
       ];
@@ -366,7 +196,7 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1byfac', {
+      const response = await ep1.get('/api/v2/prtemplateapproversdocs', {
         params: {
           token: token,
           colid: colid,
@@ -377,32 +207,32 @@ return '';
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1countbyfac', {
-        params: {
-          token: token,
-          colid: colid,
-          user: user
-        }
-      });
-      setResults(response.data.data.classes);
-    };
-
-    const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1secondbyfac', {
-        params: {
-          token: token,
-          colid: colid,
-          user: user
-        }
-      });
-      setSecond(response.data.data.classes);
-    };
-
-    const refreshpage=async()=> {
-      fetchViewPage();
-      getgraphdata();
-      getgraphdatasecond();
-    }
+        const response = await ep1.get('/api/v2/getprtemplateapproverscount', {
+          params: {
+            token: token,
+            colid: colid,
+            user: user
+          }
+        });
+        setResults(response.data.data.classes);
+      };
+  
+      const getgraphdatasecond = async () => {
+        const response = await ep1.get('/api/v2/getprtemplateapproverssecond', {
+          params: {
+            token: token,
+            colid: colid,
+            user: user
+          }
+        });
+        setSecond(response.data.data.classes);
+      };
+  
+      const refreshpage=async()=> {
+        fetchViewPage();
+        getgraphdata();
+        getgraphdatasecond();
+      }
   
     useEffect(() => {
       fetchViewPage();
@@ -423,10 +253,6 @@ return '';
     const handleOpenAdd = () => {
       setOpenAdd(true);
     };
-
-    const handleOpenAddBulk = () => {
-        setOpenAddBulk(true);
-      };
   
     const handleCloseAdd = () => {
       setOpenAdd(false);
@@ -435,14 +261,6 @@ return '';
         price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
       });
     };
-
-    const handleCloseAddBulk = () => {
-        setOpenAddBulk(false);
-        setNewUser({
-          coursecode: '', coursetitle: '', year: '', coursetype: '', duration: '', offeredtimes: '', imagelink: '',
-          price: '', category: '', department: '', coursehours: '', totalstudents: '', studentscompleted: '',studentsenrolled:'', dateadded: ''
-        });
-      };
   
     const handleOpenEdit = (user) => {
       global1.coursetitle = user.coursetitle;
@@ -462,47 +280,31 @@ return '';
     const handleOpenEdit1 =async (user) => {
     
             //const title=titleref.current.value;
-            const year=user.year;
-const examcode=user.examcode;
-const student=user.student;
-const regno=user.regno;
-const program=user.program;
-const programcode=user.programcode;
-const course=user.course;
-const coursecode=user.coursecode;
-const semester=user.semester;
-const credits=user.credits;
-const intmarks=user.intmarks;
-const extmarks=user.extmarks;
-const result=user.result;
-const type=user.type;
+            const templateid=user.templateid;
+const template=user.template;
+const faculty=user.faculty;
+const facultyid=user.facultyid;
 const level=user.level;
+const category=user.category;
+const type=user.type;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updateexamtotal1byfac', {
+            const response =await ep1.get('/api/v2/updateprtemplateapproversbyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            year:year,
-examcode:examcode,
-student:student,
-regno:regno,
-program:program,
-programcode:programcode,
-course:course,
-coursecode:coursecode,
-semester:semester,
-credits:credits,
-intmarks:intmarks,
-extmarks:extmarks,
-result:result,
-type:type,
+            templateid:templateid,
+template:template,
+faculty:faculty,
+facultyid:facultyid,
 level:level,
+category:category,
+type:type,
 
             status1:'Submitted',
             comments:''
@@ -565,79 +367,6 @@ level:level,
         setSelectedUser({ ...selectedUser, [field]: value });
       }
     };
-
-     function extractText1(event) {
-     
-      const file1 = event.target.files[0];
-      setFile(file1);
-     
-    }
-
-    const onButtonClickgo = async(e, row) => {
-      e.stopPropagation();
-      var itemstocheck=row.name + '~' + row.title + '~' + row.journal;
-      setItemstocheck(itemstocheck);
-      global1.itemstocheck=itemstocheck;
-      setDialogopen(true);
-      
-     
-    
-  };
-
-  const processpdf=async()=> {
-    if(!file) {
-      alert('Please select file');
-      return;
-    }
-    
-    setOpen(true);
-    pdfToText(file)
-    .then((text) => checktext1(text,itemstocheck))
-    .catch((error) => alert("Failed to extract text from pdf"));
-    setOpen(false);
-
-  }
-
-  const recognizeText = async (e, row) => {
-    e.stopPropagation();
-    var itemstocheck=row.name + '~' + row.title + '~' + row.journal;
-    setItemstocheck(itemstocheck);
-    
-  };
-
-  const processimage=async()=> {
-    
-    if(!selectedImage) {
-      alert('Please select image');
-      return;
-    }
-    if (selectedImage) {
-      const result = await Tesseract.recognize(selectedImage);
-     //alert(result.data.text);
-     checktext1(result.data.text,itemstocheck);
-    }
-
-  }
-
-  const checktext1=(stext,itemstocheck)=> {
-    const ar1=itemstocheck.split('~');
-    var found=0;
-    var notthere='';
-    for(var i=0;i<ar1.length;i++) {
-      if(stext.toLowerCase().indexOf(ar1[i])>-1) {
-        found=found + 1;
-      } else {
-        notthere=notthere + ar1[i] + ' ';
-      }
-
-    }
-    var percentage=Math.round(parseFloat(found)/parseFloat(ar1.length) * 100);
-    alert('Percentage match ' + percentage + '. Missing items ' + notthere);
-  }
-
-    const handleDialogclose = () => {
-      setDialogopen(false);
-    };
   
     return (
       <React.Fragment>
@@ -651,14 +380,6 @@ level:level,
              onClick={handleOpenAdd}
            >
              Add 
-           </Button>
-           <Button
-             variant="contained"
-             color="success"
-             style={{ padding: '5px 10px', marginRight: '4px', fontSize: '12px', height: '30px', width: '80px' }}
-             onClick={handleOpenAddBulk}
-           >
-             Bulk
            </Button>
            <Button
              variant="contained"
@@ -677,6 +398,10 @@ level:level,
              Refresh
            </Button>
          </Box>
+
+
+
+
           <Grid container spacing={3}>
 
           <Grid item xs={6}>
@@ -691,7 +416,7 @@ level:level,
         id: 'barCategories',
         data: second.map((labels) => {
           return (
-            labels._id ? labels._id : ''         
+              labels._id        
               );
           }),
         scaleType: 'band',
@@ -719,7 +444,7 @@ level:level,
 <Grid item xs={6}>
 
 <div style={{textAlign: 'center'}}>
-          Level
+          Category
           </div>
  <br />
  <PieChart
@@ -728,7 +453,7 @@ series={[
   {
     data: 
       results.map((labels1,i) => {
-        return { id: i, value: parseInt(labels1.total_attendance)  , label: labels1._id? labels1._id : ''}
+        return { id: i, value: parseInt(labels1.total_attendance)  , label: labels1._id}
         }),
   },
   
@@ -740,81 +465,10 @@ height={250}
 </Grid>
 
 
-<br />
-
-<Dialog
-        open={dialogopen}
-        onClose={handleDialogclose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Document Validator"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-
-
-<Grid item xs={12}>
-<Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}>
-<Box>
-
-  Select pdf or image file document proof
- 
-  {/* Checking for {itemstocheck} */}
-  <br /><br />
- 
-  <table>
-    <tr>
-      <td>
-        Select pdf
-      </td>
-      <td width="20px"></td>
-      <td>
-      <input type="file" accept="application/pdf" onChange={extractText1} />
-      </td>
-      </tr><tr>
-      <td>Select image</td>
-      <td width="20px"></td>
-      <td>
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
-      </td>
-    </tr>
-  </table>
-  <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
-</Box>
-</Paper>
-</Grid>
-
-</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogclose} autoFocus>Close</Button>
-          <Button onClick={processpdf}>
-            Check pdf
-          </Button>
-          <Button onClick={processimage}>
-            Check image
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-
-
-
             <Grid item xs={12}>
               <Paper elevation={5} sx={{ p: 2, display: 'flex', flexDirection: 'column', width: '100%' }}>
               {/* <h1>Table Component</h1> */}
-             
-
-
+               
                 <DataGrid getRowId={(row) => row._id} 
                 
         rows={rows}
@@ -840,16 +494,6 @@ height={250}
                   handleInputChange={handleInputChange}
                   handleAddUser={handleAddUser}
                   newUser={newUser}
-                  fetchViewPage={fetchViewPage}
-                />
-
-                <AddUserModalBulk
-                  open={openAddBulk}
-                  handleClose={handleCloseAddBulk}
-                  handleInputChange={handleInputChange}
-                  handleAddUser={handleAddUser}
-                  newUser={newUser}
-                  fetchViewPage={fetchViewPage}
                 />
   
                 <EditUserModal

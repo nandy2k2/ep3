@@ -4,8 +4,8 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmexamtotal1';
-import AddUserModalBulk from './Addmexamtotal1bulk';
+import AddUserModal from './Addmprtemplate';
+import AddUserModalBulk from './Addmprtemplatebulk';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -27,8 +27,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import { useNavigate } from 'react-router-dom';
+
 
 function ViewPage() {
+
+  const navigate = useNavigate();
+
     const [rows, setRows] = useState([]);
     const [results, setResults] = useState([]);
     const [second, setSecond] = useState([]);
@@ -74,11 +79,31 @@ function ViewPage() {
         const a=await fetchViewPage();
       };
 
+      const onButtonClicken = async(e, row) => {
+          e.stopPropagation();
+          //do whatever you want with the row
+          //alert(row._id);
+          global1.prtemplate=row.template;
+          global1.prtemplateid=row._id;
+          
+          navigate('/dashmprtemplateapprovers');
+      };
+
+      const onButtonClicken1 = async(e, row) => {
+          e.stopPropagation();
+          //do whatever you want with the row
+          //alert(row._id);
+          global1.prtemplate=row.template;
+          global1.prtemplateid=row._id;
+          
+          navigate('/dashmprlist');
+      };
+
       const onButtonClick = async(e, row) => {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deleteexamtotal1byfac', {
+        const response = await ep1.get('/api/v2/deleteprtemplatebyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -91,25 +116,11 @@ function ViewPage() {
     };
 
     const columns = [
-        // { field: '_id', headerName: 'ID' },
+        { field: '_id', headerName: 'ID' },
     
      {
-field:'year',
-headerName:'Academic year',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'examcode',
-headerName:'Exam code',
+field:'template',
+headerName:'Template',
 type:'text',
 width:200,
 editable:true,
@@ -122,8 +133,8 @@ return '';
 }
  },
 {
-field:'student',
-headerName:'Student',
+field:'category',
+headerName:'Category',
 type:'text',
 width:200,
 editable:true,
@@ -136,163 +147,9 @@ return '';
 }
  },
 {
-field:'regno',
-headerName:'Reg no',
+field:'description',
+headerName:'Description',
 type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'program',
-headerName:'Program',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'programcode',
-headerName:'Programcode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'course',
-headerName:'Course',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'coursecode',
-headerName:'Coursecode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'semester',
-headerName:'Semester',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'credits',
-headerName:'Credits',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'intmarks',
-headerName:'Internal marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'extmarks',
-headerName:'External marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'totalmarks',
-headerName:'Total marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'grade',
-headerName:'Grade',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'result',
-headerName:'Result',
-type:'dropdown',
 width:200,
 editable:true,
 valueFormatter: (params) => {
@@ -305,7 +162,7 @@ return '';
  },
 {
 field:'type',
-headerName:'type',
+headerName:'Type',
 type:'text',
 width:200,
 editable:true,
@@ -333,7 +190,7 @@ return '';
  },
 
   
-          { field: 'actions', headerName: 'Actions', width: 300, renderCell: (params) => {
+          { field: 'actions', headerName: 'Actions', width: 360, renderCell: (params) => {
             return (
              <table>
                 <tr>
@@ -348,10 +205,20 @@ return '';
                   <td width="10px"></td>
                   <td>
                   <Button
-                onClick={(e) => onButtonClickgo(e, params.row)}
+                onClick={(e) => onButtonClicken(e, params.row)}
                 variant="contained"
               >
-                Check document
+                Approver list
+                
+              </Button>
+                  </td>
+                  <td width="10px"></td>
+                  <td>
+                  <Button
+                onClick={(e) => onButtonClicken1(e, params.row)}
+                variant="contained"
+              >
+                MRN
                 
               </Button>
                   </td>
@@ -366,7 +233,7 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1byfac', {
+      const response = await ep1.get('/api/v2/getprtemplatebyfac', {
         params: {
           token: token,
           colid: colid,
@@ -377,7 +244,7 @@ return '';
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1countbyfac', {
+      const response = await ep1.get('/api/v2/getprtemplatecountbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -388,7 +255,7 @@ return '';
     };
 
     const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1secondbyfac', {
+      const response = await ep1.get('/api/v2/getprtemplatesecondbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -462,45 +329,25 @@ return '';
     const handleOpenEdit1 =async (user) => {
     
             //const title=titleref.current.value;
-            const year=user.year;
-const examcode=user.examcode;
-const student=user.student;
-const regno=user.regno;
-const program=user.program;
-const programcode=user.programcode;
-const course=user.course;
-const coursecode=user.coursecode;
-const semester=user.semester;
-const credits=user.credits;
-const intmarks=user.intmarks;
-const extmarks=user.extmarks;
-const result=user.result;
+            const template=user.template;
+const category=user.category;
+const description=user.description;
 const type=user.type;
 const level=user.level;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updateexamtotal1byfac', {
+            const response =await ep1.get('/api/v2/updateprtemplatebyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            year:year,
-examcode:examcode,
-student:student,
-regno:regno,
-program:program,
-programcode:programcode,
-course:course,
-coursecode:coursecode,
-semester:semester,
-credits:credits,
-intmarks:intmarks,
-extmarks:extmarks,
-result:result,
+            template:template,
+category:category,
+description:description,
 type:type,
 level:level,
 

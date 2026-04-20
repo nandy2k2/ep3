@@ -1491,6 +1491,128 @@ import Dashmexamext1admin from './pages/Dashmexamext1admin';
 import Dashmexamtotal1 from './pages/Dashmexamtotal1';
 import Dashmexamtotal1admin from './pages/Dashmexamtotal1admin';
 
+import Examtransfer from './pages/Examtransfer';
+
+import Salassign1 from './pages/Salassign1';
+import Gametoys from './pages/Gametoys';
+import Saldeduction from './pages/Saldeduction';
+
+import Saldeductiontdspf from './pages/Saldeductiontdspf';
+import Salarytransfer from './pages/Salarytransfer';
+
+import Dashmprtemplate from './pages/Dashmprtemplate';
+import Dashmprtemplateadmin from './pages/Dashmprtemplateadmin';
+import Dashmprtemplateapprovers from './pages/Dashmprtemplateapprovers';
+import Dashmprtemplateapproversadmin from './pages/Dashmprtemplateapproversadmin';
+import Dashmprlist from './pages/Dashmprlist';
+import Dashmprlistadmin from './pages/Dashmprlistadmin';
+import Dashmpritems from './pages/Dashmpritems';
+import Dashmpritemsadmin from './pages/Dashmpritemsadmin';
+import Dashmitemlist from './pages/Dashmitemlist';
+import Dashmitemlistadmin from './pages/Dashmitemlistadmin';
+import Dashmcategorybudget from './pages/Dashmcategorybudget';
+import Dashmcategorybudgetadmin from './pages/Dashmcategorybudgetadmin';
+import Dashmpraudit from './pages/Dashmpraudit';
+import Dashmprauditadmin from './pages/Dashmprauditadmin';
+
+import Mrncreate from './pages/Mrncreate';
+import Prapproverscreen from './pages/Prapproverscreen';
+
+import Mrnapprover1 from './pages/Mrnapprover1';
+
+
+
+
+
+
+
+import StorePage from "./pages/StorePage";
+import StockPage from "./pages/StockPage";
+import CategoryPage from "./pages/CategoryPage";
+
+
+import StockPage1 from "./pages/StockPage1";
+import BudgetPage from "./pages/BudgetPage";
+import Indentpage from "./pages/Indentpage";
+
+import IndentPage1 from "./pages/IndentPage1";
+import IndentApproval from "./pages/IndentApproval";
+import IndentApproval1 from "./pages/IndentApproval1";
+
+
+
+import RfpPage from "./pages/RfpPage";
+import VendorPage from "./pages/VendorPage";
+
+import VendorComparisonPage from "./pages/VendorComparisonPage";
+
+import VendorNegotiation from "./pages/VendorNegotiation";
+import VendorFinalPrice from "./pages/VendorFinalPrice";
+import VendorNegotiation1 from "./pages/VendorNegotiation1";
+
+import VendorFinalComparison from "./pages/VendorFinalComparison";
+import VendorFinalComparison1 from "./pages/VendorFinalComparison1";
+
+import CategoryOfficerPage from "./pages/CategoryOfficerPage";
+
+import CreatePoPage from "./pages/CreatePoPage";
+
+import CreatePOPage1 from "./pages/CreatePOPage1";
+
+import POApprovalPage from "./pages/POApprovalPage";
+import POApprovalPage1 from "./pages/POApprovalPage1";
+
+
+import DeliverySchedulePage from "./pages/DeliverySchedulePage";
+import QualityPage from "./pages/QualityPage";
+import GRNPage from "./pages/GRNPage";
+import GRNViewPage from "./pages/GRNViewPage";
+
+import POReceivedSummary from "./pages/POReceivedSummary";
+import InwardGatePass from "./pages/InwardGatePass";
+import InvoicePaymentPage from "./pages/InvoicePaymentPage";
+import InvoiceCreatePage from "./pages/InvoiceCreatePage";
+import FinanceDashboard from "./pages/FinanceDashboard";
+
+import PrepDashboard from "./pages/PrepDashboard";
+import PrepDepartmentDetails from "./pages/PrepDepartmentDetails";
+
+import FinanceDashboardNew from "./pages/FinanceDashboardNew";
+import AgingDashboardPage from "./pages/AgingDashboardPage";
+
+import VendorLedgerPage from "./pages/VendorLedgerPage";
+import OverduePage from './pages/OverduePage';
+import VendorLedgerPage1 from "./pages/VendorLedgerPage1";
+
+import VendorDashboardPage from "./pages/VendorDashboardPage";
+
+import VendorCreatePage from "./pages/VendorCreatePage";
+import VendorLoginPage from "./pages/VendorLoginPage";
+import VendorProfilePage from "./pages/VendorProfilePage";
+import VendorProfilePage1 from "./pages/VendorProfilePage1";
+
+import VendorCreatePage1 from "./pages/VendorCreatePage1";
+
+import VendorLoginPage1 from "./pages/VendorLoginPage1";
+import VendorProfilePage2 from "./pages/VendorProfilePage2";
+
+import RfpFromIndentPage from "./pages/RfpFromIndentPage";
+import RfpViewPage from "./pages/RfpViewPage";
+
+import VendorMapPage from "./pages/VendorMapPage";
+
+import VendorHomePage from "./pages/VendorHomePage";
+import VendorRfpPage from "./pages/VendorRfpPage";
+import VendorRfpSubmitPage from "./pages/VendorRfpSubmitPage";
+import VendorSubmitPage from "./pages/VendorSubmitPage";
+import VendorSubmitPage1 from "./pages/VendorSubmitPage1";
+import VendorSubmitPage2 from "./pages/VendorSubmitPage2";
+
+
+
+
+
+
 
 
 
@@ -1558,6 +1680,110 @@ function App() {
         <Route path="/Login3" element={<Login />} />
         <Route path="/dashmncas12" element={<Dashmncas12 />} />
         <Route path="/dashmncas12admin" element={<Dashmncas12admin />} />
+
+
+
+           <Route path="/vendor-submit" element={<VendorSubmitPage2 />} />
+        <Route path="/vendor-home" element={<VendorHomePage />} />
+        <Route path="/vendor-rfp" element={<VendorRfpPage />} />
+        <Route path="/vendor-rfp-submit" element={<VendorRfpSubmitPage />} />
+
+        <Route path="/vendormappage" element={<VendorMapPage />} />
+
+        <Route path="rfpviewpage" element={<RfpViewPage />} />
+
+        <Route path="/rfpfromindent" element={<RfpFromIndentPage />} />
+
+        <Route path="/vendorloginpage" element={<VendorLoginPage />} />
+        <Route path="/vendor-login" element={<VendorLoginPage1 />} />
+        {/* <Route path="/vendorprofilepage" element={<VendorProfilePage />} /> */}
+        <Route path="/vendor-profile" element={<VendorProfilePage2 />} />
+        <Route path="/vendorcreatepage" element={<VendorCreatePage />} />
+        <Route path="/vendorcreatepage1" element={<VendorCreatePage1 />} />
+
+        <Route path="/vendordashboardpage" element={<VendorDashboardPage />} />
+        <Route path="/vendorledgerpage1" element={<VendorLedgerPage1 />} />
+        <Route path="/overduepage" element={<OverduePage />} />
+        <Route path="/vendorledgerpage" element={<VendorLedgerPage />} />
+        <Route path="/agingdashboardpage" element={<AgingDashboardPage />} />
+
+        <Route path="/financedashboardnew" element={<FinanceDashboardNew />} />
+
+        <Route path="/prepdashboard" element={<PrepDashboard />} />
+        <Route path="/prep/department/:name" element={<PrepDepartmentDetails />} />
+
+        <Route path="/Financedashboard" element={<FinanceDashboard />} />
+        <Route path="/invoicecreatepage" element={<InvoiceCreatePage />} />
+        <Route path="/invoicepaymentpage" element={<InvoicePaymentPage />} />
+        <Route path="/inwardgatepass" element={<InwardGatePass />} />
+
+        <Route path="/poreceivedsummary" element={<POReceivedSummary />} />
+        <Route path="/grnviewpage" element={<GRNViewPage />} />
+
+        <Route path="/grnpage" element={<GRNPage />} />
+        <Route path="/qualitypage" element={<QualityPage />} />
+        <Route path="/deliveryschedulepage" element={<DeliverySchedulePage />} />
+
+        <Route path="/poapprovalpage1" element={<POApprovalPage1 />} />
+        <Route path="/poapprovalpage" element={<POApprovalPage />} />
+        <Route path="/createpopage1" element={<CreatePOPage1 />} />
+        <Route path="/createpopage" element={<CreatePoPage />} />
+        <Route path="/categoryofficerpage" element={<CategoryOfficerPage />} />
+
+        <Route path="/vendorfinalcomparison" element={<VendorFinalComparison />} />
+        <Route path="/vendorfinalcomparison1" element={<VendorFinalComparison1 />} />
+
+        <Route path="/vendornegotiation1" element={<VendorNegotiation1 />} />
+        <Route path="/vendornegotiation" element={<VendorNegotiation />} />
+        <Route path="/vendorfinalprice" element={<VendorFinalPrice />} />
+        <Route path="/vendorcomparisonpage" element={<VendorComparisonPage />} />
+        <Route path="/VendorPage" element={<VendorPage />} />
+        <Route path="/rfppage" element={<RfpPage />} />
+        <Route path="/indentapproval1" element={<IndentApproval1 />} />
+
+        <Route path="/indentpage1" element={<IndentPage1 />} />
+        <Route path="/indentapproval" element={<IndentApproval />} />
+
+        <Route path="/indentpage" element={<Indentpage />} />
+        <Route path="/budgetpage" element={<BudgetPage />} />
+        <Route path="/stockpage1" element={<StockPage1 />} />
+
+        <Route path="/storepage" element={<StorePage />} />
+        <Route path="/stockpage" element={<StockPage />} />
+        <Route path="/categorypage" element={<CategoryPage />} />
+
+
+
+
+        <Route path="/mrnapprover1" element={<Mrnapprover1 />} />
+
+        <Route path="/prapproverscreen" element={<Prapproverscreen />} />
+
+        <Route path="/mrncreate" element={<Mrncreate />} />
+
+        <Route path="/dashmprtemplate" element={<Dashmprtemplate />} />
+<Route path="/dashmprtemplateadmin" element={<Dashmprtemplateadmin />} />
+<Route path="/dashmprtemplateapprovers" element={<Dashmprtemplateapprovers />} />
+<Route path="/dashmprtemplateapproversadmin" element={<Dashmprtemplateapproversadmin />} />
+<Route path="/dashmprlist" element={<Dashmprlist />} />
+<Route path="/dashmprlistadmin" element={<Dashmprlistadmin />} />
+<Route path="/dashmpritems" element={<Dashmpritems />} />
+<Route path="/dashmpritemsadmin" element={<Dashmpritemsadmin />} />
+<Route path="/dashmitemlist" element={<Dashmitemlist />} />
+<Route path="/dashmitemlistadmin" element={<Dashmitemlistadmin />} />
+<Route path="/dashmcategorybudget" element={<Dashmcategorybudget />} />
+<Route path="/dashmcategorybudgetadmin" element={<Dashmcategorybudgetadmin />} />
+<Route path="/dashmpraudit" element={<Dashmpraudit />} />
+<Route path="/dashmprauditadmin" element={<Dashmprauditadmin />} />
+
+
+        <Route path="/salarytransfer" element={<Salarytransfer />} />
+        <Route path="/saldeductiontdspf" element={<Saldeductiontdspf />} />
+        <Route path="/saldeduction" element={<Saldeduction />} />
+
+        <Route path="/gametoys" element={<Gametoys />} />
+        <Route path="/salassign1" element={<Salassign1 />} />
+        <Route path="/examtransfer" element={<Examtransfer />} />
 
         <Route path="/dashmexamext1" element={<Dashmexamext1 />} />
         <Route path="/dashmexamext1admin" element={<Dashmexamext1admin />} />

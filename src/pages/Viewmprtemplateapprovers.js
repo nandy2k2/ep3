@@ -4,8 +4,8 @@ import global1 from './global1';
 import { Button, Box, Paper, Container, Grid } from '@mui/material';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import AddUserModal from './Addmexamtotal1';
-import AddUserModalBulk from './Addmexamtotal1bulk';
+import AddUserModal from './Addmprtemplateapprovers';
+import AddUserModalBulk from './Addmprtemplateapproversbulk';
 import EditUserModal from '../Crud/Edit';
 import DeleteUserModal from '../Crud/Delete';
 import ExportUserModal from './Export';
@@ -78,7 +78,7 @@ function ViewPage() {
         e.stopPropagation();
         //do whatever you want with the row
         //alert(row._id);
-        const response = await ep1.get('/api/v2/deleteexamtotal1byfac', {
+        const response = await ep1.get('/api/v2/deleteprtemplateapproversbyfac', {
             params: {
                 id: row._id,
                 token: token,
@@ -94,22 +94,8 @@ function ViewPage() {
         // { field: '_id', headerName: 'ID' },
     
      {
-field:'year',
-headerName:'Academic year',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'examcode',
-headerName:'Exam code',
+field:'templateid',
+headerName:'Template id',
 type:'text',
 width:200,
 editable:true,
@@ -122,8 +108,8 @@ return '';
 }
  },
 {
-field:'student',
-headerName:'Student',
+field:'template',
+headerName:'Template',
 type:'text',
 width:200,
 editable:true,
@@ -136,8 +122,8 @@ return '';
 }
  },
 {
-field:'regno',
-headerName:'Reg no',
+field:'faculty',
+headerName:'Faculty',
 type:'text',
 width:200,
 editable:true,
@@ -150,162 +136,8 @@ return '';
 }
  },
 {
-field:'program',
-headerName:'Program',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'programcode',
-headerName:'Programcode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'course',
-headerName:'Course',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'coursecode',
-headerName:'Coursecode',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'semester',
-headerName:'Semester',
-type:'text',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'credits',
-headerName:'Credits',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'intmarks',
-headerName:'Internal marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'extmarks',
-headerName:'External marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'totalmarks',
-headerName:'Total marks',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
- {
-field:'grade',
-headerName:'Grade',
-type:'number',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'result',
-headerName:'Result',
-type:'dropdown',
-width:200,
-editable:true,
-valueFormatter: (params) => {
-if (params.value) {
-return params.value;
-} else {
-return '';
-}
-}
- },
-{
-field:'type',
-headerName:'type',
+field:'facultyid',
+headerName:'Faculty id',
 type:'text',
 width:200,
 editable:true,
@@ -320,6 +152,34 @@ return '';
 {
 field:'level',
 headerName:'Level',
+type:'number',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+{
+field:'category',
+headerName:'Category',
+type:'text',
+width:200,
+editable:true,
+valueFormatter: (params) => {
+if (params.value) {
+return params.value;
+} else {
+return '';
+}
+}
+ },
+{
+field:'type',
+headerName:'Type',
 type:'text',
 width:200,
 editable:true,
@@ -366,18 +226,21 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1byfac', {
+      const template=global1.prtemplate;
+      const templateid=global1.prtemplateid;
+      const response = await ep1.get('/api/v2/getprtemplateapproversbyfac', {
         params: {
           token: token,
           colid: colid,
-          user: user
+          user: user,
+          templateid: templateid
         }
       });
       setRows(response.data.data.classes);
     };
 
     const getgraphdata = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1countbyfac', {
+      const response = await ep1.get('/api/v2/getprtemplateapproverscountbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -388,7 +251,7 @@ return '';
     };
 
     const getgraphdatasecond = async () => {
-      const response = await ep1.get('/api/v2/getexamtotal1secondbyfac', {
+      const response = await ep1.get('/api/v2/getprtemplateapproverssecondbyfac', {
         params: {
           token: token,
           colid: colid,
@@ -462,47 +325,31 @@ return '';
     const handleOpenEdit1 =async (user) => {
     
             //const title=titleref.current.value;
-            const year=user.year;
-const examcode=user.examcode;
-const student=user.student;
-const regno=user.regno;
-const program=user.program;
-const programcode=user.programcode;
-const course=user.course;
-const coursecode=user.coursecode;
-const semester=user.semester;
-const credits=user.credits;
-const intmarks=user.intmarks;
-const extmarks=user.extmarks;
-const result=user.result;
-const type=user.type;
+            const templateid=user.templateid;
+const template=user.template;
+const faculty=user.faculty;
+const facultyid=user.facultyid;
 const level=user.level;
+const category=user.category;
+const type=user.type;
 
             //alert(coursetitle + ' - ' + studentscompleted);
              
      
-            const response =await ep1.get('/api/v2/updateexamtotal1byfac', {
+            const response =await ep1.get('/api/v2/updateprtemplateapproversbyfac', {
             params: {
             id: user._id,
             user: user.user,
             token:token,
             name: user.name,
             colid: colid,
-            year:year,
-examcode:examcode,
-student:student,
-regno:regno,
-program:program,
-programcode:programcode,
-course:course,
-coursecode:coursecode,
-semester:semester,
-credits:credits,
-intmarks:intmarks,
-extmarks:extmarks,
-result:result,
-type:type,
+            templateid:templateid,
+template:template,
+faculty:faculty,
+facultyid:facultyid,
 level:level,
+category:category,
+type:type,
 
             status1:'Submitted',
             comments:''
@@ -719,7 +566,7 @@ level:level,
 <Grid item xs={6}>
 
 <div style={{textAlign: 'center'}}>
-          Level
+          Category
           </div>
  <br />
  <PieChart

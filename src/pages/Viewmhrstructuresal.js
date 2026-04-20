@@ -215,11 +215,15 @@ return '';
     const coursetitleref = useRef();
   
     const fetchViewPage = async () => {
+          const structure=global1.structure;
+    const structureid=global1.structureid;
       const response = await ep1.get('/api/v2/gethrstructuresalbyfac', {
         params: {
           token: token,
           colid: colid,
-          user: user
+          user: user,
+          structure:structure,
+          structureid:structureid
         }
       });
       setRows(response.data.data.classes);
